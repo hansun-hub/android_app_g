@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">App_name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">로그인</string>
+    <string name="nav_home">홈</string>
+    <string name="nav_challenge">도전과제</string>
+    <string name="nav_reward">보상</string>
+    <string name="nav_settings">설정</string>
+</resources>
