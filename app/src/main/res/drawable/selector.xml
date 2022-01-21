@@ -1,6 +1,6 @@
-<!-- 메뉴 선택됐을 경우/선택되지 않았을 경우 메뉴 아이콘과 레이블의 색상 -->
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 메뉴 선택됐을 경우/선택되지 않았을 경우 메뉴 아이콘과 레이블의 색상 -->
     <item
         android:state_selected="true"
         android:color="@color/teal_700"/>
