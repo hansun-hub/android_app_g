@@ -7,4 +7,16 @@
     <string name="nav_menu1">도전과제</string>
     <string name="nav_menu2">보상</string>
     <string name="nav_settings">설정</string>
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="NotMemberYet">아직 회원이 아니신가요?</string>
+    <string name="SignUp">회원가입</string>
+    <string name="nickname">닉네임</string>
+    <string name="Welcome">님 환영합니다!</string>
+    <string name="tip">Tip!</string>
+    <string name="leftNumber">다음 단계까지 남은 횟수</string>
+    <string name="checkPassword">비밀번호 확인</string>
+    <string name="doubleCheck">중복 확인</string>
+    <string name="register">회원가입하기</string>
+    <string name="popupTip">분리배출은 필수</string>
 </resources>
