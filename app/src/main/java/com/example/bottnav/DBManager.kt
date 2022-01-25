@@ -66,27 +66,27 @@ class DBManager(context: Context) {
         return null
     }
 
-    public fun getChallenges(period: String): ArrayList<String>? {
+    public fun getChallenges(period: String): MutableList<String>? {
         // 미션 배열 반환(함수 호출 시 인자에 따라)
 
         when (period) {
             "monthly" -> {
-                var monthly = ArrayList<String>(R.array.CHALLENGES_M)
+                var monthly = ArrayList<String>(R.array.CHALLENGES).subList(0, 6)
 
                 return monthly
             }
             "weekly" -> {
-                var weekly = ArrayList<String>(R.array.CHALLENGES_W)
+                var weekly = ArrayList<String>(R.array.CHALLENGES).subList(6, 14)
 
                 return weekly
             }
             "daily" -> {
-                var daily = ArrayList<String>(R.array.CHALLENGES_D)
+                var daily = ArrayList<String>(R.array.CHALLENGES).subList(14, 25)
 
                 return daily
             }
             "all" -> {
-                var all = ArrayList<String>(R.array.CHALLENGES_M + R.array.CHALLENGES_W + R.array.CHALLENGES_D)
+                var all = ArrayList<String>(R.array.CHALLENGES)
 
                 return all
             }
@@ -102,6 +102,27 @@ class DBManager(context: Context) {
         // 달성정보 DB에 추가
         sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES ('$date', '$period', 'N')")
         sqlDB.close()
+    }
+
+    @SuppressLint("Range")
+    public fun getSelectedChallenges(date: String, title: String): List<String>? {
+        // DB에서 '선택된 미션' 배열로 반환
+
+        sqlDB = dbHelper.readableDatabase
+        cursor = sqlDB.rawQuery("SELECT * FROM USERS WHERE email=\'$email\';", null)
+
+        if (cursor.count == 1) {
+            cursor.moveToFirst()
+            val selected = cursor.getString(cursor.getColumnIndex("selected")).split(',')
+
+            cursor.close()
+            sqlDB.close()
+            dbHelper.close()
+
+            return selected
+        }
+
+        return null
     }
 
     public fun addDiary(date: String, title: String, contents: String, score: Int, selected_challenge: String) {

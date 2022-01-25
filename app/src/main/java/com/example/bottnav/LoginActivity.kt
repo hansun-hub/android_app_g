@@ -48,5 +48,8 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("nickname", nickname)
         // 저장
         editor.apply()
+
+        val dbManager = DBManager(this)
+        dbManager.newUser(email, nickname, "1234")
     }
 }

@@ -30,15 +30,13 @@
         <item>BBC News 코리아에 따르면, ‘지구의 허파’ 아마존의 삼림 벌채가 15년 만에 최대치를 기록한 것으로 나타났습니다.\n
             브라질 국립 우주연구소의 보고서에 따르면, 아마존 열대우림의 삼림 벌채는 1년 만에 22% 증가했다고 합니다.</item>
     </string-array>
-    <string-array name="CHALLENGES_M">
+    <string-array name="CHALLENGES">
         <item>치어(어린생선)나 생선알은 먹지 않기</item>
         <item>프린트 할 때는 양면 인쇄 하기</item>
         <item>환경 관련 뉴스에 관심 기울이며 가족과 친구들에게 환경 뉴스 공유하기</item>
         <item>자동차 대신 자전거 이용하기</item>
         <item>환경 보호와 관련된 영상보기</item>
         <item>재생가능에너지 사용 기업 찾아보기</item>
-    </string-array>
-    <string-array name="CHALLENGES_W">
         <item>낱개 포장된 야채나 과일 사지 않기</item>
         <item>장을 볼때 장바구니와 다회용기 챙겨 가기</item>
         <item>배달음식 주문할 때 일회용 수저 빼달라고 하기</item>
@@ -47,8 +45,6 @@
         <item>청구서나 영수증은 종이 대신 이메일로 받기</item>
         <item>친환경인증된 종이제품 사용하기</item>
         <item>지역에서 생산된 제품 사기</item>
-    </string-array>
-    <string-array name="CHALLENGES_D">
         <item>멸종위기 해산물 먹지 않기</item>
         <item>버려진 쓰레기 줍기</item>
         <item>미세 플라스틱이 들어 있는 세안제나 생활용품 사용하지 않기</item>
