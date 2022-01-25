@@ -60,7 +60,7 @@ class SettingsFragment : Fragment() {
                 1 -> {
                     // 팁 모아보기 선택 시
                     val tipsFrag = tipsFragment()
-                    childFragmentManager.beginTransaction().replace(R.id.bottom_container, tipsFrag).commit()
+                    childFragmentManager.beginTransaction().add(R.id.bottom_container, tipsFrag).commit()
                 }
             }
 
