@@ -26,6 +26,14 @@ class DBManager(context: Context) {
         sqlDB.close()
     }
 
+    public fun delUser() {
+        // 회원탈퇴 시 사용자 정보 삭제
+        sqlDB = dbHelper.writableDatabase
+        sqlDB.execSQL("DELETE FROM USERS WHERE email=\"$email\";")
+        sqlDB.execSQL("DROP TABLE IF EXISTS \"ACHIEVE_$email\"")
+        sqlDB.execSQL("DROP TABLE IF EXISTS \"DIARY_$email\"")
+    }
+
     @SuppressLint("Range")
     public fun getNickname(): String {
         // 닉네임 가져오기

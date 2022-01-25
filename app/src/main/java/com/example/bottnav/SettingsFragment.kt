@@ -88,6 +88,12 @@ class SettingsFragment : Fragment() {
                             setNegativeButton(R.string.answer_yes,
                                     DialogInterface.OnClickListener { dialog, id ->
                                         // 로그아웃 진행 선택 시
+                                        // Preference 삭제
+                                        val pref = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
+                                        pref.edit().clear()
+                                        pref.edit().apply()
+                                        
+                                        // Login 화면으로 전환
                                         val intent = Intent(view.context, LoginActivity::class.java)
                                         startActivity(intent)
                                     })
@@ -100,6 +106,9 @@ class SettingsFragment : Fragment() {
                 }
                 2 -> {
                     // 회원 탈퇴 선택 시
+                    // 진행 여부 확인
+                    // USERS에서 삭제, ACHIEVE&DIARY 테이블 삭제 -> Preference 삭제
+                    // Login 화면으로 전환
                 }
             }
 
