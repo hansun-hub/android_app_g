@@ -3,6 +3,10 @@ package com.example.bottnav
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.CalendarView
+import android.widget.DatePicker
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //메인 화면
