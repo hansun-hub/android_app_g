@@ -6,6 +6,7 @@
     <string name="nav_home">홈</string>
     <string name="nav_menu1">도전과제</string>
     <string name="nav_menu2">보상</string>
+    <string name="call_nickname"><b>%1$s</b> 님</string>
     <string name="nav_settings">설정</string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
@@ -19,4 +20,23 @@
     <string name="doubleCheck">중복 확인</string>
     <string name="register">회원가입하기</string>
     <string name="popupTip">분리배출은 필수</string>
+    <string name="settings_sound">음량 조절</string>
+    <string name="settings_tip">팁 모아보기</string>
+    <string name="settings_nickname">닉네임 변경</string>
+    <string name="settings_logout">로그아웃</string>
+    <string name="settings_del_acc">회원 탈퇴</string>
+    <string name="settings_version">버전</string>
+    <string name="settings_contact">Contact</string>
+    <string name="settings_about_us">About Us</string>
+    <string name="settings_logout_dialog">로그아웃 하시겠습니까?</string>
+    <string name="settings_del_dialog">회원탈퇴 진행 시 지금까지의 모든 기록이 삭제됩니다.<br></br>계속 진행할까요?</string>
+    <string name="settings_del_progess">회원탈퇴 진행을 위해 비밀번호를 입력해주세요.</string>
+    <string name="password_fail">비밀번호가 올바르지 않습니다.</string>
+    <string name="del_comp">회원탈퇴가 완료되었습니다.<br></br>이용해주셔서 감사합니다.</string>
+    <string name="answer_yes">네</string>
+    <string name="answer_no">아니오</string>
+    <string name="answer_ok">확인</string>
+    <string name="answer_progress">진행</string>
+    <string name="answer_enter">입력</string>
+    <string name="answer_cancel">취소</string>
 </resources>

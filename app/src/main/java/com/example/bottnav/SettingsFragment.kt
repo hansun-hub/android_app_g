@@ -1,10 +1,16 @@
 package com.example.bottnav
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.FragmentManager
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +39,140 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+
+        val listview1 = view.findViewById<ListView>(R.id.settings_listview1)
+        val listview2 = view.findViewById<ListView>(R.id.settings_listview2)
+        val listview3 = view.findViewById<ListView>(R.id.settings_listview3)
+
+        listview1.adapter = MyAdapter(view.context)
+        listview2.adapter = MyAdapter2(view.context)
+        listview3.adapter = MyAdapter3(view.context)
+
+        listview1.onItemClickListener =  AdapterView.OnItemClickListener { parent, view, position, id ->
+
+            when (position) {
+                0 -> {
+                    // 음량 조절 선택 시
+                    val volume_fragment = VolumeDialogFragment()
+                    volume_fragment.show(childFragmentManager, null)
+                }
+                1 -> {
+                    // 팁 모아보기 선택 시
+                    val tipsFrag = tipsFragment()
+                    childFragmentManager.beginTransaction().add(R.id.bottom_container, tipsFrag).commit()
+                }
+            }
+
+
+        }
+
+        listview2.onItemClickListener =  AdapterView.OnItemClickListener { parent, view, position, id ->
+
+            when (position) {
+                0 -> {
+                    // 닉네임 변경 선택 시
+                }
+                1 -> {
+                    // 로그아웃 선택 시
+                    // popup dialog
+                    val logoutDialog: AlertDialog? = activity?.let {
+                        val builder = AlertDialog.Builder(it)
+                        builder.apply {
+                            setTitle(R.string.settings_logout)
+                            setMessage(R.string.settings_logout_dialog)
+                            setPositiveButton(R.string.answer_no,
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        // 로그아웃 취소 선택 시
+                                    })
+                            setNegativeButton(R.string.answer_yes,
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        // 로그아웃 진행 선택 시
+                                        // Preference 삭제
+                                        val pref = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
+                                        pref.edit().clear()
+                                        pref.edit().apply()
+                                        
+                                        // Login 화면으로 전환
+                                        val intent = Intent(view.context, LoginActivity::class.java)
+                                        startActivity(intent)
+                                    })
+                        }
+
+                        builder.create()
+                    }
+
+                    logoutDialog?.show()
+                }
+                2 -> {
+                    // 회원 탈퇴 선택 시
+                    val delFrag = SettingsBottomSheetFragment()
+                    delFrag.show(requireActivity().supportFragmentManager, delFrag.tag)
+                    // 진행 여부 확인
+                    val delDialog: AlertDialog? = activity?.let {
+                        val builder = AlertDialog.Builder(it)
+                        builder.apply {
+                            setTitle(R.string.settings_logout)
+                            setMessage(R.string.settings_logout_dialog)
+                            setPositiveButton(R.string.answer_no,
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    // 회원탈퇴 취소 선택 시
+                                })
+                            setNegativeButton(R.string.answer_yes,
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    // 회원탈퇴 진행 선택 시
+                                    // USERS에서 삭제, ACHIEVE&DIARY 테이블 삭제 -> Preference 삭제
+                                    val pref = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
+                                    pref.edit().clear()
+                                    pref.edit().apply()
+
+                                    // Login 화면으로 전환
+                                    val intent = Intent(view.context, LoginActivity::class.java)
+                                    startActivity(intent)
+                                    val array = ArrayList<String>(R.array.WARNINGS)[3]
+                                    print(array)
+                                })
+                        }
+
+                        builder.create()
+                    }
+
+                    delDialog?.show()
+                }
+            }
+
+        }
+
+        listview3.onItemClickListener =  AdapterView.OnItemClickListener { parent, view, position, id ->
+
+            when (position) {
+                0 -> {
+                    // 버전 선택 시
+                    // popup dialog
+                    val logoutDialog: AlertDialog? = activity?.let {
+                        val builder = AlertDialog.Builder(it)
+                        builder.apply {
+                            setTitle(R.string.settings_version)
+                            setMessage("버전")
+                            setPositiveButton(R.string.answer_ok, null)
+                        }
+
+                        builder.create()
+                    }
+                    logoutDialog?.show()
+                }
+                1 -> {
+                    // Contact 선택 시
+                }
+                2 -> {
+                    // About Us 선택 시
+                }
+            }
+
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        return view
     }
 
     companion object {
@@ -55,5 +193,109 @@ class SettingsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private class MyAdapter(context: Context) : BaseAdapter() {
+
+        val myContext: Context = context
+
+        val list = arrayListOf<String>(
+            context.getString(R.string.settings_sound),
+            context.getString(R.string.settings_tip)
+        )
+
+        override fun getCount(): Int {
+            return list.size
+        }
+
+        override fun getItem(position: Int): Any {
+            val selected = list.get(position)
+            return selected
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
+            val layoutInflater = LayoutInflater.from(myContext)
+            val layout = layoutInflater.inflate(R.layout.settings_list, viewGroup, false)
+
+            val list_text = layout.findViewById<TextView>(R.id.list_textView)
+            list_text.text = list.get(position)
+
+            return layout
+        }
+
+    }
+
+    private class MyAdapter2(context: Context) : BaseAdapter() {
+
+        val myContext: Context = context
+
+        val list = arrayListOf<String>(
+            context.getString(R.string.settings_nickname),
+            context.getString(R.string.settings_logout),
+            context.getString(R.string.settings_del_acc)
+        )
+
+        override fun getCount(): Int {
+            return list.size
+        }
+
+        override fun getItem(position: Int): Any {
+            val selected = list.get(position)
+            return selected
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
+            val layoutInflater = LayoutInflater.from(myContext)
+            val layout = layoutInflater.inflate(R.layout.settings_list, viewGroup, false)
+
+            val list_text = layout.findViewById<TextView>(R.id.list_textView)
+            list_text.text = list.get(position)
+
+            return layout
+        }
+
+    }
+
+    private class MyAdapter3(context: Context) : BaseAdapter() {
+
+        val myContext: Context = context
+
+        val list = arrayListOf<String>(
+            context.getString(R.string.settings_version),
+            context.getString(R.string.settings_contact),
+            context.getString(R.string.settings_about_us)
+        )
+
+        override fun getCount(): Int {
+            return list.size
+        }
+
+        override fun getItem(position: Int): Any {
+            val selected = list.get(position)
+            return selected
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
+            val layoutInflater = LayoutInflater.from(myContext)
+            val layout = layoutInflater.inflate(R.layout.settings_list, viewGroup, false)
+
+            val list_text = layout.findViewById<TextView>(R.id.list_textView)
+            list_text.text = list.get(position)
+
+            return layout
+        }
+
     }
 }
