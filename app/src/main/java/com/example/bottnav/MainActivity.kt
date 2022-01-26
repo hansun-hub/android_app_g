@@ -1,8 +1,13 @@
 package com.example.bottnav
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.bottnav.databinding.ActivityMainBinding
+import android.widget.CalendarView
+import android.widget.DatePicker
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //메인 화면
@@ -18,12 +23,17 @@ class MainActivity : AppCompatActivity() {
     lateinit var settingsFrag: SettingsFragment
 
     lateinit var bottomNav: BottomNavigationView
+    lateinit var mPlayer : MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //김한선 수정함
         setContentView(binding.root)
+
+        mPlayer = MediaPlayer.create(this, R.raw.song1)
+        mPlayer.start()
+
 
         homeFrag = HomeFragment()
         menu1Frag = Menu1Fragment()
@@ -67,5 +77,7 @@ class MainActivity : AppCompatActivity() {
     fun goBack(){
         onBackPressed()
     }
-
+    fun Mstop(){
+        mPlayer.stop()
+    }
 }

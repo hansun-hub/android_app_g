@@ -9,10 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BottNav">
-        <activity android:name=".writeActivity"></activity>
-        <activity
-            android:name=".DiaryActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
