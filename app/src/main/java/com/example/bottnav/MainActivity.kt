@@ -1,5 +1,6 @@
 package com.example.bottnav
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CalendarView
@@ -16,10 +17,15 @@ class MainActivity : AppCompatActivity() {
     lateinit var settingsFrag: SettingsFragment
 
     lateinit var bottomNav: BottomNavigationView
+    lateinit var mPlayer : MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mPlayer = MediaPlayer.create(this, R.raw.song1)
+        mPlayer.start()
+
 
         homeFrag = HomeFragment()
         menu1Frag = Menu1Fragment()
@@ -51,5 +57,8 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+    }
+    fun Mstop(){
+        mPlayer.stop()
     }
 }
