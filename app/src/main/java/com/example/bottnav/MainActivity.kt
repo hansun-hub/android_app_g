@@ -2,10 +2,16 @@ package com.example.bottnav
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.bottnav.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //메인 화면
 class MainActivity : AppCompatActivity() {
+
+
+    //김한선 추가
+    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     lateinit var homeFrag: HomeFragment
     lateinit var menu1Frag: Menu1Fragment
     lateinit var menu2Frag: Menu2Fragment
@@ -15,7 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
+        //김한선 수정함
+        setContentView(binding.root)
 
         homeFrag = HomeFragment()
         menu1Frag = Menu1Fragment()
@@ -48,4 +56,16 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+    fun goWrite(){
+        val writeFragment = WriteFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.bottom_container, writeFragment) //FrameLayout은 표시 될 곳
+        transaction.addToBackStack("write") //뒤로가는 것 구현
+        transaction.commit()
+    }
+
+    fun goBack(){
+        onBackPressed()
+    }
+
 }
