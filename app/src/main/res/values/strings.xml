@@ -8,6 +8,18 @@
     <string name="nav_menu2">보상</string>
     <string name="call_nickname"><b>%1$s</b> 님</string>
     <string name="nav_settings">설정</string>
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="NotMemberYet">아직 회원이 아니신가요?</string>
+    <string name="SignUp">회원가입</string>
+    <string name="nickname">닉네임</string>
+    <string name="Welcome">님 환영합니다!</string>
+    <string name="tip">Tip!</string>
+    <string name="leftNumber">다음 단계까지 남은 횟수</string>
+    <string name="checkPassword">비밀번호 확인</string>
+    <string name="doubleCheck">중복 확인</string>
+    <string name="register">회원가입하기</string>
+    <string name="popupTip">분리배출은 필수</string>
     <string name="settings_sound">음량 조절</string>
     <string name="settings_tip">팁 모아보기</string>
     <string name="settings_nickname">닉네임 변경</string>
@@ -27,5 +39,4 @@
     <string name="answer_progress">진행</string>
     <string name="answer_enter">입력</string>
     <string name="answer_cancel">취소</string>
-    <string name="password">비밀번호</string>
 </resources>
