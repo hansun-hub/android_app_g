@@ -22,8 +22,29 @@ class DBManager(context: Context) {
     public fun newUser(email: String, nickname: String, password: String) {
         // 새로운 유저 생성 메소드 - 회원가입 후 실행
         sqlDB = dbHelper.writableDatabase
-        sqlDB.execSQL("INSERT INTO USERS VALUES (\"$email\", \"$nickname\", \"$password\");")
+        sqlDB.execSQL("INSERT INTO USERS VALUES (\"$email\", \"$nickname\", \"$password\", 0);")
         sqlDB.close()
+    }
+
+    @SuppressLint("Range")
+    public fun getPassword(): String {
+        // 비밀번호 가져오기
+
+        var password: String = ""
+
+        sqlDB = dbHelper.readableDatabase
+        cursor = sqlDB.rawQuery("SELECT * FROM USERS WHERE email=\'$email\';", null)
+
+        if (cursor.count == 1) {
+            cursor.moveToFirst()
+            password = cursor.getString(cursor.getColumnIndex("password"))
+        }
+
+        cursor.close()
+        sqlDB.close()
+        dbHelper.close()
+
+        return password
     }
 
     public fun delUser() {

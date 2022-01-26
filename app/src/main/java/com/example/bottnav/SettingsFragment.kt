@@ -106,9 +106,38 @@ class SettingsFragment : Fragment() {
                 }
                 2 -> {
                     // 회원 탈퇴 선택 시
+                    val delFrag = SettingsBottomSheetFragment()
+                    delFrag.show(requireActivity().supportFragmentManager, delFrag.tag)
                     // 진행 여부 확인
-                    // USERS에서 삭제, ACHIEVE&DIARY 테이블 삭제 -> Preference 삭제
-                    // Login 화면으로 전환
+                    val delDialog: AlertDialog? = activity?.let {
+                        val builder = AlertDialog.Builder(it)
+                        builder.apply {
+                            setTitle(R.string.settings_logout)
+                            setMessage(R.string.settings_logout_dialog)
+                            setPositiveButton(R.string.answer_no,
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    // 회원탈퇴 취소 선택 시
+                                })
+                            setNegativeButton(R.string.answer_yes,
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    // 회원탈퇴 진행 선택 시
+                                    // USERS에서 삭제, ACHIEVE&DIARY 테이블 삭제 -> Preference 삭제
+                                    val pref = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
+                                    pref.edit().clear()
+                                    pref.edit().apply()
+
+                                    // Login 화면으로 전환
+                                    val intent = Intent(view.context, LoginActivity::class.java)
+                                    startActivity(intent)
+                                    val array = ArrayList<String>(R.array.WARNINGS)[3]
+                                    print(array)
+                                })
+                        }
+
+                        builder.create()
+                    }
+
+                    delDialog?.show()
                 }
             }
 

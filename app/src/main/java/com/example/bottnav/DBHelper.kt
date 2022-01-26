@@ -10,7 +10,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "database1", null, 1
 
     override fun onCreate(db: SQLiteDatabase?) {
         // 사용자 정보 table 생성
-        db!!.execSQL("CREATE TABLE IF NOT EXISTS USERS (email CHAR(15), nickname CHAR(15), password TEXT);")
+        db!!.execSQL("CREATE TABLE IF NOT EXISTS USERS (email CHAR(15), nickname CHAR(15), password TEXT, level INTEGER);")
         // 미션 달성 정보 table 생성
         db!!.execSQL("CREATE TABLE IF NOT EXISTS \"ACHIEVE_$user_email\" (date DATE, type CHAR, i INTEGER, is_achieved CHAR);")
         // 소감 table 생성
