@@ -8,7 +8,7 @@
     tools:context=".HomeFragment">
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -36,7 +36,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="203dp"
         android:src="@drawable/ic_baseline_music_note_24"
-        app:layout_constraintEnd_toStartOf="@+id/tvName"
+        app:layout_constraintEnd_toStartOf="@+id/tvNick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

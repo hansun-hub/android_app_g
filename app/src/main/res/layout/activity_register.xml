@@ -7,6 +7,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="20dp"
+    android:privateImeOptions="defaultInputmode=korean"
+
     tools:context=".RegisterActivity">
 
     <ImageView
@@ -18,13 +20,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editNickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:hint="@string/nickname"
-            android:inputType="textPersonName" />
+            android:hint="@string/nickname" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
