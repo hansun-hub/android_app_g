@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
+import android.provider.ContactsContract
 import androidx.annotation.RequiresApi
 
 class DBManager(context: Context) {
@@ -74,6 +75,14 @@ class DBManager(context: Context) {
         dbHelper.close()
 
         return nickname
+    }
+
+    public fun setNickname(newNickname: String) {
+        sqlDB = dbHelper.writableDatabase
+        sqlDB.execSQL("UPDATE USERS SET nickname='$newNickname' WHERE email='$email';")
+
+        sqlDB.close()
+        dbHelper.close()
     }
 
     public fun getTips(type: String): ArrayList<String>? {
