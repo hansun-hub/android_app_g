@@ -2,6 +2,7 @@ package com.example.bottnav
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,16 +28,16 @@ class SettingsBottomSheetFragment : BottomSheetDialogFragment() {
         val sharedPreference = requireContext().getSharedPreferences("current", Context.MODE_PRIVATE)
         val nickname = sharedPreference.getString("nickname", "")
 
-        val bsheet_textView1 = requireView().findViewById<TextView>(R.id.bsheet_textView)           // 닉네임
-        val bsheet_textView2 = requireView().findViewById<TextView>(R.id.bsheet_textView2)          // 회원탈퇴 안내
-        val bsheet_textView3 = requireView().findViewById<TextView>(R.id.bsheet_textView3)          // "회원탈퇴 진행을 위해 비밀번호를 입력해주세요."
-        val bsheet_textView4 = requireView().findViewById<TextView>(R.id.bsheet_textView4)          // 비밀번호 인증 실패 시 안내
-        val bsheet_textView5 = requireView().findViewById<TextView>(R.id.bsheet_textView5)          // 회원탈퇴 성공 시 안내
-        val bsheet_editPassword = requireView().findViewById<EditText>(R.id.bsheet_edtPassword)     // 비밀번호 입력
-        val bsheet_btn1 = requireView().findViewById<Button>(R.id.bsheet_btn1)                      // 진행
-        val bsheet_btn2 = requireView().findViewById<Button>(R.id.bsheet_btn2)                      // 취소
-        val bsheet_btn3 = requireView().findViewById<Button>(R.id.bsheet_btn3)                      // 입력
-        val bsheet_btn4 = requireView().findViewById<Button>(R.id.bsheet_btn4)                      // 확인
+        val bsheet_textView1 = view.findViewById<TextView>(R.id.bsheet_textView)           // 닉네임
+        val bsheet_textView2 = view.findViewById<TextView>(R.id.bsheet_textView2)          // 회원탈퇴 안내
+        val bsheet_textView3 = view.findViewById<TextView>(R.id.bsheet_textView3)          // "회원탈퇴 진행을 위해 비밀번호를 입력해주세요."
+        val bsheet_textView4 = view.findViewById<TextView>(R.id.bsheet_textView4)          // 비밀번호 인증 실패 시 안내
+        val bsheet_textView5 = view.findViewById<TextView>(R.id.bsheet_textView5)          // 회원탈퇴 성공 시 안내
+        val bsheet_editPassword = view.findViewById<EditText>(R.id.bsheet_edtPassword)     // 비밀번호 입력
+        val bsheet_btn1 = view.findViewById<Button>(R.id.bsheet_btn1)                      // 진행
+        val bsheet_btn2 = view.findViewById<Button>(R.id.bsheet_btn2)                      // 취소
+        val bsheet_btn3 = view.findViewById<Button>(R.id.bsheet_btn3)                      // 입력
+        val bsheet_btn4 = view.findViewById<Button>(R.id.bsheet_btn4)                      // 확인
 
         val dbManager = DBManager(requireContext())
 
@@ -78,7 +79,16 @@ class SettingsBottomSheetFragment : BottomSheetDialogFragment() {
                 bsheet_textView5.visibility = View.VISIBLE
                 bsheet_btn4.visibility = View.VISIBLE
 
-                //
+                // USERS에서 삭제, ACHIEVE&DIARY 테이블 삭제 -> Preference 삭제
+                val pref = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
+                pref.edit().clear()
+                pref.edit().apply()
+
+                // Login 화면으로 전환
+                val intent = Intent(view.context, LoginActivity::class.java)
+                startActivity(intent)
+                val array = ArrayList<String>(R.array.WARNINGS)[3]
+                print(array)
             } else {
                 // 실패
                 bsheet_editPassword.setText("")
