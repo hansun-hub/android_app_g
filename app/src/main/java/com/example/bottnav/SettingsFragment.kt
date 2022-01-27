@@ -86,13 +86,13 @@ class SettingsFragment : Fragment() {
                 }
                 1 -> {
                     // 팁 모아보기 선택 시
-                    val tipsFrag = tipsFragment()
+                    val tipsFrag = SettingsTipsFragment()
                     (activity as MainActivity).replaceFragment(tipsFrag)
                 }
                 2 -> {
                     // 버전 선택 시
                     // popup dialog
-                    val logoutDialog: AlertDialog? = activity?.let {
+                    val versionDialog: AlertDialog? = activity?.let {
                         val builder = AlertDialog.Builder(it)
                         builder.apply {
                             setTitle(R.string.settings_version)
@@ -102,13 +102,24 @@ class SettingsFragment : Fragment() {
 
                         builder.create()
                     }
-                    logoutDialog?.show()
+                    versionDialog?.show()
                 }
                 3 -> {
                     // Contact 선택 시
                 }
                 4 -> {
                     // About Us 선택 시
+                    val aboutUsDialog: AlertDialog? = activity?.let {
+                        val builder = AlertDialog.Builder(it)
+                        builder.apply {
+                            setTitle(R.string.settings_about_us)
+                            setMessage(R.string.about_us_message)
+                            setPositiveButton(R.string.answer_ok, null)
+                        }
+
+                        builder.create()
+                    }
+                    aboutUsDialog?.show()
                 }
                 5 -> {
                     // Log out 선택 시

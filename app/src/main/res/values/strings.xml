@@ -43,4 +43,5 @@
     <string name="answer_progress">진행</string>
     <string name="answer_enter">입력</string>
     <string name="answer_cancel">취소</string>
+    <string name="about_us_message">SWU GURU2 Android\nTeam 5\n김한선 이정은 최유선 허선정</string>
 </resources>

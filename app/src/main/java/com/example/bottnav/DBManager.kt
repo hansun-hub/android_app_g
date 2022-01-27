@@ -85,17 +85,17 @@ class DBManager(context: Context) {
         dbHelper.close()
     }
 
-    public fun getTips(type: String): ArrayList<String>? {
+    public fun getTips(type: String): Array<out String>? {
         // 팁/경고 반환
 
         when (type) {
             "tip" -> {
-                var tips = ArrayList<String>(R.array.TIPS)
+                var tips = thisContext!!.resources.getStringArray(R.array.TIPS)
 
                 return tips
             }
             "warn" -> {
-                var warnings = ArrayList<String>(R.array.WARNINGS)
+                var warnings = thisContext!!.resources.getStringArray(R.array.WARNINGS)
 
                 return warnings
             }
@@ -104,27 +104,27 @@ class DBManager(context: Context) {
         return null
     }
 
-    public fun getChallenges(period: String): MutableList<String>? {
+    public fun getChallenges(period: String): Array<out String>? {
         // 미션 배열 반환(함수 호출 시 인자에 따라)
 
         when (period) {
             "monthly" -> {
-                var monthly = ArrayList<String>(R.array.CHALLENGES).subList(0, 6)
+                var monthly = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(0..5)
 
                 return monthly
             }
             "weekly" -> {
-                var weekly = ArrayList<String>(R.array.CHALLENGES).subList(6, 14)
+                var weekly = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(6..13)
 
                 return weekly
             }
             "daily" -> {
-                var daily = ArrayList<String>(R.array.CHALLENGES).subList(14, 25)
+                var daily = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(14..24)
 
                 return daily
             }
             "all" -> {
-                var all = ArrayList<String>(R.array.CHALLENGES)
+                var all = thisContext!!.resources.getStringArray(R.array.CHALLENGES)
 
                 return all
             }
