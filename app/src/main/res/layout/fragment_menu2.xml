@@ -7,7 +7,7 @@
     tools:context=".Menu2Fragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/menu2WarningText"
         android:layout_width="410dp"
         android:layout_height="150dp"
         android:layout_marginTop="4dp"
@@ -27,7 +27,7 @@
         android:text="달성소감을 기록해보세요!"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2WarningText" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addButton3"
@@ -39,7 +39,7 @@
         android:src="@drawable/ic_baseline_add_circle_outline_24"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2WarningText" />
 
     <TextView
         android:id="@+id/textView3"

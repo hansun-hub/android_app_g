@@ -22,9 +22,15 @@ class LoginActivity : AppCompatActivity() {
     lateinit var regText : TextView
     lateinit var editEmail : EditText
     lateinit var editPassword : EditText
-    lateinit var myHelper: SQLiteOpenHelper  //일단 sqliteopenhelper형태로 지정해둠(나중에 생성한 클래스로 바꾸기)
+    lateinit var dbHelper: DBHelper
     lateinit var sqlDB : SQLiteDatabase
 
+    lateinit var email : String
+    lateinit var password : String
+    lateinit var nickname : String
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -34,42 +40,69 @@ class LoginActivity : AppCompatActivity() {
         editEmail = findViewById(R.id.editEmail)
         editPassword = findViewById(R.id.editPassword)
 
+        dbHelper = DBHelper(this)
+
         var fragmentHome : Fragment
+
+        //회원가입창에서 값 받아옴
+        var getIntent : Intent = getIntent()
+        editEmail.setText(getIntent.getStringExtra("email"))
+        editPassword.setText(getIntent.getStringExtra("password"))
+
+
 
         //버튼 누르면 메인 화면 진입
         btnLogin.setOnClickListener {
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            /*
-            var email = editEmail.text.toString()
-            var password = editPassword.text.toString()
-            sqlDB = myHelper.writableDatabase
-            //var cursor : Cursor = sqlDB.rawQuery("SELECT * FROM MemTable WHERE id = '"+email + "' AND pwd = '"+password+"'",null)
-
-            //아이디 확인
-            var cursor : Cursor = sqlDB.rawQuery("SELECT id FROM MemTable WHERE id = '"+email +"'",null)
-
-            if(cursor.getCount()!=1){    //중복 아이디가입 허용을 안했기 때문 0인 경우에 해당(회원아님)
-                Toast.makeText(this, "존재하지 않는 이메일입니다.\n회원가입을 먼저 진행해주세요",Toast.LENGTH_SHORT).show()
+            finish()
+            email = editEmail.text.toString()
+            password = editPassword.text.toString()
+            //이메일이나 비밀번호가 비어있는 경우
+            if( email.length==0 || password.length==0){
+                Toast.makeText(this, "빈 칸을 채워주세요.",Toast.LENGTH_SHORT).show()
             }
-            else{
-                //비밀번호 확인
-                cursor = sqlDB.rawQuery("SELECT pwd FROM MemTable WHERE id = '"+email+"'",null)
-                cursor.moveToNext()
-                if(!password.equals(cursor.getString(0))){  //비밀번호가 맞지 않을 경우
-                    Toast.makeText(this, "비밀번호가 맞지 않습니다. 다시 시도해주세요.",Toast.LENGTH_SHORT).show()
-                }
-                else{  //로그인 성공
-                    cursor = sqlDB.rawQuery("SELECT nick FROM MemeTable WHERE id = '"+email+"'",null)  //닉네임 받아오는 쿼리문
+            else {
+                sqlDB = dbHelper.writableDatabase
+                //var cursor : Cursor = sqlDB.rawQuery("SELECT * FROM USER WHERE email = '"+email + "' AND password = '"+password+"'",null)
+
+                //아이디 확인
+                var cursor: Cursor =
+                    sqlDB.rawQuery("SELECT email FROM USERS WHERE email='" + email + "'", null)
+
+                if (cursor.getCount() != 1) {    //중복 아이디가입 허용을 안했기 때문 0인 경우에 해당(회원아님)
+                    Toast.makeText(this, "존재하지 않는 이메일입니다.\n회원가입을 먼저 진행해주세요", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    //비밀번호 확인
+                    cursor = sqlDB.rawQuery(
+                        "SELECT password FROM USERS WHERE email = '" + email + "'",
+                        null
+                    )
                     cursor.moveToNext()
-                    fragmentHome = HomeFragment.newInstance(cursor.getString(0)) //닉네임을 string타입으로 전달하기
+                    if (!password.equals(cursor.getString(0))) {  //비밀번호가 맞지 않을 경우
+                        Toast.makeText(this, "비밀번호가 맞지 않습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+                    } else {  //로그인 성공
+                        Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        cursor = sqlDB.rawQuery(
+                            "SELECT nickname FROM USERS WHERE email = '" + email + "'",
+                            null
+                        )  //닉네임 받아오는 쿼리문
+                        cursor.moveToNext()
+                        nickname = cursor.getString(0)
+                        dataSaving(email,nickname) //이 버튼 눌리는 순간을 기억
+                        //fragmentHome = HomeFragment.newInstance(cursor.getString(0)) //닉네임을 string타입으로 전달하기
 
-                    var intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                        //Toast.makeText(this, "${cursor.getString(0)}",Toast.LENGTH_SHORT).show()
+
+                        var intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
+                cursor.close()
+                sqlDB.close()
             }
-            cursor.close()
-            sqlDB.close()*/
 
         }
 
@@ -81,11 +114,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun dataSaving() {
+    fun dataSaving(email: String, Nick : String) {
         // *** 처음 사용자 로그인 후 현재 사용자 이메일 정보, 현재 날짜 저장 메소드 ***
 
-        var email = "" // 이메일 정보 받아오기
-        var nickname = "" // 닉네임 정보 받아오기
+        //var email = "" // 이메일 정보 받아오기
+        //var nickname = "" // 닉네임 정보 받아오기
 
         // 로그인 날짜와 로그인 정보 sharedPreference에 저장
         // 오늘 날짜 저장
@@ -99,11 +132,11 @@ class LoginActivity : AppCompatActivity() {
         // sharedPreference에 현재 사용자 이메일 입력
         editor.putString("email", email)
         // sharedPreference에 현재 사용자 닉네임 입력
-        editor.putString("nickname", nickname)
+        editor.putString("nickname", Nick)
         // 저장
         editor.apply()
 
-        val dbManager = DBManager(this)
-        dbManager.newUser(email, nickname, "1234")
+        //val dbManager = DBManager(this)
+        //dbManager.newUser(email, nickname, "1234")
     }
 }

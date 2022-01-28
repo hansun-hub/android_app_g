@@ -20,8 +20,9 @@
     <string name="checkPassword">비밀번호 확인</string>
     <string name="doubleCheck">중복 확인</string>
     <string name="register">회원가입하기</string>
-    <string name="popupTip">분리배출은 필수</string>
     <string name="settings_acc">계정</string>
+    <string name="settings_sound">음량 조절</string>
+    <string name="settings_tip">팁 모아보기</string>
     <string name="settings_nickname">닉네임 변경</string>
     <string name="settings_nickname_title">닉네임 변경</string>
     <string name="settings_nickname_message">변경할 닉네임을 입력하세요.</string>

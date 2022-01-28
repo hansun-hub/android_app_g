@@ -87,7 +87,6 @@ class DBManager(context: Context) {
         sqlDB.close()
         dbHelper.close()
     }
-
     public fun getTips(type: String): Array<out String>? {
         // 팁/경고 반환
 
