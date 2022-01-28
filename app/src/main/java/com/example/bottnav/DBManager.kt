@@ -6,7 +6,10 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import android.provider.ContactsContract
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class DBManager(context: Context) {
 
@@ -143,11 +146,11 @@ class DBManager(context: Context) {
     }
 
     @SuppressLint("Range")
-    public fun getSelectedChallenges(date: String, title: String): List<String>? {
+    public fun getSelectedChallenges(findDate: String, title: String): List<String>? {
         // DB에서 '선택된 미션' 배열로 반환
 
         sqlDB = dbHelper.readableDatabase
-        cursor = sqlDB.rawQuery("SELECT * FROM USERS WHERE email=\'$email\';", null)
+        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and title='$title';", null)
 
         if (cursor.count == 1) {
             cursor.moveToFirst()

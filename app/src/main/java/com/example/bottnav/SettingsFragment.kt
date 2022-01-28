@@ -115,33 +115,6 @@ import androidx.fragment.app.Fragment
                     // Contact 선택 시
                     val contactFrag = SettingsContactFragment()
                     contactFrag.show(childFragmentManager, contactFrag.tag)
-
-                    /*
-                    val contactDialog: AlertDialog? = activity?.let {
-                        val contactView = layoutInflater.inflate(R.layout.settings_contact, container)
-                        val contactImgBtn1 = contactView.findViewById<ImageButton>(R.id.contact_imgBtn1)
-                        val contactImgBtn2 = contactView.findViewById<ImageButton>(R.id.contact_imgBtn2)
-
-                        val builder = AlertDialog.Builder(it)
-                        // Get the layout inflater
-                        val inflater = requireActivity().layoutInflater;
-
-                        // Inflate and set the layout for the dialog
-                        // Pass null as the parent view because its going in the dialog layout
-                        builder.setView(inflater.inflate(R.layout.settings_contact, null))
-                                .setTitle(getString(R.string.settings_contact) + getString(R.string.settings_contact_title))
-                                .setMessage(getString(R.string.settings_contact_message))
-                                // Add action buttons
-                                .setPositiveButton(R.string.answer_ok,
-                                        DialogInterface.OnClickListener { dialog, id ->
-                                        })
-
-
-                        builder.create()
-                    }
-                    contactDialog?.show()
-
-                     */
                 }
                 4 -> {
                     // About Us 선택 시
