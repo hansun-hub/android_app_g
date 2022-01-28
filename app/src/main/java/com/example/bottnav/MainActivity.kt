@@ -112,6 +112,10 @@ class MainActivity : AppCompatActivity() {
         onBackPressed()
     }
 
+    fun Mstop(){
+        mPlayer.stop()
+    }
+
     fun Mstart(){
         if(!mPlayer.isPlaying){  //실행중이지 않은 상태
             mPlayer.seekTo(pausePos)

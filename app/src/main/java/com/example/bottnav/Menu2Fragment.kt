@@ -34,7 +34,6 @@ class Menu2Fragment : Fragment() {
 
     //추가
     lateinit var menu2WarningText: TextView
-    lateinit var dbManager: DBManager
 
 
     @SuppressLint("ResourceType")
@@ -69,11 +68,8 @@ class Menu2Fragment : Fragment() {
 
         //warningText.resources.getString(R.array.TIPS)
 
-        val view = inflater.inflate(R.layout.fragment_menu2, container, false)
-        var menu2WarningText = view.findViewById<TextView>(R.id.menu2WarningText)
 
         dbManager = DBManager(view.context)
-        val missionList = dbManager.getTips("warn")
         menu2WarningText.text=missionList?.get(2)
         //Toast.makeText(getActivity(), "${missionList?.get(2)}", Toast.LENGTH_SHORT).show()
 
