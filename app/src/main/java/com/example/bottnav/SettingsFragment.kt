@@ -1,10 +1,11 @@
     package com.example.bottnav
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,15 +13,15 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 
-class SettingsFragment : Fragment() {
+    class SettingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
@@ -36,6 +37,7 @@ class SettingsFragment : Fragment() {
         settings_btn1.text = getString(R.string.call_nickname, nickname)
 
         settings_btn1.setOnClickListener {
+
             // 닉네임 변경
             val nicknameDialog = AlertDialog.Builder(it.context)
 
@@ -60,6 +62,11 @@ class SettingsFragment : Fragment() {
 
                     // DB 수정
                     dbManager.setNickname(nickname!!)
+
+                    // info 수정
+                    settings_btn1.text = getString(R.string.call_nickname, nickname)
+
+                    Toast.makeText(it.context, "닉네임이 변경되었습니다.", Toast.LENGTH_SHORT).show()
                 }
                 setPositiveButton(getString(R.string.answer_cancel)) { dialog, which ->
                     dialog.cancel()
@@ -106,6 +113,35 @@ class SettingsFragment : Fragment() {
                 }
                 3 -> {
                     // Contact 선택 시
+                    val contactFrag = SettingsContactFragment()
+                    contactFrag.show(childFragmentManager, contactFrag.tag)
+
+                    /*
+                    val contactDialog: AlertDialog? = activity?.let {
+                        val contactView = layoutInflater.inflate(R.layout.settings_contact, container)
+                        val contactImgBtn1 = contactView.findViewById<ImageButton>(R.id.contact_imgBtn1)
+                        val contactImgBtn2 = contactView.findViewById<ImageButton>(R.id.contact_imgBtn2)
+
+                        val builder = AlertDialog.Builder(it)
+                        // Get the layout inflater
+                        val inflater = requireActivity().layoutInflater;
+
+                        // Inflate and set the layout for the dialog
+                        // Pass null as the parent view because its going in the dialog layout
+                        builder.setView(inflater.inflate(R.layout.settings_contact, null))
+                                .setTitle(getString(R.string.settings_contact) + getString(R.string.settings_contact_title))
+                                .setMessage(getString(R.string.settings_contact_message))
+                                // Add action buttons
+                                .setPositiveButton(R.string.answer_ok,
+                                        DialogInterface.OnClickListener { dialog, id ->
+                                        })
+
+
+                        builder.create()
+                    }
+                    contactDialog?.show()
+
+                     */
                 }
                 4 -> {
                     // About Us 선택 시
@@ -131,25 +167,25 @@ class SettingsFragment : Fragment() {
                             setTitle(R.string.settings_logout)
                             setMessage(R.string.settings_logout_dialog)
                             setPositiveButton(R.string.answer_no,
-                                DialogInterface.OnClickListener { dialog, id ->
-                                    // 로그아웃 취소 선택 시
-                                })
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        // 로그아웃 취소 선택 시
+                                    })
                             setNegativeButton(R.string.answer_yes,
-                                DialogInterface.OnClickListener { dialog, id ->
-                                    // 로그아웃 진행 선택 시
-                                    // Preference 삭제
-                                    val pref = requireActivity().getSharedPreferences(
-                                        "current",
-                                        Context.MODE_PRIVATE
-                                    )
-                                    pref.edit().clear()
-                                    pref.edit().apply()
+                                    DialogInterface.OnClickListener { dialog, id ->
+                                        // 로그아웃 진행 선택 시
+                                        // Preference 삭제
+                                        val pref = requireActivity().getSharedPreferences(
+                                                "current",
+                                                Context.MODE_PRIVATE
+                                        )
+                                        pref.edit().clear()
+                                        pref.edit().apply()
 
-                                    // Login 화면으로 전환
-                                    val intent = Intent(view.context, LoginActivity::class.java)
-                                    (activity as MainActivity).Mstop()
-                                    startActivity(intent)
-                                })
+                                        // Login 화면으로 전환
+                                        val intent = Intent(view.context, LoginActivity::class.java)
+                                        (activity as MainActivity).Mstop()
+                                        startActivity(intent)
+                                    })
                         }
 
                         builder.create()
@@ -189,12 +225,12 @@ class SettingsFragment : Fragment() {
         val myContext: Context = context
 
         val list = arrayListOf<String>(
-            context.getString(R.string.settings_sound),
-            context.getString(R.string.settings_tip),
-            context.getString(R.string.settings_version),
-            context.getString(R.string.settings_contact),
-            context.getString(R.string.settings_about_us),
-            context.getString(R.string.settings_logout)
+                context.getString(R.string.settings_sound),
+                context.getString(R.string.settings_tip),
+                context.getString(R.string.settings_version),
+                context.getString(R.string.settings_contact),
+                context.getString(R.string.settings_about_us),
+                context.getString(R.string.settings_logout)
         )
 
         override fun getCount(): Int {

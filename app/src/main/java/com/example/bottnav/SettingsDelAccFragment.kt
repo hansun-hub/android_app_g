@@ -63,6 +63,7 @@ class SettingsDelAccFragment : Fragment() {
 
         delacc_btn3.setOnClickListener {
             // 입력 선택 시 입력값과 password값 비교
+            delacc_textView4.visibility = View.GONE
 
             var userinput = delacc_edtPassword.text
 
@@ -90,6 +91,7 @@ class SettingsDelAccFragment : Fragment() {
             } else {
                 // 실패
                 delacc_edtPassword.setText("")
+                delacc_textView4.visibility = View.VISIBLE
                 delacc_textView4.setText(R.string.password_fail)
             }
         }

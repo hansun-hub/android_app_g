@@ -45,7 +45,7 @@ class DBManager(context: Context) {
         sqlDB.close()
         dbHelper.close()
 
-        return password
+        return "password"
     }
 
     public fun delUser() {
@@ -138,7 +138,7 @@ class DBManager(context: Context) {
 
         sqlDB = dbHelper.writableDatabase
         // 달성정보 DB에 추가
-        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES ('$date', '$period', 'N')")
+        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES ('$date', '$period', -1, 'N');")
         sqlDB.close()
     }
 
