@@ -68,9 +68,6 @@ class Menu2Fragment : Fragment() {
 
         //warningText.resources.getString(R.array.TIPS)
 
-
-        dbManager = DBManager(view.context)
-        menu2WarningText.text=missionList?.get(2)
         //Toast.makeText(getActivity(), "${missionList?.get(2)}", Toast.LENGTH_SHORT).show()
 
         binding = FragmentMenu2Binding.inflate(inflater, container, false)
