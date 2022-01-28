@@ -92,11 +92,14 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8dp"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_add"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="TODO"
         app:backgroundTint="@color/gray"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:fabCustomSize="50dp" />
 </LinearLayout>
