@@ -1,12 +1,15 @@
 package com.example.bottnav
 
+import android.content.Context
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import com.example.bottnav.databinding.ActivityMainBinding
 import android.widget.CalendarView
 import android.widget.DatePicker
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -24,16 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNav: BottomNavigationView
     lateinit var mPlayer : MediaPlayer
+    var pausePos : Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //김한선 수정함
         setContentView(binding.root)
-
-        mPlayer = MediaPlayer.create(this, R.raw.song1)
-        mPlayer.start()
-
 
         homeFrag = HomeFragment()
         menu1Frag = Menu1Fragment()
@@ -65,7 +66,31 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+        mPlayer = MediaPlayer.create(this, R.raw.song1)
+        mPlayer.isLooping = true
+        Mstart()
+
+
+        //다이얼로그 생성
+        /*
+        var builder = AlertDialog.Builder(this)
+        var view = layoutInflater.inflate(R.layout.dialog_character,null)
+
+        var btnCancel = view.findViewById<Button>(R.id.btnCancel)
+        var btnShare = view.findViewById<Button>(R.id.btnShare)
+
+        builder.create()
+        builder.setView(view)
+        builder.show()
+        btnCancel.setOnClickListener {
+
+        }*/
+        val dialog =  CharacterDialogFragment(this)
+        dialog.showDialog()
+
+
     }
+
     fun goWrite(){
         val writeFragment = WriteFragment()
         val transaction = supportFragmentManager.beginTransaction()
@@ -74,10 +99,26 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+    //나가기 버튼 누를 경우 (노래 종료+액티비티 종료)
+    override fun onBackPressed() {
+        mPlayer.stop()
+        finish()
+    }
+
     fun goBack(){
         onBackPressed()
     }
-    fun Mstop(){
-        mPlayer.stop()
+
+    fun Mstart(){
+        if(!mPlayer.isPlaying){  //실행중이지 않은 상태
+            mPlayer.seekTo(pausePos)
+            mPlayer.start()
+        }
+    }
+    fun Mpause(){
+        if(mPlayer!=null){
+            mPlayer.pause()
+            pausePos = mPlayer.currentPosition
+        }
     }
 }

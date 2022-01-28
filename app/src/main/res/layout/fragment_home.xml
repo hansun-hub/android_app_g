@@ -43,10 +43,11 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="40dp"
-        android:background="#CFD8D0"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
+        android:background="#CEE3D0"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +59,8 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#929C93"
+            android:background="#B0CCB3"
+            android:padding="3dp"
             android:text="@string/tip"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="20sp" />
@@ -68,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/popupTip"
+            android:padding="10dp"
+            android:text="이 곳에 팁이 보입니다."
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -78,6 +81,7 @@
         android:layout_width="268dp"
         android:layout_height="307dp"
         android:layout_marginTop="88dp"
+        android:background="#00000000"
         android:src="@drawable/presprout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
