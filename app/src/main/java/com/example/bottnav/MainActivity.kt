@@ -82,6 +82,14 @@ class MainActivity : AppCompatActivity() {
         mPlayer.stop()
     }
 
+    fun goEditTodo(){
+        val editTodoFragment = EditTodoFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.bottom_container, editTodoFragment)
+        transaction.addToBackStack("editTodo")
+        transaction.commit()
+    }
+
     // fragment 전환 메소드
     public fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
