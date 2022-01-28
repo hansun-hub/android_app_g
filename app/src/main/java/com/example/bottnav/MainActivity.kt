@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //다이얼로그 생성
+        /*
         var builder = AlertDialog.Builder(this)
         var view = layoutInflater.inflate(R.layout.dialog_character,null)
 
@@ -83,7 +84,10 @@ class MainActivity : AppCompatActivity() {
         builder.show()
         btnCancel.setOnClickListener {
 
-        }
+        }*/
+        val dialog =  CharacterDialogFragment(this)
+        dialog.showDialog()
+
 
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -19,10 +20,21 @@ class CharacterDialogFragment(context : Context) {
     //private lateinit var onClickListner : OnDialogClickListener
 
     fun showDialog(){
+        dialog.setContentView(R.layout.dialog_character)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT)
         val btnCancel : Button = dialog.findViewById(R.id.btnCancel)
         val btnShare : Button = dialog.findViewById(R.id.btnShare)
-        dialog.setContentView(R.layout.dialog_character)
+
         dialog.show()
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        btnShare.setOnClickListener {
+            //val bottomSheet = BottomS
+            //Toast.makeText(getActivity(), "$NICK", Toast.LENGTH_SHORT).show()
+        }
     }
 
     /*
