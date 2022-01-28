@@ -87,6 +87,7 @@ class DBManager(context: Context) {
         sqlDB.close()
         dbHelper.close()
     }
+    
     public fun getTips(type: String): Array<out String>? {
         // 팁/경고 반환
 
@@ -102,7 +103,6 @@ class DBManager(context: Context) {
                 return warnings
             }
         }
-
         return null
     }
 
@@ -121,6 +121,7 @@ class DBManager(context: Context) {
                 return weekly
             }
             "daily" -> {
+                var daily = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(14.. 25)
                 var daily = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(14..24)
 
                 return daily
@@ -173,4 +174,6 @@ class DBManager(context: Context) {
         sqlDB.execSQL("INSERT INTO \'DIARY_$email\' VALUES ('$date', '$title', '$contents', '$score', '$selected_challenge')")
         sqlDB.close()
     }
+
+
 }

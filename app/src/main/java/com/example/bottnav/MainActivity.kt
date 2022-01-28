@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.*
 import android.widget.Button
 import com.example.bottnav.databinding.ActivityMainBinding
 import android.widget.CalendarView
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     //김한선 추가
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
 
     lateinit var homeFrag: HomeFragment
     lateinit var menu1Frag: Menu1Fragment
@@ -64,7 +66,6 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_container, settingsFrag).commit()
                 }
             }
-
             true
         }
         mPlayer = MediaPlayer.create(this, R.raw.song1)
@@ -99,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         transaction.addToBackStack("write") //뒤로가는 것 구현
         transaction.commit()
     }
+
 
     //나가기 버튼 누를 경우 (노래 종료+액티비티 종료)
     override fun onBackPressed() {
