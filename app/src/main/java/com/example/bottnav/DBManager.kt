@@ -121,8 +121,7 @@ class DBManager(context: Context) {
                 return weekly
             }
             "daily" -> {
-                var daily = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(14.. 25)
-                //var daily = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(14..24)
+                var daily = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(14..24)
 
                 return daily
             }
