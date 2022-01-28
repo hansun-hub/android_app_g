@@ -3,10 +3,9 @@ package com.example.bottnav
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.example.bottnav.databinding.ActivityMainBinding
-import android.widget.CalendarView
-import android.widget.DatePicker
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -16,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     //김한선 추가
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
 
     lateinit var homeFrag: HomeFragment
     lateinit var menu1Frag: Menu1Fragment
@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_container, settingsFrag).commit()
                 }
             }
-
             true
         }
     }
@@ -74,9 +73,6 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun goBack(){
-        onBackPressed()
-    }
     fun Mstop(){
         mPlayer.stop()
     }

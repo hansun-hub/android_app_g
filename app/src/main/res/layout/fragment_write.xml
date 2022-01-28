@@ -11,29 +11,29 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName7"
-        android:layout_width="291dp"
-        android:layout_height="55dp"
+        android:layout_width="305dp"
+        android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="엘레베이터 대신 계단!"
+        android:hint="엘레베이터 대신 계단이용 성공!"
         android:inputType="text"
         android:privateImeOptions="defaultInputmode=korean"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintHorizontal_bias="0.766"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName8"
-        android:layout_width="279dp"
+        android:layout_width="305dp"
         android:layout_height="45dp"
-        android:layout_marginTop="348dp"
+        android:layout_marginTop="343dp"
         android:ems="10"
         android:hint="개선점, 다짐"
         android:inputType="textPersonName"
         android:privateImeOptions="defaultInputmode=korean"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,6 +44,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="제목"
+        android:textColor="#0C0101"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,90 +56,83 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="84dp"
         android:text="일자"
+        android:textColor="#0C0000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="156dp"
         android:text="성취도"
+        android:textColor="#0C0000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="348dp"
         android:text="소감"
+        android:textColor="#0C0000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar3"
-        android:layout_width="wrap_content"
-        android:layout_height="57dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="65dp"
+        android:layout_width="243dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="56dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="52dp"
-        android:text="Done"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="36dp"
+        android:text="저장"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="52dp"
-        android:text="취소"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/achvMission"
         android:layout_width="288dp"
         android:layout_height="46dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginEnd="28dp"
         android:hint="성취 미션"
         android:textSize="24sp"
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <EditText
         android:id="@+id/editTextDate"
-        android:layout_width="291dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="14dp"
+        android:layout_width="305dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="2022/01/26"
+        android:hint="2022-01-26"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/selectButton"
         android:layout_width="258dp"
         android:layout_height="51dp"
         android:layout_marginTop="12dp"
@@ -147,7 +141,6 @@
         android:text="@string/chooseMission"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar3"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
