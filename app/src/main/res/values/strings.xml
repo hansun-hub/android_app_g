@@ -21,8 +21,6 @@
     <string name="doubleCheck">중복 확인</string>
     <string name="register">회원가입하기</string>
     <string name="settings_acc">계정</string>
-    <string name="settings_sound">음량 조절</string>
-    <string name="settings_tip">팁 모아보기</string>
     <string name="settings_nickname">닉네임 변경</string>
     <string name="settings_nickname_title">닉네임 변경</string>
     <string name="settings_nickname_message">변경할 닉네임을 입력하세요.</string>
@@ -49,4 +47,5 @@
     <string name="answer_cancel">취소</string>
     <string name="warn3">연간 인천 앞바다에 버려지는 쓰레기는 연간 19만 ㎥에 달합니다.
             이는 10톤 트럭 1만 여 대에 달하는 쓰레기가 해마다 바다로 버려지고 있음을 뜻합니다.</string>
+    <string name="todo">할 일</string>
 </resources>
