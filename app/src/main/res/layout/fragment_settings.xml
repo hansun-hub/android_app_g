@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="60dp"
+    android:layout_weight="3"
     android:orientation="vertical"
     tools:context=".SettingsFragment">
 
-    <ListView
-        android:id="@+id/settings_listview1"
+    <Button
+        android:id="@+id/settings_btn1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:background="#D6D6D6"
+        android:drawableRight="@drawable/ic_baseline_edit_24"
+        android:gravity="center|left"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="nickname"
+        android:textSize="18sp" />
 
     <ListView
-        android:id="@+id/settings_listview2"
+        android:id="@+id/settings_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:layout_weight="5"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10sp">
 
-    <ListView
-        android:id="@+id/settings_listview3"
+    </ListView>
+
+    <Button
+        android:id="@+id/settings_btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        android:layout_weight="0.1"
+        android:background="#FFFFFF"
+        android:text="@string/settings_del_acc"
+        android:textColor="#FF0000" />
+
 </LinearLayout>

@@ -9,6 +9,7 @@ import com.example.bottnav.databinding.ActivityMainBinding
 import android.widget.CalendarView
 import android.widget.DatePicker
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -120,5 +121,14 @@ class MainActivity : AppCompatActivity() {
             mPlayer.pause()
             pausePos = mPlayer.currentPosition
         }
+    }
+
+    // fragment 전환 메소드
+    public fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.bottom_container, fragment)
+        fragmentTransaction.addToBackStack("$fragment");
+        fragmentTransaction.commit()
     }
 }

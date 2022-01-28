@@ -5,7 +5,11 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
+import android.provider.ContactsContract
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class DBManager(context: Context) {
 
@@ -44,7 +48,7 @@ class DBManager(context: Context) {
         sqlDB.close()
         dbHelper.close()
 
-        return password
+        return "password"
     }
 
     public fun delUser() {
@@ -76,6 +80,13 @@ class DBManager(context: Context) {
         return nickname
     }
 
+    public fun setNickname(newNickname: String) {
+        sqlDB = dbHelper.writableDatabase
+        sqlDB.execSQL("UPDATE USERS SET nickname='$newNickname' WHERE email='$email';")
+
+        sqlDB.close()
+        dbHelper.close()
+    }
     public fun getTips(type: String): Array<out String>? {
         // 팁/경고 반환
 
@@ -95,27 +106,27 @@ class DBManager(context: Context) {
         return null
     }
 
-    public fun getChallenges(period: String): MutableList<String>? {
+    public fun getChallenges(period: String): Array<out String>? {
         // 미션 배열 반환(함수 호출 시 인자에 따라)
 
         when (period) {
             "monthly" -> {
-                var monthly = ArrayList<String>(R.array.CHALLENGES).subList(0, 6)
+                var monthly = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(0..5)
 
                 return monthly
             }
             "weekly" -> {
-                var weekly = ArrayList<String>(R.array.CHALLENGES).subList(6, 14)
+                var weekly = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(6..13)
 
                 return weekly
             }
             "daily" -> {
-                var daily = ArrayList<String>(R.array.CHALLENGES).subList(14, 25)
+                var daily = thisContext!!.resources.getStringArray(R.array.CHALLENGES).sliceArray(14..24)
 
                 return daily
             }
             "all" -> {
-                var all = ArrayList<String>(R.array.CHALLENGES)
+                var all = thisContext!!.resources.getStringArray(R.array.CHALLENGES)
 
                 return all
             }
@@ -129,16 +140,16 @@ class DBManager(context: Context) {
 
         sqlDB = dbHelper.writableDatabase
         // 달성정보 DB에 추가
-        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES ('$date', '$period', 'N')")
+        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES ('$date', '$period', -1, 'N');")
         sqlDB.close()
     }
 
     @SuppressLint("Range")
-    public fun getSelectedChallenges(date: String, title: String): List<String>? {
+    public fun getSelectedChallenges(findDate: String, title: String): List<String>? {
         // DB에서 '선택된 미션' 배열로 반환
 
         sqlDB = dbHelper.readableDatabase
-        cursor = sqlDB.rawQuery("SELECT * FROM USERS WHERE email=\'$email\';", null)
+        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and title='$title';", null)
 
         if (cursor.count == 1) {
             cursor.moveToFirst()

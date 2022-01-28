@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <!-- labelVisibilityMode: 선택되지 않은 메뉴의 이름 보이도록 -->
     <FrameLayout
         android:id="@+id/bottom_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    <!-- labelVisibilityMode: 선택되지 않은 메뉴의 이름 보이도록 -->
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
