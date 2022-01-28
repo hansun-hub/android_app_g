@@ -21,7 +21,8 @@
     <string name="checkPassword">비밀번호 확인</string>
     <string name="doubleCheck">중복 확인</string>
     <string name="register">회원가입하기</string>
-    <string name="popupTip">분리배출은 필수</string>
+    <string name="popupTip">재활용(유리병, 종이팩, 금속캔, 페트병) 시 내용물과 이물질은 제거하고 배출해주세요.\n
+            이물질이 남아있거나 국물이 스며들어 남아있다면 그 제품은 재활용될 수 없습니다.</string>
     <string name="settings_sound">음량 조절</string>
     <string name="settings_tip">팁 모아보기</string>
     <string name="settings_nickname">닉네임 변경</string>

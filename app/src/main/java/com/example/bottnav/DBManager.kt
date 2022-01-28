@@ -76,17 +76,17 @@ class DBManager(context: Context) {
         return nickname
     }
 
-    public fun getTips(type: String): ArrayList<String>? {
+    public fun getTips(type: String): Array<out String>? {
         // 팁/경고 반환
 
         when (type) {
             "tip" -> {
-                var tips = ArrayList<String>(R.array.TIPS)
+                var tips = thisContext!!.resources.getStringArray(R.array.TIPS)
 
                 return tips
             }
             "warn" -> {
-                var warnings = ArrayList<String>(R.array.WARNINGS)
+                var warnings = thisContext!!.resources.getStringArray(R.array.WARNINGS)
 
                 return warnings
             }
