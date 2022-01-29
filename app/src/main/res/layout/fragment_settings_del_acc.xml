@@ -14,25 +14,25 @@
     tools:context=".SettingsMyInfoFragment">
 
     <TextView
-        android:id="@+id/delacc_textView"
+        android:id="@+id/delacc_tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="user_nickname"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/delacc_textView2"
+        app:layout_constraintBottom_toTopOf="@+id/delacc_tv1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/delacc_textView2"
+        android:id="@+id/delacc_tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/settings_del_dialog"
         android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/delacc_textView"
+        app:layout_constraintTop_toBottomOf="@+id/delacc_tvTitle"
         tools:layout_editor_absoluteX="10dp" />
 
     <EditText
@@ -46,13 +46,13 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/delacc_textView4"
+        app:layout_constraintBottom_toTopOf="@+id/delacc_tv3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delacc_textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/delacc_tv2" />
 
     <TextView
-        android:id="@+id/delacc_textView3"
+        android:id="@+id/delacc_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/delacc_textView4"
+        android:id="@+id/delacc_tv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -76,7 +76,7 @@
         tools:textColor="#FF0000" />
 
     <TextView
-        android:id="@+id/delacc_textView5"
+        android:id="@+id/delacc_tv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

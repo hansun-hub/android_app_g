@@ -1,11 +1,9 @@
     package com.example.bottnav
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -221,10 +219,11 @@ import androidx.fragment.app.Fragment
 
         override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(myContext)
-            val layout = layoutInflater.inflate(R.layout.settings_list, viewGroup, false)
+            val layout = layoutInflater.inflate(R.layout.settings_tips_list, viewGroup, false)
 
-            val list_text = layout.findViewById<TextView>(R.id.list_textView)
-            list_text.text = list.get(position)
+            val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
+            tips_list_tv.textSize = 20F
+            tips_list_tv.text = list.get(position)
 
             return layout
         }

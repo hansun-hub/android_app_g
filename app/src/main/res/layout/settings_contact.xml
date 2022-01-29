@@ -11,7 +11,7 @@
     tools:context=".SettingsContactFragment">
 
     <ImageButton
-        android:id="@+id/contact_imgBtn1"
+        android:id="@+id/contact_imgBtnCall"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="4dp"
@@ -19,13 +19,13 @@
         android:background="#FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/contact_imgBtn2"
+        app:layout_constraintEnd_toStartOf="@+id/contact_imgBtnMail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_call_24" />
 
     <ImageButton
-        android:id="@+id/contact_imgBtn2"
+        android:id="@+id/contact_imgBtnMail"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="4dp"
@@ -34,12 +34,12 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/contact_imgBtn1"
+        app:layout_constraintStart_toEndOf="@+id/contact_imgBtnCall"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_email_24" />
 
     <Button
-        android:id="@+id/contact_okBtn"
+        android:id="@+id/contact_btnOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -50,17 +50,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_imgBtn2" />
+        app:layout_constraintTop_toBottomOf="@+id/contact_imgBtnMail" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/contact_tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="300dp"
         android:text="@string/settings_contact_title"
-        app:layout_constraintBottom_toTopOf="@+id/contact_imgBtn1"
+        app:layout_constraintBottom_toTopOf="@+id/contact_imgBtnCall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

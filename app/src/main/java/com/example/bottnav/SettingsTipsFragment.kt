@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.core.view.setPadding
 
 // 설정 - 팁 모아보기 프래그먼트
 class SettingsTipsFragment : Fragment() {
@@ -25,9 +27,9 @@ class SettingsTipsFragment : Fragment() {
 
         val dbManager = DBManager(view.context)
 
-        val settings_tips_list = view.findViewById<ListView>(R.id.settings_tips_list)
+        val settings_listTips = view.findViewById<ListView>(R.id.settings_listTips)
 
-        settings_tips_list.adapter = MyAdapter(view.context)
+        settings_listTips.adapter = MyAdapter(view.context)
 
         // Inflate the layout for this fragment
         return view
@@ -78,8 +80,9 @@ class SettingsTipsFragment : Fragment() {
             val layoutInflater = LayoutInflater.from(myContext)
             val layout = layoutInflater.inflate(R.layout.settings_tips_list, viewGroup, false)
 
-            val list_text = layout.findViewById<TextView>(R.id.list_textView)
-            list_text.text = list!!.get(position)
+            val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
+            tips_list_tv.setPadding(20)
+            tips_list_tv.text = "${position + 1}. ${list!!.get(position)}"
 
             return layout
         }

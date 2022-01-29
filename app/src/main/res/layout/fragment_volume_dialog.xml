@@ -22,7 +22,7 @@
         android:padding="5dp">
 
         <ImageView
-            android:id="@+id/volume_image"
+            android:id="@+id/volume_img"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:layout_gravity="center|fill_horizontal"
@@ -41,13 +41,13 @@
             android:progress="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/volume_image"
+            app:layout_constraintStart_toEndOf="@+id/volume_img"
             app:layout_constraintTop_toTopOf="parent"
             tools:thumb="@drawable/ic_baseline_brightness_1_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/volume_okbtn"
+        android:id="@+id/volume_btnOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
