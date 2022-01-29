@@ -123,11 +123,24 @@ class MainActivity : AppCompatActivity() {
             mPlayer.start()
         }
     }
+
     fun Mpause(){
         if(mPlayer!=null){
             mPlayer.pause()
             pausePos = mPlayer.currentPosition
         }
+    }
+
+    // 음악 볼륨 조절
+    fun setMvolume(value: Float){
+        mPlayer.setVolume(value, value)
+
+        // sharedPreference 수정
+        val sharedPreference = this!!.getSharedPreferences("current", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.remove("volume")
+        editor.putFloat("volume", value)
+        editor.apply()
     }
 
     fun goEditTodo(){

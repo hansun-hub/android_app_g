@@ -43,7 +43,7 @@ class SettingsContactFragment : BottomSheetDialogFragment() {
             // 이메일
             val sending_email = Intent(Intent.ACTION_SEND)
             sending_email.type = "plain/text"
-            val address = "email@address.com"
+            val address = arrayOf("email@address.com")
             sending_email.putExtra(Intent.EXTRA_EMAIL, address)
             sending_email.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_contact_title))
             startActivity(sending_email)

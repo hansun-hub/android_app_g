@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:orientation="vertical"
     tools:context=".VolumeDialogFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/volume_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/settings_sound"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/volume_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_weight="1"
-            android:text="@string/settings_sound"
-            android:textSize="30sp" />
+    <SeekBar
+        android:id="@+id/volume_seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        tools:thumb="@drawable/ic_baseline_brightness_1_24"
+        android:max="10"
+        android:progress="0"/>
 
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4" />
+    <Button
+        android:id="@+id/volume_okbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#FFFFFF"
+        android:text="@string/answer_ok" />
 
-    </LinearLayout>
-</FrameLayout>
+</LinearLayout>
