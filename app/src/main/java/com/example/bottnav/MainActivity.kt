@@ -68,8 +68,14 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        // 배경음악 설정
+        // 저장된 음량 크기 불러와 설정
+        val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
+        val volume = (sharedPreference.getInt("volume", 0).toDouble()/10).toFloat()
         mPlayer = MediaPlayer.create(this, R.raw.song1)
         mPlayer.isLooping = true
+        mPlayer.setVolume(volume, volume)
         Mstart()
 
 

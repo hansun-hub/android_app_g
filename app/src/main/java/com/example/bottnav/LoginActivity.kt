@@ -134,7 +134,7 @@ class LoginActivity : AppCompatActivity() {
         // sharedPreference에 현재 사용자 닉네임 입력
         editor.putString("nickname", Nick)
         // 현재 음악 볼륨 저장
-        editor.putFloat("volume", 1f)
+        editor.putInt("volume", 10)
 
         // 저장
         editor.apply()

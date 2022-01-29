@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="right"
     android:orientation="vertical"
     tools:context=".VolumeDialogFragment">
@@ -15,15 +16,35 @@
         android:text="@string/settings_sound"
         android:textSize="20sp" />
 
-    <SeekBar
-        android:id="@+id/volume_seekBar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        tools:thumb="@drawable/ic_baseline_brightness_1_24"
-        android:max="10"
-        android:progress="0"/>
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/volume_image"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_gravity="center|fill_horizontal"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/volume_seekBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SeekBar
+            android:id="@+id/volume_seekBar"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:max="10"
+            android:progress="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/volume_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:thumb="@drawable/ic_baseline_brightness_1_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/volume_okbtn"

@@ -88,7 +88,7 @@ import androidx.fragment.app.Fragment
             when (position) {
                 0 -> {
                     // 음량 조절 선택 시
-                    val volume_fragment = VolumeDialogFragment()
+                    val volume_fragment = VolumeDialogFragment(view.context)
                     volume_fragment.show(childFragmentManager, null)
                 }
                 1 -> {
