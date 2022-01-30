@@ -5,12 +5,8 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
-import android.provider.ContactsContract
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import java.lang.Math.random
 import java.time.*
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
@@ -187,7 +183,7 @@ class DBManager(context: Context) {
 
         sqlDB = dbHelper.writableDatabase
         // 달성정보 DB에 추가
-        sqlDB.execSQL("INSERT INTO \'DIARY_$email\' VALUES ('$date', '$title', '$contents', '$score', '$selected_challenge')")
+        sqlDB.execSQL("INSERT INTO \'DIARY_$email\' VALUES ('$date', '$title', '$contents', $score, '$selected_challenge')")
         sqlDB.close()
     }
 
@@ -270,6 +266,6 @@ class DBManager(context: Context) {
     public fun setIsAchieved(i: Int) {
         // 사용자가 미션 달성했을 때 달성정보 수정
         sqlDB = dbHelper.writableDatabase
-        sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET i='$i' WHERE date='$date' and i='$i';")
+        sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET i=$i WHERE date='$date' and i=$i;")
     }
 }
