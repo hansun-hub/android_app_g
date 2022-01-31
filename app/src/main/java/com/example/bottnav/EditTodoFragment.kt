@@ -66,7 +66,7 @@ class EditTodoFragment : Fragment() {
             contentTodo = editTextTodo.getText().toString()
             if ( contentTodo.length == 0 ) {
                 //공백일 때 처리할 내용
-                //Toast.makeText(this, "입력하세요,", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "입력하세요", Toast.LENGTH_LONG).show();
 
 
             } else {
