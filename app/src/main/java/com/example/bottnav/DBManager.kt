@@ -176,6 +176,11 @@ class DBManager(context: Context) {
         return null
     }
 
+    public fun getChallenge(index: Int): String? {
+        // index에 따른 미션 반환
+        return getChallenges("all")!!.get(index)
+    }
+
     public fun addCustomChallenge(findDate: String, contents: String, period: String) {
         // DB에 사용자 설정 미션 추가
 

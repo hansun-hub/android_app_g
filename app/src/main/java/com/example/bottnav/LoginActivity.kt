@@ -52,9 +52,9 @@ class LoginActivity : AppCompatActivity() {
 
         //버튼 누르면 메인 화면 진입
         login_btnLogin.setOnClickListener {
-            var intent = Intent(this, MainActivity::class.java)
+            /*var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
+            finish()*/
             email = login_editEmail.text.toString()
             password = login_editPassword.text.toString()
             //이메일이나 비밀번호가 비어있는 경우
@@ -118,6 +118,7 @@ class LoginActivity : AppCompatActivity() {
 
         //var email = "" // 이메일 정보 받아오기
         //var nickname = "" // 닉네임 정보 받아오기
+        var aimLevel : Int = 10
 
         // 로그인 날짜와 로그인 정보 sharedPreference에 저장
         // 오늘 날짜 저장
@@ -132,6 +133,8 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("email", email)
         // sharedPreference에 현재 사용자 닉네임 입력
         editor.putString("nickname", Nick)
+        //// sharedPreference에 현재 사용자 목표레벨 입력
+        editor.putInt("aimLevel",aimLevel)
         // 저장
         editor.apply()
 

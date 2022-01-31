@@ -30,8 +30,8 @@ class HomeFragment : Fragment() {
     lateinit var ivSprout : ImageView
     lateinit var dbManager : DBManager
 
-    var missionDo : Int = 0
-    var missionDone : Int = 10
+    var missionDo : Int = 10
+    var missionDone : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +47,25 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         var view : View = inflater.inflate(R.layout.fragment_home, container, false)
 
-        //SharedPreferences로 닉네임 가져오기
-        val pref : SharedPreferences = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
-        NICK = pref.getString("nickname",null).toString()
         home_tvNick = view.findViewById(R.id.home_tvNick)
-        home_tvNick.setText(NICK)  //login페이지에서 넘어온 닉네임이 화면에 보임
-
         home_btnMusic = view.findViewById(R.id.home_btnMusic)
         home_tvDo = view.findViewById(R.id.home_tvDo)
         home_tvDone = view.findViewById(R.id.home_tvDone)
         tvTip = view.findViewById(R.id.home_tvTip)
         ivSprout = view.findViewById(R.id.home_ivSprout)  //tvDone수에 따라 이미지 바뀌도록 연결하기
 
+        dbManager = DBManager(view.context)
+
+        //SharedPreferences로 닉네임 가져오기
+        val pref : SharedPreferences = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
+        NICK = pref.getString("nickname",null).toString()
+        home_tvNick.setText(NICK)  //login페이지에서 넘어온 닉네임이 화면에 보임
+
+        missionDo = pref.getInt("aimLevel",10)  //목표 레벨 (sharedPrefereces사용)가져오기
+        home_tvDo.setText(missionDo.toString())
+
+        missionDone = dbManager.getLevel()  //현재 레벨 (db 사용)가져오기
+        home_tvDone.setText(missionDone.toString())
         //var isplay : Boolean = true
 
         //음악 버튼
@@ -78,7 +85,6 @@ class HomeFragment : Fragment() {
         }
 
         //db에서 팁 배열 가져옴
-        dbManager = DBManager(view.context)
         val tip = dbManager.getTips("tip")
 
         //랜덤 수 만들기
@@ -106,9 +112,16 @@ class HomeFragment : Fragment() {
             })
         }
 
-        missionDo = home_tvDo.text.toString().toInt()
+        //missionDo = home_tvDo.text.toString().toInt()
         //missionDone = home_tvDone.text.toString().toInt()  //나중에 db에서 level받아오는 코드로 바꾸기
-        missionDone = dbManager.getLevel()
+
+        //sharedPreference 수정 (목표 개수)
+        val editor = pref.edit()
+        fun aimLevelChange(aim : Int){
+            editor.remove("aimLevel")
+            editor.putInt("aimLevel",aim)
+            editor.apply()
+        }
 
         //클릭 시 숫자 늘어나도록 설정  =>나중에 db에서 level을 받아오는 순간
         home_tvDone.setOnClickListener {
@@ -120,19 +133,23 @@ class HomeFragment : Fragment() {
                 when (missionDone) {  //성취 개수
                     in 10 .. 29 -> {   // 10~29개를 달성한 경우
                         missionDo = 30  //다음 달성 목표
+                        aimLevelChange(missionDo)    //목표 개수 수정
                         home_tvDo.text = missionDo.toString()  //달성 목표 화면에 반영
                         ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))  //캐릭터 이미지 바꿈
                         ivSprout.layoutParams.width = 140  //너비 크게 수정
                         popupDialog(R.drawable.tree)
+
                     }
                     in 30 .. 59 -> {
                         missionDo = 60  //다음 달성 목표
+                        aimLevelChange(missionDo)
                         home_tvDo.text = missionDo.toString()
                         ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.appletrees))
                         popupDialog(R.drawable.appletrees)
                     }
                     in 60 .. 99 -> {    //아니 그림이 왜 작아짐???? 여기서부터 갑자기?????
                         missionDo = 100  //다음 달성 목표
+                        aimLevelChange(missionDo)
                         home_tvDo.text = missionDo.toString()
                         ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.forest))
                         popupDialog(R.drawable.forest)
