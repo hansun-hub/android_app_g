@@ -29,7 +29,7 @@ class DBManager(context: Context) {
         sqlDB.execSQL("INSERT INTO USERS VALUES (\"${user_email}\", \"${user_nickname}\", \"$password\", 0);")
 
         // 미션 달성 정보 table 생성
-        sqlDB.execSQL("CREATE TABLE IF NOT EXISTS \"ACHIEVE_${user_email}\" (date TEXT, type CHAR, i INTEGER, is_achieved CHAR);")
+        sqlDB.execSQL("CREATE TABLE IF NOT EXISTS \"ACHIEVE_${user_email}\" (date TEXT, type CHAR, i INTEGER, is_achieved CHAR, contents TEXT);")
         // 소감 table 생성
         sqlDB.execSQL("CREATE TABLE IF NOT EXISTS \"DIARY_${user_email}\" (data TEXT, title TEXT, contents TEXT, score INTEGER, selected TEXT)")
 
@@ -140,19 +140,25 @@ class DBManager(context: Context) {
         return null
     }
 
-    public fun addCustomChallenge(findDate: String, contents: String, period: String) {
+    public fun getChallenge(index: Int): String? {
+        // index에 따른 미션 반환
+        return getChallenges("all")!!.get(index)
+    }
+
+    public fun addCustomChallenge(findDate: String, contents: String) {
         // DB에 사용자 설정 미션 추가
 
         sqlDB = dbHelper.writableDatabase
 
         // 해당 날짜의 미션 개수 가져오기
+
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate';", null)
-        var index = 0
+        var i = 0
         while (cursor.moveToNext())
-            index++
+            i++
 
         // 달성정보 DB에 추가
-        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES ('$date', '$period', index+1, 'N');")
+        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES('$findDate', 'D', ${i + 25}, 'N', $contents);")
 
         cursor.close()
         sqlDB.close()
@@ -228,13 +234,13 @@ class DBManager(context: Context) {
         // 미션 저장
         for (i in 0..29) {
             for (index in monthly) {
-                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'M', $index, 'N');")
+                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'M', $index, 'N', null);")
             }
             for (index in weekly[i/7]) {
-                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'W', $index, 'N');")
+                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'W', $index, 'N', null);")
             }
             for (index in daily[i]) {
-                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'D', $index, 'N');")
+                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'D', $index, 'N', null);")
             }
 
             // 날짜 하루 추가
@@ -266,6 +272,6 @@ class DBManager(context: Context) {
     public fun setIsAchieved(i: Int) {
         // 사용자가 미션 달성했을 때 달성정보 수정
         sqlDB = dbHelper.writableDatabase
-        sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET i=$i WHERE date='$date' and i=$i;")
+        sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET is_achieved='Y' WHERE date='$date' and i=$i;")
     }
 }
