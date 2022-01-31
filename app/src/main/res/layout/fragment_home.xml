@@ -8,7 +8,7 @@
     tools:context=".HomeFragment">
 
     <TextView
-        android:id="@+id/tvNick"
+        android:id="@+id/home_tvNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -29,14 +29,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnMusic"
+        android:id="@+id/home_btnMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="203dp"
         android:src="@drawable/ic_baseline_music_note_24"
-        app:layout_constraintEnd_toStartOf="@+id/tvNick"
+        app:layout_constraintEnd_toStartOf="@+id/home_tvNick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,16 +44,16 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="55dp"
         android:background="#CEE3D0"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivSprout">
+        app:layout_constraintTop_toBottomOf="@+id/home_ivSprout">
 
         <TextView
             android:id="@+id/textView5"
@@ -66,7 +66,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/tvTip"
+            android:id="@+id/home_tvTip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -77,12 +77,13 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ivSprout"
-        android:layout_width="268dp"
-        android:layout_height="307dp"
+        android:id="@+id/home_ivSprout"
+        android:layout_width="130dp"
+        android:layout_height="305dp"
         android:layout_marginTop="88dp"
         android:background="#00000000"
-        android:src="@drawable/presprout"
+        android:scaleType="fitCenter"
+        android:src="@drawable/sprout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,29 +100,44 @@
         android:textColor="#F3B252"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivSprout" />
+        app:layout_constraintTop_toTopOf="@+id/home_ivSprout" />
 
     <TextView
-        android:id="@+id/tvDone"
+        android:id="@+id/home_tvDone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="290dp"
+        android:layout_marginStart="270dp"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="1dp"
         android:gravity="right"
         android:text="0"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/home_tvSlash"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
-        android:id="@+id/tvDo"
+        android:id="@+id/home_tvSlash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:text="/"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/home_tvDo"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toEndOf="@+id/home_tvDone"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/home_tvDo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
-        android:text="/ 10"
+        android:text="10"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvDone"
+        app:layout_constraintStart_toEndOf="@id/home_tvSlash"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

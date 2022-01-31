@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 //메인 화면
 class MainActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when(item.itemId) {  //프래그먼트가 유지되어야함
                 //홈 탭을 선택한 경우
                 R.id.nav_home -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_container, homeFrag).commit()
@@ -87,9 +88,6 @@ class MainActivity : AppCompatActivity() {
         btnCancel.setOnClickListener {
 
         }*/
-        val dialog =  CharacterDialogFragment(this)
-        dialog.showDialog()
-
 
     }
 
@@ -130,6 +128,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun ispalying(): Boolean {
+        var play : Boolean = true
+        play = mPlayer.isPlaying
+        return play   //실행 중인 경우 true반환
+    }
+
     fun goEditTodo(){
         val editTodoFragment = EditTodoFragment()
         val transaction = supportFragmentManager.beginTransaction()
@@ -145,5 +149,10 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.bottom_container, fragment)
         fragmentTransaction.addToBackStack("$fragment");
         fragmentTransaction.commit()
+    }
+
+    override fun onPause() {    //다른 액티비티(로그인)가 보여질 때
+        super.onPause()
+        mPlayer.stop()   //음악 멈춤
     }
 }

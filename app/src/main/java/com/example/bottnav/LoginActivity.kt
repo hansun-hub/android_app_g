@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -18,10 +17,10 @@ import java.time.LocalDate
 
 //로그인 화면
 class LoginActivity : AppCompatActivity() {
-    lateinit var btnLogin: Button
-    lateinit var regText : TextView
-    lateinit var editEmail : EditText
-    lateinit var editPassword : EditText
+    lateinit var login_btnLogin: Button
+    lateinit var login_regText : TextView
+    lateinit var login_editEmail : EditText
+    lateinit var login_editPassword : EditText
     lateinit var dbHelper: DBHelper
     lateinit var sqlDB : SQLiteDatabase
 
@@ -35,10 +34,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        btnLogin = findViewById<Button>(R.id.btnLogin)
-        regText = findViewById(R.id.regText)
-        editEmail = findViewById(R.id.editEmail)
-        editPassword = findViewById(R.id.editPassword)
+        login_btnLogin = findViewById<Button>(R.id.login_btnLogin)
+        login_regText = findViewById(R.id.login_regText)
+        login_editEmail = findViewById(R.id.login_editEmail)
+        login_editPassword = findViewById(R.id.login_editPassword)
 
         dbHelper = DBHelper(this)
 
@@ -46,18 +45,18 @@ class LoginActivity : AppCompatActivity() {
 
         //회원가입창에서 값 받아옴
         var getIntent : Intent = getIntent()
-        editEmail.setText(getIntent.getStringExtra("email"))
-        editPassword.setText(getIntent.getStringExtra("password"))
+        login_editEmail.setText(getIntent.getStringExtra("email"))
+        login_editPassword.setText(getIntent.getStringExtra("password"))
 
 
 
         //버튼 누르면 메인 화면 진입
-        btnLogin.setOnClickListener {
+        login_btnLogin.setOnClickListener {
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-            email = editEmail.text.toString()
-            password = editPassword.text.toString()
+            email = login_editEmail.text.toString()
+            password = login_editPassword.text.toString()
             //이메일이나 비밀번호가 비어있는 경우
             if( email.length==0 || password.length==0){
                 Toast.makeText(this, "빈 칸을 채워주세요.",Toast.LENGTH_SHORT).show()
@@ -107,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         //회원가입 누르면 회원가입 창으로 이동
-        regText.setOnClickListener{
+        login_regText.setOnClickListener{
             var intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
