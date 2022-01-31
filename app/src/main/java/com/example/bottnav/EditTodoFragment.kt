@@ -2,13 +2,16 @@ package com.example.bottnav
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.bottnav.databinding.FragmentEditTodoDialogBinding
+import java.time.LocalDateTime
 
 class EditTodoFragment : Fragment() {
     lateinit var binding: FragmentEditTodoDialogBinding
@@ -29,6 +32,7 @@ class EditTodoFragment : Fragment() {
         if(context is MainActivity) mainActivity = context
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,7 +75,7 @@ class EditTodoFragment : Fragment() {
 
             } else {
                 //공백이 아닐 때 처리할 내용
-                myDB.addCustomChallenge(contentTodo, periodTodo)
+                myDB.addCustomChallenge(LocalDateTime.now().toString(), contentTodo, periodTodo)
             }
             mainActivity.onBackPressed()
         }

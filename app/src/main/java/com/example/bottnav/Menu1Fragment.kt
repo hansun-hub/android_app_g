@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -29,42 +30,36 @@ class Menu1Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //db에서 미션 배열 가져옴
+        //db에서 미션 배열 가져오기(아직 DB와 연결 안됨)
         // Toast.makeText(getActivity(), "$random", Toast.LENGTH_SHORT).show()
 
-        val view = inflater.inflate(R.layout.fragment_todo_item, container, false)
-        val todoItem = view.findViewById<RecyclerView>(R.id.todoItem)
+        val view2 = inflater.inflate(R.layout.fragment_menu1, container, false)
+        val todoItem = view2.findViewById<RecyclerView>(R.id.todoItem)
 
-        dbManager = DBManager(view.context)
+        dbManager = DBManager(view2.context)
         // val todayChallenges = dbManager.getTodayChallenges("")
 
-        /*
-        var challengeSize = (todayChallenges!!.size).toInt()
-        val random = (0..challengeSize-1).random()
-        todoItem.adapter = todayChallenges?.get(random)
-         */
-
-        // todoItem.layoutManager(LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL ,false))
 
 
+        // 임의로 지정한 arraylist
         var todayChallenges = arrayListOf<String>(
             "Chow Chow, Male, 4, dog00",
             "Breed Pomeranian, Female, 1, dog01",
             "Golden Retriver, Female, 3, dog02"
         )
 
-
-        val myAdapter = TodoListAdapter(view.context, todayChallenges)
+        //어댑터 받아오기
+        val myAdapter = TodoListAdapter(view2.context, todayChallenges)
         todoItem.adapter = myAdapter
 
-        val lm = LinearLayoutManager(view.context)
+        val lm = LinearLayoutManager(view2.context)
         todoItem.layoutManager = lm
         todoItem.setHasFixedSize(true)
 
 
-        //binding = FragmentMenu1Binding.inflate(inflater, container, false)
+        binding = FragmentMenu1Binding.inflate(inflater, container, false)
         //return binding.root
-        return view
+        return view2
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

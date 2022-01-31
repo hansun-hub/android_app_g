@@ -133,6 +133,8 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("email", email)
         // sharedPreference에 현재 사용자 닉네임 입력
         editor.putString("nickname", Nick)
+
+
         // 저장
         editor.apply()
 
