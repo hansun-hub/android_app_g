@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bottnav.databinding.FragmentMenu1Binding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class Menu1Fragment : Fragment() {
 
@@ -19,6 +20,7 @@ class Menu1Fragment : Fragment() {
     lateinit var mainActivity : MainActivity
     lateinit var dbManager: DBManager
     lateinit var todoItem : RecyclerView
+    lateinit var addButton : FloatingActionButton
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,7 +38,12 @@ class Menu1Fragment : Fragment() {
         val view2 = inflater.inflate(R.layout.fragment_menu1, container, false)
         val todoItem = view2.findViewById<RecyclerView>(R.id.todoItem)
 
+        addButton = view2.findViewById(R.id.addButton)
         dbManager = DBManager(view2.context)
+
+
+
+
         // val todayChallenges = dbManager.getTodayChallenges("")
 
 
@@ -49,7 +56,9 @@ class Menu1Fragment : Fragment() {
         )
 
         //어댑터 받아오기
-        val myAdapter = TodoListAdapter(view2.context, todayChallenges)
+        val myAdapter = TodoListAdapter(view2.context, todayChallenges){ String ->
+            Toast.makeText(getActivity(), "삭제됨", Toast.LENGTH_SHORT).show()
+        }
         todoItem.adapter = myAdapter
 
         val lm = LinearLayoutManager(view2.context)
@@ -57,17 +66,12 @@ class Menu1Fragment : Fragment() {
         todoItem.setHasFixedSize(true)
 
 
-        binding = FragmentMenu1Binding.inflate(inflater, container, false)
-        //return binding.root
+        addButton.setOnClickListener {
+            mainActivity.goEditTodo()
+        }
+
         return view2
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.addButton.setOnClickListener {
-            mainActivity.goEditTodo()
-        }
-    }
 
 }

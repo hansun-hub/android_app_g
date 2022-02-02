@@ -10,13 +10,13 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class TodoListAdapter(val context: Context, val todoList: ArrayList<String>) :
+class TodoListAdapter(val context: Context, val todoList: ArrayList<String>, val itemClick: (String) -> Unit) :
     RecyclerView.Adapter<TodoListAdapter.Holder>() {
 
     // 화면을 최초 로딩하여 만들어진 View가 없는 경우, xml파일을 inflate하여 ViewHolder를 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.fragment_todo_item, parent, false)
-        return Holder(view)
+        return Holder(view, itemClick)
     }
 
     // RecyclerView로 만들어지는 item의 총 개수를 반환
@@ -29,7 +29,7 @@ class TodoListAdapter(val context: Context, val todoList: ArrayList<String>) :
         holder?.bind(todoList[position], context)
     }
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class Holder(itemView: View, itemClick: (String) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
         val layoutTodo : LinearLayout = itemView.findViewById<LinearLayout?>(R.id.layoutTodo)
         val checkBox : CheckBox = itemView.findViewById<android.widget.CheckBox?>(R.id.checkBox)
@@ -55,6 +55,10 @@ class TodoListAdapter(val context: Context, val todoList: ArrayList<String>) :
         // 체크박스에 string이 text로 나올 수 있도록 표현
         fun bind (todo: String, context: Context) {
             todoCheck?.setText(todo)
+
+            todoCheck.setOnClickListener{ itemClick(todo)}
         }
+
+
     }
 }

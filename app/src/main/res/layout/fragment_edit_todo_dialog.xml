@@ -17,15 +17,17 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498">
 
         <TextView
             android:id="@+id/todo_dia_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="68dp"
             android:maxLines="1"
             android:singleLine="true"
             android:text="할 일"
@@ -36,9 +38,9 @@
 
         <EditText
             android:id="@+id/editTextTodo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_width="322dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="할 일을 작성해 주세요."
             android:inputType="textPersonName"
@@ -46,40 +48,6 @@
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/todo_dia_title"
             app:layout_constraintTop_toBottomOf="@+id/todo_dia_title" />
-
-        <RadioGroup
-            android:id="@+id/radioPeriod"
-            android:layout_width="106dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="@+id/editTextTodo"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTodo">
-
-            <RadioButton
-                android:id="@+id/rb_today"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Today"
-                android:textColor="@color/gray"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-            <RadioButton
-                android:id="@+id/rb_week"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Week"
-                android:textColor="@color/gray"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-            <RadioButton
-                android:id="@+id/rb_month"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Month"
-                android:textColor="@color/gray"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-        </RadioGroup>
 
         <Button
             android:id="@+id/button_make_todo"

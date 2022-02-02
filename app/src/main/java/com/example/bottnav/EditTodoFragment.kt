@@ -11,18 +11,19 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.bottnav.databinding.FragmentEditTodoDialogBinding
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 class EditTodoFragment : Fragment() {
     lateinit var binding: FragmentEditTodoDialogBinding
     lateinit var mainActivity: MainActivity
     lateinit var sqlDB : SQLiteDatabase
-    lateinit var myHelper: DBHelper
+    // lateinit var myHelper: DBHelper
 
     lateinit var radioPeriod: RadioGroup
-    lateinit var rb_today : RadioButton
-    lateinit var rb_week : RadioButton
-    lateinit var rb_month : RadioButton
+    // lateinit var rb_today : RadioButton
+    // lateinit var rb_week : RadioButton
+    // lateinit var rb_month : RadioButton
     lateinit var editTextTodo : EditText
     lateinit var button_make_todo : Button
     lateinit var myDB : DBManager
@@ -40,17 +41,18 @@ class EditTodoFragment : Fragment() {
 
         binding = FragmentEditTodoDialogBinding.inflate(inflater, container, false)
 
-        radioPeriod = binding.root.findViewById(R.id.radioPeriod)
+        //radioPeriod = binding.root.findViewById(R.id.radioPeriod)
         editTextTodo = binding.root.findViewById(R.id.editTextTodo)
-        rb_today = binding.root.findViewById(R.id.rb_today)
-        rb_week = binding.root.findViewById(R.id.rb_week)
-        rb_month = binding.root.findViewById(R.id.rb_month)
+        //rb_today = binding.root.findViewById(R.id.rb_today)
+        //rb_week = binding.root.findViewById(R.id.rb_week)
+        //rb_month = binding.root.findViewById(R.id.rb_month)
         button_make_todo = binding.root.findViewById(R.id.button_make_todo)
         myDB = DBManager(mainActivity)
 
         var contentTodo : String
-        var periodTodo : String = ""
+        // var periodTodo : String = ""
 
+        /*
         radioPeriod.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
 
@@ -65,6 +67,7 @@ class EditTodoFragment : Fragment() {
                 }
             }
         }
+         */
 
         binding.buttonMakeTodo.setOnClickListener {
             contentTodo = editTextTodo.getText().toString()
@@ -75,7 +78,7 @@ class EditTodoFragment : Fragment() {
 
             } else {
                 //공백이 아닐 때 처리할 내용
-                myDB.addCustomChallenge(LocalDateTime.now().toString(), contentTodo, periodTodo)
+                myDB.addCustomChallenge(LocalDate.now().toString(), contentTodo)
             }
             mainActivity.onBackPressed()
         }
