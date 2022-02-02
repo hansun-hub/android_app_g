@@ -181,19 +181,20 @@ class DBManager(context: Context) {
         return getChallenges("all")!!.get(index)
     }
 
-    public fun addCustomChallenge(findDate: String, contents: String, period: String) {
+    public fun addCustomChallenge(findDate: String, contents: String) {
         // DB에 사용자 설정 미션 추가
 
         sqlDB = dbHelper.writableDatabase
 
         // 해당 날짜의 미션 개수 가져오기
+
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate';", null)
-        var index = 0
+        var i = 0
         while (cursor.moveToNext())
-            index++
+            i++
 
         // 달성정보 DB에 추가
-        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES ('$findDate', '$period', index+1, 'N');")
+        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES('$findDate', 'D', ${i + 25}, 'N');")
 
         cursor.close()
         sqlDB.close()
@@ -308,7 +309,7 @@ class DBManager(context: Context) {
     public fun setIsAchieved(i: Int) {
         // 사용자가 미션 달성했을 때 달성정보 수정
         sqlDB = dbHelper.writableDatabase
-        sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET i=$i WHERE date='$date' and i=$i;")
+        sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET is_achieved='Y' WHERE date='$date' and i=$i;")
     }
 
 }

@@ -115,6 +115,26 @@ class HomeFragment : Fragment() {
         //missionDo = home_tvDo.text.toString().toInt()
         //missionDone = home_tvDone.text.toString().toInt()  //나중에 db에서 level받아오는 코드로 바꾸기
 
+        //목표 레벨에 따라 이미지 바꿈(프래그먼트간 이동에 값 초기화 방지)
+        when(missionDo){
+            10 -> {
+                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.sprout))  //캐릭터 이미지 바꿈
+            }
+            30 -> {
+                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))  //캐릭터 이미지 바꿈
+            }
+            60 -> {
+                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.appletrees))  //캐릭터 이미지 바꿈
+            }
+            100 -> {
+                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.forest))  //캐릭터 이미지 바꿈
+                //모든 미션을 달성한 경우
+                if(missionDone==100){
+                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.healthy_earth))  //캐릭터 이미지 바꿈
+                }
+            }
+        }
+
         //sharedPreference 수정 (목표 개수)
         val editor = pref.edit()
         fun aimLevelChange(aim : Int){
