@@ -449,7 +449,7 @@ class DBManager(context: Context) {
         // 해당 날짜의 소감 삭제
 
         sqlDB = dbHelper.writableDatabase
-        sqlDB.execSQL("DELETE FROM 'DIARY_$email' date='$findDate';")
+        sqlDB.execSQL("DELETE FROM 'DIARY_$email' WHERE date='$findDate';")
 
         sqlDB.close()
     }
