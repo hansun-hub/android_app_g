@@ -16,7 +16,7 @@
         android:text="취소"
         app:layout_constraintEnd_toStartOf="@+id/btnShare"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2_ivEarth" />
 
     <Button
         android:id="@+id/btnShare"
@@ -29,10 +29,10 @@
         android:text="공유"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCancel"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2_ivEarth" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/menu2_ivEarth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
