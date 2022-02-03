@@ -164,14 +164,14 @@ class DBManager(context: Context) {
 
         // 미션 저장
         for (i in 0..29) {
-            for (index in monthly) {
-                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'M', $index, 'N', null);")
+            for (index in daily[i]) {
+                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'D', $index, 'N', null);")
             }
             for (index in weekly[i/7]) {
                 sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'W', $index, 'N', null);")
             }
-            for (index in daily[i]) {
-                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'D', $index, 'N', null);")
+            for (index in monthly) {
+                sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'M', $index, 'N', null);")
             }
 
             // 날짜 하루 추가
@@ -232,6 +232,12 @@ class DBManager(context: Context) {
 
         cursor.close()
         sqlDB.close()
+    }
+
+    public fun delCustomChallenge(findDate: String, index: Int) {
+        sqlDB = dbHelper.writableDatabase
+
+        sqlDB.execSQL("DELETE FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$index;")
     }
 
     @SuppressLint("Range")
