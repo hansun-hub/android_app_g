@@ -6,40 +6,55 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/home_btnCancel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:drawableLeft="@drawable/ic_baseline_cancel_24"
         android:text="취소"
-        app:layout_constraintEnd_toStartOf="@+id/btnShare"
+        app:layout_constraintEnd_toStartOf="@+id/home_btnShare"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2_ivEarth" />
+        app:layout_constraintTop_toBottomOf="@+id/home_ivCharacter" />
 
     <Button
-        android:id="@+id/btnShare"
+        android:id="@+id/home_btnShare"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="70dp"
         android:drawableLeft="@drawable/ic_baseline_share_24"
         android:text="공유"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnCancel"
-        app:layout_constraintTop_toBottomOf="@+id/menu2_ivEarth" />
+        app:layout_constraintStart_toEndOf="@+id/home_btnCancel"
+        app:layout_constraintTop_toBottomOf="@+id/home_ivCharacter" />
 
     <ImageView
-        android:id="@+id/menu2_ivEarth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
+        android:id="@+id/home_ivCharacter"
+        android:layout_width="185dp"
+        android:layout_height="192dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:srcCompat="@drawable/tree" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="40dp"
+        android:padding="10dp"
+        android:text="@string/congrat"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/home_ivCharacter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

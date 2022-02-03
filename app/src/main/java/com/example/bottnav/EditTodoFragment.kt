@@ -74,7 +74,6 @@ class EditTodoFragment : Fragment() {
 
 
             } else {
-                //공백이 아닐 때 처리할 내용
                 // 현재 날짜로 설정해두었지만 나중에는 사용자가 선택한 날짜에 추가하도록 수정
                 var date = LocalDate.now().toString()
                 //공백이 아닐 때 처리할 내용
