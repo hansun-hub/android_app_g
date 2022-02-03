@@ -54,14 +54,14 @@
 
     <Button
         android:id="@+id/write_btnCancel"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="105dp"
         android:background="#F3F3F5"
         android:text="취소"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/write_btnSave"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/write_editImpre" />
 
     <Button
@@ -90,9 +90,9 @@
 
     <Button
         android:id="@+id/write_btnSave"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
+        android:layout_marginStart="105dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/writr_btn"
         android:text="저장"

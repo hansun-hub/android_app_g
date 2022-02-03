@@ -5,10 +5,10 @@
     tools:ignore="UnusedAttribute,ResourceCycle">
     <!--regular-->
     <font
-        android:font="@font/nanummyeongjo_bold"
+        android:font="@font/jua_regular"
         android:fontStyle="normal"
         android:fontWeight="500"
-        app:font="@font/nanummyeongjo_bold"
+        app:font="@font/jua_regular"
         app:fontStyle="normal"
         app:fontWeight="500" />
 
