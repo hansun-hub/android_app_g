@@ -48,9 +48,15 @@
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/completedItem"
+                        android:id="@+id/menu1_recyclerComp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/menu1_recyclerComp_other"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
 
                 </LinearLayout>
             </ScrollView>
@@ -82,16 +88,25 @@
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/todoItem"
+                        android:id="@+id/menu1_recyclerTodo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/menu1_recyclerTodo_other"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addButton"
+        android:id="@+id/menu1_btnAdd"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="end|bottom"

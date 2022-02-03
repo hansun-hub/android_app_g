@@ -135,7 +135,6 @@ class LoginActivity : AppCompatActivity() {
         editor.putInt("volume", 10)
         //// sharedPreference에 현재 사용자 목표레벨 입력
         editor.putInt("aimLevel",aimLevel)
-
         // 저장
         editor.apply()
 
