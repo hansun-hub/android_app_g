@@ -9,4 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#888</color>
     <color name="blue">#0000FF</color>
+    <color name="green_1">#468D15</color>
+    <color name="green_2">#2E5A03</color>
+    <color name="green_3">#90C247</color>
+    <color name="green_4">#E0F1C7</color>
+    <color name="green_5">#F3F3F5</color>
+    <color name="red">#FF0000</color>
+    <color name="main_green">#048243</color>
+    <color name="bright_green">#32BF84</color>
+    <color name="merging_light_blue">#CAFFFB</color>
 </resources>

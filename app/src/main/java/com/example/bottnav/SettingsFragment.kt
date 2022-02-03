@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment
         val sharedPreference = view.context.getSharedPreferences("current", Context.MODE_PRIVATE)
         val email = sharedPreference.getString("email", "")
         var nickname = sharedPreference.getString("nickname", "")
+        var date = sharedPreference.getString("date", "")
 
         val settings_btn1 = view.findViewById<Button>(R.id.settings_btn1)   // 닉네임 변경
         val settings_btn2 = view.findViewById<Button>(R.id.settings_btn2)   // 회원 탈퇴
