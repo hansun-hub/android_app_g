@@ -82,12 +82,12 @@ class Menu2Fragment : Fragment() {
         }
         return view
 
+
     }
     override fun onResume() {
         super.onResume()
         Toast.makeText(context, "돌아왔습니다.", Toast.LENGTH_SHORT).show()
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

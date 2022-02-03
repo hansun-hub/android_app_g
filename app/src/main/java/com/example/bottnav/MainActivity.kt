@@ -102,12 +102,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //나가기 버튼 누를 경우 (노래 종료+액티비티 종료)
+
+   
     override fun onBackPressed() {
-        //mPlayer.stop()
-        //finish()
         super.onBackPressed()
-        //supportFragmentManager.beginTransaction().replace(R.id.bottom_container, menu2Frag).commit()
     }
 
     fun goBack(){
