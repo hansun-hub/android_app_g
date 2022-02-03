@@ -453,4 +453,7 @@ class DBManager(context: Context) {
 
         sqlDB.close()
     }
+
 }
+
+

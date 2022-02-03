@@ -91,21 +91,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun goWrite(){
-        val writeFragment = WriteFragment()
+    fun goMenu2(){
+        val Menu2FragmentFragment = Menu2Fragment()
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.bottom_container, writeFragment) //FrameLayout은 표시 될 곳
+        transaction.add(R.id.bottom_container, Menu2FragmentFragment) //FrameLayout은 표시 될 곳
         transaction.addToBackStack("write") //뒤로가는 것 구현
         transaction.commit()
     }
 
 
-    //나가기 버튼 누를 경우 (노래 종료+액티비티 종료)
-    /*
+
+   
     override fun onBackPressed() {
-        mPlayer.stop()
-        finish()
-    }*/
+        super.onBackPressed()
+    }
 
     fun goBack(){
         onBackPressed()
@@ -151,8 +150,10 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
+
     override fun onStop() {  //액티비티가 더 이상 사용자에게 보여지지 않을 때
         super.onStop()
         mPlayer.stop()   //음악 멈춤
     }
+
 }

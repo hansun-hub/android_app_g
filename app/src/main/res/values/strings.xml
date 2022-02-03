@@ -46,9 +46,10 @@
     <string name="answer_enter">입력</string>
     <string name="answer_cancel">취소</string>
     <string name="todo">할 일</string>
-    <string name="warn3">연간 인천 앞바다에 버려지는 쓰레기는 연간 19만 ㎥에 달합니다.
-            이는 10톤 트럭 1만 여 대에 달하는 쓰레기가 해마다 바다로 버려지고 있음을 뜻합니다.</string>
     <string name="shareWithFriend">친구에게 공유</string>
     <string name="share_message">환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
     <string name="congrat">축하합니다!</string>
+    <string name="menu2_warningText">!WARNING!</string>
+    <string name="menu2_title">달성소감을 기록해보세요!</string>
+
 </resources>

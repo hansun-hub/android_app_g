@@ -51,12 +51,10 @@ class LoginActivity : AppCompatActivity() {
 
 
         //버튼 누르면 메인 화면 진입
-        login_btnLogin.setOnClickListener {
-            /*var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()*/
-            email = login_editEmail.text.toString()
-            password = login_editPassword.text.toString()
+        btnLogin.setOnClickListener {
+            email = editEmail.text.toString()
+            password = editPassword.text.toString()
+
             //이메일이나 비밀번호가 비어있는 경우
             if( email.length==0 || password.length==0){
                 Toast.makeText(this, "빈 칸을 채워주세요.",Toast.LENGTH_SHORT).show()

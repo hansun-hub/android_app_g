@@ -11,7 +11,6 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "database1", null, 1
     override fun onCreate(db: SQLiteDatabase?) {
         // 사용자 정보 table 생성
         db!!.execSQL("CREATE TABLE IF NOT EXISTS USERS (email CHAR(20), nickname CHAR(15), password TEXT, level INTEGER);")
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
