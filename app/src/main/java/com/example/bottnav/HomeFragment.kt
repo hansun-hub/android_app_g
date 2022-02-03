@@ -128,7 +128,7 @@ class HomeFragment : Fragment() {
             }
             100 -> {
                 ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.forest))  //캐릭터 이미지 바꿈
-                //모든 미션을 달성한 경우
+                //모든 미션을 달성한 경우 (100/100인 경우)
                 if(missionDone==100){
                     ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.healthy_earth))  //캐릭터 이미지 바꿈
                 }
@@ -148,8 +148,8 @@ class HomeFragment : Fragment() {
             missionDone = missionDone + 10
             home_tvDone.text = missionDone.toString()
 
-            //Toast.makeText(getActivity(), "이 곳", Toast.LENGTH_SHORT).show()
-            if(missionDone>=missionDo) {  //목표 성취 개수를 넘은 경우
+            //목표 성취 개수를 (레벨이)넘은 경우
+            if(missionDone>=missionDo) {
                 when (missionDone) {  //성취 개수
                     in 10 .. 29 -> {   // 10~29개를 달성한 경우
                         missionDo = 30  //다음 달성 목표
@@ -158,7 +158,6 @@ class HomeFragment : Fragment() {
                         ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))  //캐릭터 이미지 바꿈
                         ivSprout.layoutParams.width = 140  //너비 크게 수정
                         popupDialog(R.drawable.tree)
-
                     }
                     in 30 .. 59 -> {
                         missionDo = 60  //다음 달성 목표
@@ -167,7 +166,7 @@ class HomeFragment : Fragment() {
                         ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.appletrees))
                         popupDialog(R.drawable.appletrees)
                     }
-                    in 60 .. 99 -> {    //아니 그림이 왜 작아짐???? 여기서부터 갑자기?????
+                    in 60 .. 99 -> {
                         missionDo = 100  //다음 달성 목표
                         aimLevelChange(missionDo)
                         home_tvDo.text = missionDo.toString()
@@ -179,12 +178,6 @@ class HomeFragment : Fragment() {
                         ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.healthy_earth))
                         popupDialog(R.drawable.healthy_earth)
                     }
-                    /*
-                    in 100..101 -> {
-                        home_tvDo.text = missionDo.toString()
-                        ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))
-                        popupDialog(R.drawable.forest)
-                    }*/
 
                 }
             }

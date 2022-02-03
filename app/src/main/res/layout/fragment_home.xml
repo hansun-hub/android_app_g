@@ -41,13 +41,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="55dp"
-        android:background="#CEE3D0"
+        android:layout_marginBottom="60dp"
+        android:background="#D6E8CB"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#B0CCB3"
+            android:background="#BBD6BC"
             android:padding="3dp"
             android:text="@string/tip"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -78,14 +79,14 @@
 
     <ImageView
         android:id="@+id/home_ivSprout"
-        android:layout_width="130dp"
-        android:layout_height="305dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="135dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="110dp"
         android:background="#00000000"
         android:scaleType="fitCenter"
         android:src="@drawable/sprout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,14 +94,14 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="25dp"
         android:text="@string/leftNumber"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#F3B252"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/home_ivSprout" />
+        app:layout_constraintTop_toBottomOf="@+id/home_tvNick" />
 
     <TextView
         android:id="@+id/home_tvDone"
