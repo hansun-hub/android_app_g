@@ -1,40 +1,47 @@
 package com.example.bottnav
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.Toast
-import androidx.fragment.app.DialogFragment
-import com.example.bottnav.databinding.DialogCharacterBinding
-import java.lang.IllegalStateException
+import android.widget.ImageView
 
-class CharacterDialogFragment(context : Context) {
-
+class CharacterDialog(context: Context) {
     private val dialog = Dialog(context)
     //private lateinit var onClickListner : OnDialogClickListener
 
-    fun showDialog(){
+    fun showDialog(res : Int){
         dialog.setContentView(R.layout.dialog_character)
         dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT)
-        val btnCancel : Button = dialog.findViewById(R.id.btnCancel)
-        val btnShare : Button = dialog.findViewById(R.id.btnShare)
+        dialog.setCanceledOnTouchOutside(false)   //외부 클릭으로 사라지지 않음.
+        val home_btnCancel : Button = dialog.findViewById(R.id.home_btnCancel)
+        val home_btnShare : Button = dialog.findViewById(R.id.home_btnShare)
+        var home_ivCharacter : ImageView = dialog.findViewById(R.id.home_ivCharacter)
 
+        home_ivCharacter.setImageResource(res)  //받아온 이미지로 변경
         dialog.show()
 
-        btnCancel.setOnClickListener {
+        home_btnCancel.setOnClickListener {
             dialog.dismiss()
         }
-        btnShare.setOnClickListener {
-            //val bottomSheet = BottomS
+        home_btnShare.setOnClickListener {
+            //바텀시트가 프래그먼트 위에 나오도록 코드 설정하기
+            //val bottomSheet = CharacterBottomSheetFragment(rootContext)  //BottomSheetDialog에 MainActivity컨텍스트 전달
+            //bottomSheet.show()
             //Toast.makeText(getActivity(), "$NICK", Toast.LENGTH_SHORT).show()
+            onClickedLister.onClicked()
+            dialog.dismiss()  //사라짐
         }
+    }
+
+    interface ButtonClickListener{
+        fun onClicked()
+    }
+    private lateinit var onClickedLister : ButtonClickListener
+
+    fun setOnClickedListener(listener : ButtonClickListener){
+        onClickedLister = listener
     }
 
     /*

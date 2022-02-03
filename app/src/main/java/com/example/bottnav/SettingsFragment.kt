@@ -1,11 +1,9 @@
     package com.example.bottnav
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +27,7 @@ import androidx.fragment.app.Fragment
         val sharedPreference = view.context.getSharedPreferences("current", Context.MODE_PRIVATE)
         val email = sharedPreference.getString("email", "")
         var nickname = sharedPreference.getString("nickname", "")
+        var date = sharedPreference.getString("date", "")
 
         val settings_btn1 = view.findViewById<Button>(R.id.settings_btn1)   // 닉네임 변경
         val settings_btn2 = view.findViewById<Button>(R.id.settings_btn2)   // 회원 탈퇴
@@ -88,7 +87,7 @@ import androidx.fragment.app.Fragment
             when (position) {
                 0 -> {
                     // 음량 조절 선택 시
-                    val volume_fragment = VolumeDialogFragment()
+                    val volume_fragment = VolumeDialogFragment(view.context)
                     volume_fragment.show(childFragmentManager, null)
                 }
                 1 -> {
@@ -221,10 +220,11 @@ import androidx.fragment.app.Fragment
 
         override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(myContext)
-            val layout = layoutInflater.inflate(R.layout.settings_list, viewGroup, false)
+            val layout = layoutInflater.inflate(R.layout.settings_tips_list, viewGroup, false)
 
-            val list_text = layout.findViewById<TextView>(R.id.list_textView)
-            list_text.text = list.get(position)
+            val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
+            tips_list_tv.textSize = 20F
+            tips_list_tv.text = list.get(position)
 
             return layout
         }

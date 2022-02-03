@@ -13,12 +13,12 @@ import androidx.annotation.RequiresApi
 
 class RegisterActivity : AppCompatActivity() {
 
-    lateinit var editNickName : EditText
-    lateinit var editId : EditText
-    lateinit var btnDouCheck : Button
-    lateinit var editPwd : EditText
-    lateinit var editPwdCheck : EditText
-    lateinit var btnRegister : Button
+    lateinit var register_editNickname : EditText
+    lateinit var register_editId : EditText
+    lateinit var register_btnDouCheck : Button
+    lateinit var register_editPwd : EditText
+    lateinit var register_editPwdcheck : EditText
+    lateinit var register_btnRegister : Button
     lateinit var dbManager: DBManager
 
     lateinit var dbHelper: DBHelper
@@ -35,20 +35,20 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        editNickName = findViewById(R.id.editNickname)
-        editId = findViewById(R.id.editId)
-        btnDouCheck = findViewById(R.id.btnDouCheck)
-        editPwd = findViewById(R.id.editPwd)
-        editPwdCheck = findViewById(R.id.editPwdcheck)
-        btnRegister = findViewById(R.id.btnRegister)
+        register_editNickname = findViewById(R.id.register_editNickname)
+        register_editId = findViewById(R.id.register_editId)
+        register_btnDouCheck = findViewById(R.id.register_btnDouCheck)
+        register_editPwd = findViewById(R.id.register_editPwd)
+        register_editPwdcheck = findViewById(R.id.register_editPwdcheck)
+        register_btnRegister = findViewById(R.id.register_btnRegister)
 
         dbHelper = DBHelper(this)
         dbManager= DBManager(this)
 
 
         //회원가입 확인 코드
-        btnDouCheck.setOnClickListener {
-            email = editId.text.toString()
+        register_btnDouCheck.setOnClickListener {
+            email = register_editId.text.toString()
             sqlDB = dbHelper.writableDatabase
             if(email.length>20){  //20자리까지만 입력 가능
                 Toast.makeText(this, "이메일은 20자리까지 가능합니다. ",Toast.LENGTH_SHORT).show()
@@ -57,15 +57,15 @@ class RegisterActivity : AppCompatActivity() {
                 cursor = sqlDB.rawQuery("SELECT email FROM USERS WHERE email=\'$email\';", null)
                 if (cursor.count != 0) {  //이미 존재하는 회원인 경우
                     Toast.makeText(this, "이미 가입된 회원입니다.", Toast.LENGTH_SHORT).show()
-                    editId.setText(null) //이메일 초기화
+                    register_editId.setText(null) //이메일 초기화
                 } else {  //20자리를 넘지 않고+존재하지 않는 회원인 경우
                     Toast.makeText(this, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT).show()
 
                     //등록 버튼 클릭시
-                    btnRegister.setOnClickListener {
-                        nickname = editNickName.text.toString()
-                        password = editPwd.text.toString()
-                        passwordCheck = editPwdCheck.text.toString()
+                    register_btnRegister.setOnClickListener {
+                        nickname = register_editNickname.text.toString()
+                        password = register_editPwd.text.toString()
+                        passwordCheck = register_editPwdcheck.text.toString()
                         //비어있는 칸이 있는지 확인
                         if (email.length == 0 || nickname.length == 0 || password.length == 0) {
                             Toast.makeText(this, "빈 칸을 채워주세요.", Toast.LENGTH_SHORT).show()
@@ -83,20 +83,17 @@ class RegisterActivity : AppCompatActivity() {
                                 intent.putExtra("password", password)
                                 startActivity(intent)
                                 finish()
-
                             } else {
                                 Toast.makeText(this, "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show()
                             }
                             //Toast.makeText(this, "문제.",Toast.LENGTH_SHORT).show()
                         }
-
-
                     }
                 }
             }
         }
 
-        btnRegister.setOnClickListener {
+        register_btnRegister.setOnClickListener {
             Toast.makeText(this, "중복 확인을 먼저 해주세요",Toast.LENGTH_SHORT).show()
         }
 

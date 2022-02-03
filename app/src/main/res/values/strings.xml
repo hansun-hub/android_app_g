@@ -5,7 +5,7 @@
     <string name="login">로그인</string>
     <string name="nav_home">홈</string>
     <string name="nav_menu1">도전과제</string>
-    <string name="nav_menu2">보상</string>
+    <string name="nav_menu2">기록</string>
     <string name="call_nickname"><b>%1$s</b> 님</string>
     <string name="nav_settings">설정</string>
     <string name="chooseMission"><u>성취 미션 선택하기</u></string>
@@ -33,7 +33,7 @@
     <string name="settings_contact_title">[오류보고/문의]</string>
     <string name="settings_contact_message">어플에 대한 의견을 알려주세요.</string>
     <string name="settings_about_us">About Us</string>
-    <string name="about_us_message">SWU GURU2 Android\nTeam 5\n김한선 이정은 최유선 허선정</string>
+    <string name="about_us_message">SWU GURU2 Android\nTeam 5\n김한선 이정은 최유선 허선정\n\n자료 출처\n그린피스 https://www.greenpeace.org/korea/\n환경부 http://me.go.kr/home/web/main.do</string>
     <string name="settings_logout_dialog">로그아웃 하시겠습니까?</string>
     <string name="settings_del_dialog">회원탈퇴 진행 시 지금까지의 모든 기록이 삭제됩니다.\n계속 진행할까요?</string>
     <string name="settings_del_progess">회원탈퇴 진행을 위해 비밀번호를 입력해주세요.</string>
@@ -46,6 +46,10 @@
     <string name="answer_enter">입력</string>
     <string name="answer_cancel">취소</string>
     <string name="todo">할 일</string>
-    <string name="warn3">연간 인천 앞바다에 버려지는 쓰레기는 연간 19만 ㎥에 달합니다.
-            이는 10톤 트럭 1만 여 대에 달하는 쓰레기가 해마다 바다로 버려지고 있음을 뜻합니다.</string>
+    <string name="shareWithFriend">친구에게 공유</string>
+    <string name="share_message">환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
+    <string name="congrat">축하합니다!</string>
+    <string name="menu2_warningText">!WARNING!</string>
+    <string name="menu2_title">달성소감을 기록해보세요!</string>
+
 </resources>
