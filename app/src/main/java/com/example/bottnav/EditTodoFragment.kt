@@ -70,17 +70,18 @@ class EditTodoFragment : Fragment() {
          */
 
         binding.buttonMakeTodo.setOnClickListener {
+
+
             contentTodo = editTextTodo.getText().toString()
             if ( contentTodo.length == 0 ) {
                 //공백일 때 처리할 내용
                 Toast.makeText(getActivity(), "입력하세요", Toast.LENGTH_LONG).show();
-
-
             } else {
                 //공백이 아닐 때 처리할 내용
                 myDB.addCustomChallenge(LocalDate.now().toString(), contentTodo)
             }
-            mainActivity.onBackPressed()
+            val menu1fragment = Menu1Fragment()
+            mainActivity.replaceFragment(menu1fragment)
         }
 
         return binding.root

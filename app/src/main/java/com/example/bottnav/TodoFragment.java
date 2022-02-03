@@ -11,7 +11,7 @@ public class TodoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_todo, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_completed_item, container, false);
 
         initUI(rootView);
 

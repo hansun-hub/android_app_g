@@ -10,12 +10,16 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class TodoListAdapter(val context: Context, val todoList: ArrayList<String>, val itemClick: (String) -> Unit) :
+class TodoListAdapter(val context: Context, val todoList: ArrayList<Menu1Fragment.Challenge>, val itemClick: (String) -> Unit) :
     RecyclerView.Adapter<TodoListAdapter.Holder>() {
+
+    val dbManager : DBManager = DBManager(context)
+
 
     // 화면을 최초 로딩하여 만들어진 View가 없는 경우, xml파일을 inflate하여 ViewHolder를 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.fragment_todo_item, parent, false)
+
         return Holder(view, itemClick)
     }
 
@@ -27,13 +31,15 @@ class TodoListAdapter(val context: Context, val todoList: ArrayList<String>, val
     // onCreateViewHolder에서 만든 view와 실제 입력되는 각각의 데이터를 연결
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder?.bind(todoList[position], context)
+        holder.setIsRecyclable(false)
     }
 
     inner class Holder(itemView: View, itemClick: (String) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
-        val layoutTodo : LinearLayout = itemView.findViewById<LinearLayout?>(R.id.layoutTodo)
-        val checkBox : CheckBox = itemView.findViewById<android.widget.CheckBox?>(R.id.checkBox)
-        val deleteButton : Button = itemView.findViewById<android.widget.Button?>(R.id.deleteButton)
+        val layoutTodo: LinearLayout = itemView.findViewById<LinearLayout?>(R.id.layoutTodo)
+        val checkBox: CheckBox = itemView.findViewById<android.widget.CheckBox?>(R.id.checkBox)
+        val deleteButton: Button = itemView.findViewById<android.widget.Button?>(R.id.deleteButton)
+
 
         // 체크박스 창 구현
         init {
@@ -46,19 +52,30 @@ class TodoListAdapter(val context: Context, val todoList: ArrayList<String>, val
                 }
 
                 // (삭제 버튼 아직 구현 안됨)
-                private fun deleteToDo(TODO: String) {}
+                private fun deleteToDo(TODO: String) {
+
+                }
             })
         }
 
 
         val todoCheck = itemView?.findViewById<CheckBox>(R.id.checkBox)
-        // 체크박스에 string이 text로 나올 수 있도록 표현
-        fun bind (todo: String, context: Context) {
-            todoCheck?.setText(todo)
 
-            todoCheck.setOnClickListener{ itemClick(todo)}
+        // 체크박스 레이아웃에 string이 text로 나올 수 있도록 표현
+        fun bind(todo: Menu1Fragment.Challenge, context: Context) {
+            todoCheck?.setText(todo.contents)
+
+            todoCheck.setOnClickListener {
+                itemClick(todo.contents)
+                dbManager.setIsAchieved(todo.index) // 인덱스에 맞는 미션 성공으로 변경
+
+
+                Menu1Fragment.getMissions()
+
+                dbManager.setLevel(dbManager.getLevel())
+
+            }
         }
-
-
     }
+
 }

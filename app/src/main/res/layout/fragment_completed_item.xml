@@ -14,25 +14,20 @@
     app:cardElevation="5dp">
 
     <LinearLayout
-        android:id="@+id/layoutTodo"
+        android:id="@+id/menu1_layoutCompleted"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/checkBox"
+        <TextView
+            android:id="@+id/menu1_tvCompletedWork"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="32dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="10dp" />
 
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="7"
-            android:text="X" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
