@@ -14,20 +14,13 @@ import android.widget.Toast
 
 class menu2_DetailActivity : AppCompatActivity() {
 
-
-
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu2__detail)
 
-        var mainActivity: MainActivity = MainActivity()
         val dbManager = DBManager(this)
 
-        //lateinit var menu2Frag: Menu2Fragment
-        //menu2Frag = Menu2Fragment()
-        lateinit var homeFrag: HomeFragment
-        homeFrag = HomeFragment()
         var tvTitle = findViewById<TextView>(R.id.tvTitle)
         var tvDate = findViewById<TextView>(R.id.tvDate)
         var tvContents = findViewById<TextView>(R.id.tvContents)
@@ -57,20 +50,7 @@ class menu2_DetailActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("삭제하시겠습니까?").setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
                 dbManager.delDiary(date)
-                onBackPressed()
-                //val writeFragment = WriteFragment()
-                //mainActivity.replaceFragment(writeFragment)
-                //val writeFragment = WriteFragment()
-                //(activity as MainActivity).replaceFragment(writeFragment)
-                //supportFragmentManager.beginTransaction().replace(R.id.bottom_container, menu2Frag).commit()
-                //mainActivity.goMenu2()
-                var intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
                 finish()
-                //supportFragmentManager.beginTransaction().replace(R.id.bottom_container, homeFrag).commit()
-                //Toast.makeText(this, curPos, Toast.LENGTH_SHORT).show()
-                //Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
-            //resultText.text = "확인 클릭"
             })
                     .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
                                 //resultText.text = "취소 클릭"

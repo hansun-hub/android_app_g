@@ -39,9 +39,9 @@ class Menu1Fragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // db에서 미션 배열 가져오기
         val view = inflater.inflate(R.layout.fragment_menu1, container, false)
@@ -167,9 +167,9 @@ class Menu1Fragment : Fragment() {
     }
 
     data class Challenge(
-        var contents: String,
-        var index: Int,
-        var isToday: Boolean
+            var contents: String,
+            var index: Int,
+            var isToday: Boolean
     )
 
     inner class missionsPerDay(findDate: String?) {
@@ -220,4 +220,3 @@ class Menu1Fragment : Fragment() {
         }
     }
 }
-
