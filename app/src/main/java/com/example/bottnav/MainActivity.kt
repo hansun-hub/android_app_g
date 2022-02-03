@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var settingsFrag: SettingsFragment
 
     lateinit var bottomNav: BottomNavigationView
-    lateinit var mPlayer : MediaPlayer
-    var pausePos : Int = 0
+    lateinit var mPlayer: MediaPlayer
+    var pausePos: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { item ->
-            when(item.itemId) {  //프래그먼트가 유지되어야함
+            when (item.itemId) {  //프래그먼트가 유지되어야함
                 //홈 탭을 선택한 경우
                 R.id.nav_home -> {
                     supportFragmentManager.beginTransaction().replace(R.id.bottom_container, homeFrag).commit()
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         // 배경음악 설정
         // 저장된 음량 크기 불러와 설정
         val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
-        val volume = (sharedPreference.getInt("volume", 0).toDouble()/10).toFloat()
+        val volume = (sharedPreference.getInt("volume", 0).toDouble() / 10).toFloat()
         mPlayer = MediaPlayer.create(this, R.raw.song1)
         mPlayer.isLooping = true
         mPlayer.setVolume(volume, volume)
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun goMenu2(){
+    fun goMenu2() {
         val Menu2FragmentFragment = Menu2Fragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.bottom_container, Menu2FragmentFragment) //FrameLayout은 표시 될 곳
@@ -106,36 +106,34 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-   
     override fun onBackPressed() {
         super.onBackPressed()
     }
 
-    fun goBack(){
+    fun goBack() {
         onBackPressed()
     }
 
-    fun Mstop(){
+    fun Mstop() {
         mPlayer.stop()
     }
 
-    fun Mstart(){
-        if(!mPlayer.isPlaying){  //실행중이지 않은 상태
+    fun Mstart() {
+        if (!mPlayer.isPlaying) {  //실행중이지 않은 상태
             mPlayer.seekTo(pausePos)
             mPlayer.start()
         }
     }
 
-    fun Mpause(){
-        if(mPlayer!=null){
+    fun Mpause() {
+        if (mPlayer != null) {
             mPlayer.pause()
             pausePos = mPlayer.currentPosition
         }
     }
 
     // 음악 볼륨 조절
-    fun setMvolume(value: Float){
+    fun setMvolume(value: Float) {
         mPlayer.setVolume(value, value)
         // sharedPreference 수정
         val sharedPreference = this!!.getSharedPreferences("current", Context.MODE_PRIVATE)
@@ -143,14 +141,16 @@ class MainActivity : AppCompatActivity() {
         editor.remove("volume")
         editor.putFloat("volume", value)
         editor.apply()
+    }
+
     fun ispalying(): Boolean {
-        var play : Boolean = true
+        var play: Boolean = true
         play = mPlayer.isPlaying
         return play   //실행 중인 경우 true반환
 
     }
 
-    fun goEditTodo(){
+    fun goEditTodo() {
         val editTodoFragment = EditTodoFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.bottom_container, editTodoFragment)

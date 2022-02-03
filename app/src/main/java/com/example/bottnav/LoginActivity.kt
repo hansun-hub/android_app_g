@@ -51,9 +51,9 @@ class LoginActivity : AppCompatActivity() {
 
 
         //버튼 누르면 메인 화면 진입
-        btnLogin.setOnClickListener {
-            email = editEmail.text.toString()
-            password = editPassword.text.toString()
+        login_btnLogin.setOnClickListener {
+            email = login_editEmail.text.toString()
+            password = login_editPassword.text.toString()
 
             //이메일이나 비밀번호가 비어있는 경우
             if( email.length==0 || password.length==0){

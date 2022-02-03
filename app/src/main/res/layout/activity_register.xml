@@ -51,7 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
-            android:text="@string/doubleCheck"/>
+            android:background="@drawable/link_back"
+            android:text="@string/doubleCheck" />
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -88,5 +89,6 @@
         android:id="@+id/register_btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/link_back"
         android:text="@string/register" />
 </LinearLayout>
