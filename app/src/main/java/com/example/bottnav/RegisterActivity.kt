@@ -83,7 +83,6 @@ class RegisterActivity : AppCompatActivity() {
                                 intent.putExtra("password", password)
                                 startActivity(intent)
                                 finish()
-
                             } else {
                                 Toast.makeText(this, "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show()
                             }

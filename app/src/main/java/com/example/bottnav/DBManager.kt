@@ -104,7 +104,7 @@ class DBManager(context: Context) {
 
         sqlDB.close()
     }
-
+    
     public fun getTips(type: String): Array<out String>? {
         // 팁/경고 반환
 
@@ -453,7 +453,4 @@ class DBManager(context: Context) {
 
         sqlDB.close()
     }
-
 }
-
-

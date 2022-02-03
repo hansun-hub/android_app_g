@@ -1,31 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
-    android:layout_height="200dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape"
+    android:gravity="right"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingTop="20dp"
     tools:context=".VolumeDialogFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/volume_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/settings_sound"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/volume_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_weight="1"
-            android:text="@string/settings_sound"
-            android:textSize="30sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/volume_img"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_gravity="center|fill_horizontal"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/volume_seekBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
+            android:id="@+id/volume_seekBar"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4" />
+            android:layout_gravity="center"
+            android:max="10"
+            android:progress="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/volume_img"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:thumb="@drawable/ic_baseline_brightness_1_24" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-</FrameLayout>
+    <Button
+        android:id="@+id/volume_btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#FFFFFF"
+        android:text="@string/answer_ok" />
+
+</LinearLayout>

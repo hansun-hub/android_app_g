@@ -24,6 +24,7 @@ class Menu1Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMenu1Binding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -34,5 +35,4 @@ class Menu1Fragment : Fragment() {
             mainActivity.goEditTodo()
         }
     }
-
 }

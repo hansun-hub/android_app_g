@@ -8,17 +8,17 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/settings_tip_textView"
+        android:id="@+id/settings_tvTipsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:paddingTop="10dp"
         android:text="@string/settings_tip"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/settings_tips_list"
+        android:id="@+id/settings_listTips"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="60dp" />

@@ -8,12 +8,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/list_textView"
+        android:id="@+id/tips_list_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="list"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintStart_toStartOf="parent"
         tools:padding="5sp" />

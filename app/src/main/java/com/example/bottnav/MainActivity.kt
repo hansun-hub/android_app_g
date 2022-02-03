@@ -69,8 +69,14 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+        // 배경음악 설정
+        // 저장된 음량 크기 불러와 설정
+        val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
+        val volume = (sharedPreference.getInt("volume", 0).toDouble()/10).toFloat()
         mPlayer = MediaPlayer.create(this, R.raw.song1)
         mPlayer.isLooping = true
+        mPlayer.setVolume(volume, volume)
         Mstart()
 
 
@@ -120,6 +126,7 @@ class MainActivity : AppCompatActivity() {
             mPlayer.start()
         }
     }
+
     fun Mpause(){
         if(mPlayer!=null){
             mPlayer.pause()
@@ -127,10 +134,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 음악 볼륨 조절
+    fun setMvolume(value: Float){
+        mPlayer.setVolume(value, value)
+        // sharedPreference 수정
+        val sharedPreference = this!!.getSharedPreferences("current", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.remove("volume")
+        editor.putFloat("volume", value)
+        editor.apply()
     fun ispalying(): Boolean {
         var play : Boolean = true
         play = mPlayer.isPlaying
         return play   //실행 중인 경우 true반환
+
     }
 
     fun goEditTodo(){

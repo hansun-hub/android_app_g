@@ -23,27 +23,27 @@ class SettingsContactFragment : BottomSheetDialogFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.settings_contact, container, false)
 
-        val contact_okBtn = view.findViewById<Button>(R.id.contact_okBtn)
-        val contactImgBtn1 = view.findViewById<ImageButton>(R.id.contact_imgBtn1)
-        val contactImgBtn2 = view.findViewById<ImageButton>(R.id.contact_imgBtn2)
+        val contact_btnOk = view.findViewById<Button>(R.id.contact_btnOk)
+        val contact_imgBtnCall = view.findViewById<ImageButton>(R.id.contact_imgBtnCall)
+        val contact_imgBtnMail = view.findViewById<ImageButton>(R.id.contact_imgBtnMail)
 
         val dbManager = DBManager(requireContext())
 
-        contactImgBtn1.setOnClickListener {
+        contact_imgBtnCall.setOnClickListener {
             // 전화
             val call = Intent(Intent.ACTION_DIAL, Uri.parse("tel:01012345678"))
             startActivity(call)
         }
-        contactImgBtn2.setOnClickListener {
+        contact_imgBtnMail.setOnClickListener {
             // 이메일
             val sending_email = Intent(Intent.ACTION_SEND)
             sending_email.type = "plain/text"
-            val address = "email@address.com"
+            val address = arrayOf("email@address.com")
             sending_email.putExtra(Intent.EXTRA_EMAIL, address)
             sending_email.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_contact_title))
             startActivity(sending_email)
         }
-        contact_okBtn.setOnClickListener {
+        contact_btnOk.setOnClickListener {
             // 확인
             parentFragmentManager.beginTransaction().remove(this).commit()
             parentFragmentManager.popBackStack()
@@ -51,28 +51,5 @@ class SettingsContactFragment : BottomSheetDialogFragment() {
 
         // Inflate the layout for this fragment
         return view
-    }
-
-    companion object {
-        /*
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsBottomSheetFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingsBottomSheetFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-
-         */
     }
 }
