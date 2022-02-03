@@ -7,7 +7,7 @@ class menu2_DiaryRecord(context: Context, title: String, date: String) {
     var date: String?
     var contents: String?
     var selectedChallenge: String?
-    var rate = 0
+    var rate:Int = 0
     val dbManager = DBManager(context)
 
     init {

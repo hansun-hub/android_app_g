@@ -7,16 +7,18 @@
     android:background="#ffffff"
     android:backgroundTint="#FFFFFF"
     android:clickable="true"
+    tools:clickable="true"
     tools:context=".WriteFragment">
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
+        android:id="@+id/write_editTitle"
         android:layout_width="305dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="엘레베이터 대신 계단이용 성공!"
         android:inputType="text"
+        android:paddingLeft="10sp"
         android:privateImeOptions="defaultInputmode=korean"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.766"
@@ -24,13 +26,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName8"
+        android:id="@+id/write_editImpre"
         android:layout_width="305dp"
         android:layout_height="45dp"
         android:layout_marginTop="343dp"
         android:ems="10"
         android:hint="개선점, 다짐"
-        android:inputType="textPersonName"
+        android:inputType="text"
+        android:lines="3"
+        android:paddingLeft="10sp"
         android:privateImeOptions="defaultInputmode=korean"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.896"
@@ -38,98 +42,106 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/write_tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
         android:text="제목"
         android:textColor="#0C0101"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/write_tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="92dp"
         android:text="일자"
         android:textColor="#0C0000"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/write_tvAch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="156dp"
         android:text="성취도"
         android:textColor="#0C0000"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/write_tvImpre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="348dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="352dp"
         android:text="소감"
         android:textColor="#0C0000"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RatingBar
-        android:id="@+id/ratingBar3"
-        android:layout_width="243dp"
+        android:id="@+id/write_ratingBar3"
+
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
+
         android:layout_marginTop="20dp"
         android:layout_marginEnd="56dp"
+        android:numStars="5"
+        android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/write_editDate" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/write_btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="50dp"
+        android:background="#F3F3F5"
         android:text="저장"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
+        app:layout_constraintTop_toBottomOf="@+id/write_editImpre" />
 
     <TextView
         android:id="@+id/achvMission"
-        android:layout_width="288dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginEnd="28dp"
+        android:layout_width="372dp"
+        android:layout_height="43dp"
+        android:gravity="center"
         android:hint="성취 미션"
+        android:paddingLeft="10sp"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.456" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/write_editDate"
         android:layout_width="305dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
+        android:enabled="true"
         android:hint="2022-01-26"
         android:inputType="date"
+        android:paddingLeft="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+        app:layout_constraintTop_toBottomOf="@+id/write_editTitle" />
 
     <Button
         android:id="@+id/selectButton"
@@ -141,6 +153,18 @@
         android:text="@string/chooseMission"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
+        app:layout_constraintTop_toBottomOf="@+id/write_ratingBar3" />
+
+    <Button
+        android:id="@+id/write_btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:background="#F3F3F5"
+        android:text="취소"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/write_btnSave"
+        app:layout_constraintTop_toBottomOf="@+id/write_editImpre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
