@@ -68,12 +68,6 @@ class menu2_DetailActivity : AppCompatActivity() {
             builder.show()
         }
 
-        // 음악
-        var player = MediaPlayer.create(this, R.raw.song1)
-        player.isLooping = true
-        player.setVolume(volume, volume)
-        if (!player.isPlaying) {  //실행중이지 않은 상태
-            player.start()
-        }
     }
+
 }
