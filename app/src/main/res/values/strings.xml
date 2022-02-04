@@ -20,6 +20,9 @@
     <string name="checkPassword">비밀번호 확인</string>
     <string name="doubleCheck">중복 확인</string>
     <string name="register">회원가입하기</string>
+    <string name="menu1_todo">Challenge</string>
+    <string name="menu1_comp">Completed</string>
+    <string name="menu1_add">오늘의 할일을 추가해보세요!</string>
     <string name="settings_acc">계정</string>
     <string name="settings_nickname">닉네임 변경</string>
     <string name="settings_nickname_title">닉네임 변경</string>

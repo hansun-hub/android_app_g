@@ -1,12 +1,16 @@
 package com.example.bottnav
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CalendarView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +21,11 @@ class Menu1Fragment : Fragment() {
     // lateinit var binding: FragmentMenu1Binding
     lateinit var mainActivity : MainActivity
     lateinit var dbManager: DBManager
-    lateinit var btnAdd : FloatingActionButton
+    lateinit var btnAdd : Button
     lateinit var calendar: CalendarView
     lateinit var calendarDate: String
+    lateinit var btnComp: Button
+    lateinit var btnTodo: Button
 
     var todayChallenges = ArrayList<Int>()
     var notyetChallenges = ArrayList<Challenge>()
@@ -32,6 +38,9 @@ class Menu1Fragment : Fragment() {
 
     lateinit var date : String
 
+    // 현재 스크롤 뷰에 보이는 리사이클러 뷰의 종류
+    // 0: recyclerTodo(default), 1: recyclerComp, 2: recyclerTodo_other, 3: recyclerComp_other
+    var state = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -50,6 +59,10 @@ class Menu1Fragment : Fragment() {
         calendarDate = date
 
         dbManager = DBManager(view.context)
+
+        // 버튼 연결
+        btnComp = view.findViewById(R.id.menu1_btnComp)
+        btnTodo = view.findViewById(R.id.menu1_btnTodo)
 
         // 리사이클러 뷰 연결
         recyclerTodo = view.findViewById<RecyclerView>(R.id.menu1_recyclerTodo)
@@ -127,13 +140,8 @@ class Menu1Fragment : Fragment() {
             calendarDate = "$year-${monthStr}-$datStr"
             if (calendarDate != date) {
                 // 오늘 날짜가 아닌 다른 날짜 선택 시
-                recyclerComp.visibility = View.GONE
-                recyclerTodo.visibility = View.GONE
-                recyclerComp_other.visibility = View.VISIBLE
-                recyclerTodo_other.visibility = View.VISIBLE
 
                 // 오늘이 아닌 날짜의 미션
-
                 val adapter3 = TodoListAdapter(view.context, missionsPerDay(calendarDate).uncompleted)
                 recyclerTodo_other.adapter = adapter3
 
@@ -148,20 +156,62 @@ class Menu1Fragment : Fragment() {
                     override fun onItemDeleteClick(v: View, todo: Challenge, position: Int) {
                     }
                 })
+
+                if (getIsPast(year, month, day)) {
+                    // 선택한 날짜가 과거일 경우
+                    state = 3
+                    setRecyclerVisible(3, view.context)
+                } else {
+                    // 선택한 날짜가 미래일 경우
+                    state = 2
+                    setRecyclerVisible(state, view.context)
+                }
             } else {
                 // 오늘 날짜 선택 시
-                recyclerComp.visibility = View.VISIBLE
-                recyclerTodo.visibility = View.VISIBLE
-                recyclerComp_other.visibility = View.GONE
-                recyclerTodo_other.visibility = View.GONE
+                state = 0
+                setRecyclerVisible(state, view.context)
             }
         }
-
 
         btnAdd.setOnClickListener {
             // 사용자 생성 미션
             mainActivity.goEditTodo()
         }
+
+        btnComp.setOnClickListener {
+            // Completed 클릭 시
+            when (state) {
+                0 -> {
+                    // 미달성 미션으로 전환
+                    state = 1
+                    setRecyclerVisible(state, view.context)
+                }
+                2 -> {
+                    // 달성 미션으로 전환
+                    state = 3
+                    setRecyclerVisible(state, view.context)
+                }
+            }
+        }
+
+        btnTodo.setOnClickListener {
+            // Challenge 클릭 시
+            when (state) {
+                1 -> {
+                    // 오늘 날짜
+                    // 달성 미션으로 전환
+                    state = 0
+                    setRecyclerVisible(state, view.context)
+                }
+                3 -> {
+                    // 오늘이 아닌 날짜
+                    // 달성 미션으로 전환
+                    state = 2
+                    setRecyclerVisible(state, view.context)
+                }
+            }
+        }
+
 
         return view
     }
@@ -218,5 +268,92 @@ class Menu1Fragment : Fragment() {
                 }
             }
         }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    fun setRecyclerVisible (state: Int, context: Context) {
+        // state에 따라 변경할 레이아웃
+        when (state) {
+            0 -> {
+                // recyclerTodo 만 보이도록
+                recyclerComp.visibility = View.GONE
+                recyclerTodo.visibility = View.VISIBLE
+                recyclerComp_other.visibility = View.GONE
+                recyclerTodo_other.visibility = View.GONE
+
+                // 버튼 색 조정
+                btnTodo.setBackgroundColor(ContextCompat.getColor(context, R.color.green1))
+                btnComp.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+            }
+            1 -> {
+                // recyclerComp 만 보이도록
+                recyclerComp.visibility = View.VISIBLE
+                recyclerTodo.visibility = View.GONE
+                recyclerComp_other.visibility = View.GONE
+                recyclerTodo_other.visibility = View.GONE
+
+                // 버튼 색 조정
+                btnTodo.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                btnComp.setBackgroundColor(ContextCompat.getColor(context, R.color.green1))
+            }
+            2 -> {
+                // recyclerTodo_other 만 보이도록
+                recyclerComp.visibility = View.GONE
+                recyclerTodo.visibility = View.GONE
+                recyclerComp_other.visibility = View.GONE
+                recyclerTodo_other.visibility = View.VISIBLE
+
+                // 버튼 색 조정
+                btnTodo.setBackgroundColor(ContextCompat.getColor(context, R.color.green1))
+                btnComp.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+            }
+            3 -> {
+                // recyclerComp_other 만 보이도록
+                recyclerComp.visibility = View.GONE
+                recyclerTodo.visibility = View.GONE
+                recyclerComp_other.visibility = View.VISIBLE
+                recyclerTodo_other.visibility = View.GONE
+
+                // 버튼 색 조정
+                btnTodo.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                btnComp.setBackgroundColor(ContextCompat.getColor(context, R.color.green1))
+            }
+        }
+    }
+
+    fun getIsPast(year: Int, month: Int, day: Int): Boolean {
+        // 해당 날짜가 오늘보다 과거인지 비교
+        var todayYear = date.substring(0, 4).toInt()
+        var todayMonth = date.substring(5, 7).toInt()
+        var todayDay = date.substring(8, 10).toInt()
+
+        when {
+            todayYear > year -> {
+                // 과거 연도일 경우
+                return true
+            }
+            todayYear < year -> {
+                // 미래 연도일 경우
+                return false
+            }
+            else -> {
+                // 같은 연도일 경우
+                return when {
+                    todayMonth > month+1 -> {
+                        // 과거 달일 경우
+                        true
+                    }
+                    todayMonth < month+1 -> {
+                        // 미래 달일 경우
+                        false
+                    }
+                    else -> {
+                        // 같은 달일 경우
+                        todayDay > day
+                    }
+                }
+            }
+        }
+
     }
 }
