@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#229147 "
+    android:background="#ccf0c5"
     tools:context=".LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="375dp"
+        android:layout_height="372dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/round"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41000003">
 
         <Button
             android:id="@+id/login_btnLogin"
@@ -37,10 +39,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="63dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/green"
             android:ems="10"
+            android:fontFamily="@font/jua_regular"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toStartOf="@+id/login_btnLogin"
@@ -56,6 +59,7 @@
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/green"
             android:ems="10"
+            android:fontFamily="@font/jua_regular"
             android:hint="@string/password"
             android:inputType="textPassword"
             app:layout_constraintEnd_toStartOf="@+id/login_btnLogin"
@@ -66,6 +70,7 @@
             android:id="@+id/imageView2"
             android:layout_width="215dp"
             android:layout_height="150dp"
+            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,27 +78,35 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/menu2_tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/NotMemberYet"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_editPassword" />
-
-        <TextView
             android:id="@+id/login_regText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="13dp"
             android:text="@string/SignUp"
-            android:textColor="@color/green"
+            android:textColor="@color/green1"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_editPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/login_editPassword"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/menu2_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="13dp"
+            android:text="@string/NotMemberYet"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/login_regText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_editPassword"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

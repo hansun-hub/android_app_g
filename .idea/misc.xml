@@ -9,17 +9,27 @@
         <entry key="..\:/Guru2/android_app_g/app/src/main/res/layout/fragment_menu.xml" value="0.264" />
         <entry key="..\:/Guru2/android_app_g/app/src/main/res/layout/fragment_menu1.xml" value="0.264" />
         <entry key="..\:/Guru2/android_app_g/app/src/main/res/layout/todo_list.xml" value="0.24895833333333334" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/drawable/gradation_back.xml" value="0.26145833333333335" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2574074074074074" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/drawable/link_back.xml" value="0.265625" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/drawable/link_back_noline.xml" value="0.2574074074074074" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/calendar_cell.xml" value="0.1265625" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/challenge_todo_list.xml" value="0.2" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/dialog_edit.xml" value="0.24947916666666667" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_challenge_todo.xml" value="0.2" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_character_bottomsheet.xml" value="0.24947916666666667" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_completed_item.xml" value="0.264" />
-        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_edit_todo_dialog.xml" value="0.24947916666666667" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_edit_todo_dialog.xml" value="0.264" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_home.xml" value="0.2453125" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_menu1.xml" value="0.264" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_menu2.xml" value="0.24947916666666667" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_settings.xml" value="0.264" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_todo.xml" value="0.2" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_todo_item.xml" value="0.264" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_volume_dialog.xml" value="0.24947916666666667" />
+        <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/fragment_write.xml" value="0.24947916666666667" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/settings_list.xml" value="0.24947916666666667" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/layout/todo_list.xml" value="0.4" />
         <entry key="..\:/Guru2/android_app_g2/app/src/main/res/menu/menu_bottom.xml" value="0.24947916666666667" />

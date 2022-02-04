@@ -11,21 +11,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#e7f5e6 ">
 
         <Button
             android:id="@+id/settings_btn1"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:background="#E2E2E2"
+            android:background="#abb3b1 "
             android:drawableRight="@drawable/ic_baseline_edit_24"
-            android:drawableTint="@color/green3"
+            android:drawableTint="#4d9982 "
             android:gravity="center|left"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="nickname"
-            android:textColor="@color/green_2"
+            android:textColor="#4d9982 "
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/settings_listview"
             app:layout_constraintEnd_toEndOf="parent"

@@ -54,5 +54,6 @@
     <string name="congrat">축하합니다!</string>
     <string name="menu2_warningText">!WARNING!</string>
     <string name="menu2_title">달성소감을 기록해보세요!</string>
+    <string name="today_edit_todo">환경을 위해 우리가 실천할 수 있는\n다양한 일이 있다는 사실 아셨나요?\n\n환경을 위한 사소한 습관 바꾸기, 어렵지 않아요.\nReHabit과 함께 자신의 행동을 기록하여\n성장해 나아가봅시다.\n\n오늘도 깨끗한 환경에 한 발짝 다가가는 당신,\n아름답습니다.\n\n&lt;오늘 할 일을 추가해주세요.&gt;\n ex. 방을 나갈 때 항상 불을 끄기</string>
 
 </resources>

@@ -5,26 +5,26 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradation_back"
+    android:background="#e7f5e6 "
     tools:context=".HomeFragment">
 
     <TextView
         android:id="@+id/home_tvNick"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
         android:text="@string/nickname"
-        android:textColor="@color/green4"
+        android:textColor="@color/green1"
+        android:textSize="17sp"
         app:layout_constraintEnd_toStartOf="@+id/menu2_tvLastRecord"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/menu2_tvLastRecord"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/link_back_noline"
         android:text="@string/Welcome"
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="70dp"
-        android:background="#80FFFFFF"
+        android:background="@drawable/link_back_noline"
         android:elevation="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -100,9 +100,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="55dp"
         android:layout_marginEnd="25dp"
+        android:background="@drawable/link_back_noline"
+        android:elevation="20dp"
+        android:padding="8dp"
         android:text="@string/leftNumber"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#F3B252"
+        android:textColor="#fac240"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_tvNick" />
@@ -111,8 +114,8 @@
         android:id="@+id/home_tvDone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
         android:gravity="right"
         android:text="0"
@@ -126,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="2dp"
         android:text="/"
         android:textSize="16sp"
@@ -140,9 +143,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="3dp"
         android:text="10"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/home_tvSlash"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_person_24"
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="1dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

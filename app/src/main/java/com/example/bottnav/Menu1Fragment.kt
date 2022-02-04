@@ -71,11 +71,14 @@ class Menu1Fragment : Fragment() {
         recyclerComp = view.findViewById<RecyclerView>(R.id.menu1_recyclerComp)
         recyclerComp.layoutManager = LinearLayoutManager(view.context)
 
+
         recyclerTodo_other = view.findViewById<RecyclerView>(R.id.menu1_recyclerTodo_other)
         recyclerTodo_other.layoutManager = LinearLayoutManager(view.context)
 
         recyclerComp_other = view.findViewById<RecyclerView>(R.id.menu1_recyclerComp_other)
         recyclerComp_other.layoutManager = LinearLayoutManager(view.context)
+
+
 
         calendar = view.findViewById(R.id.calendarView)
         btnAdd = view.findViewById(R.id.menu1_btnAdd)
