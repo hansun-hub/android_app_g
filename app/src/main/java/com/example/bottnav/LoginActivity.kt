@@ -2,6 +2,7 @@ package com.example.bottnav
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var email : String
     lateinit var password : String
     lateinit var nickname : String
+    var aimLevel : Int = 0
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -39,6 +41,8 @@ class LoginActivity : AppCompatActivity() {
         login_editEmail = findViewById(R.id.login_editEmail)
         login_editPassword = findViewById(R.id.login_editPassword)
 
+        val pref : SharedPreferences = getSharedPreferences("current", Context.MODE_PRIVATE)
+
         dbHelper = DBHelper(this)
 
         var fragmentHome : Fragment
@@ -47,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
         var getIntent : Intent = getIntent()
         login_editEmail.setText(getIntent.getStringExtra("email"))
         login_editPassword.setText(getIntent.getStringExtra("password"))
-
 
 
         //버튼 누르면 메인 화면 진입
@@ -87,7 +90,10 @@ class LoginActivity : AppCompatActivity() {
                         )  //닉네임 받아오는 쿼리문
                         cursor.moveToNext()
                         nickname = cursor.getString(0)
-                        dataSaving(email,nickname) //이 버튼 눌리는 순간을 기억
+
+                        //sharedPreferences에 저장된 목표레벨 가져오기
+                        aimLevel = pref.getInt("aimLevel",10)
+                        dataSaving(email,nickname,aimLevel) //이 버튼 눌리는 순간을 기억
                         //fragmentHome = HomeFragment.newInstance(cursor.getString(0)) //닉네임을 string타입으로 전달하기
 
                         //Toast.makeText(this, "${cursor.getString(0)}",Toast.LENGTH_SHORT).show()
@@ -111,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun dataSaving(email: String, Nick : String) {
+    fun dataSaving(email: String, Nick : String, aimLev : Int) {
         // *** 처음 사용자 로그인 후 현재 사용자 이메일 정보, 현재 날짜 저장 메소드 ***
 
         //var email = "" // 이메일 정보 받아오기
@@ -134,7 +140,7 @@ class LoginActivity : AppCompatActivity() {
         // 현재 음악 볼륨 저장
         editor.putInt("volume", 10)
         //// sharedPreference에 현재 사용자 목표레벨 입력
-        editor.putInt("aimLevel",aimLevel)
+        editor.putInt("aimLevel",aimLev)
         // 저장
         editor.apply()
 

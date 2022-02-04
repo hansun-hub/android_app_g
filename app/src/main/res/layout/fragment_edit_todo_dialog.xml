@@ -37,7 +37,7 @@
 
         <EditText
             android:id="@+id/editTextTodo"
-            android:layout_width="322dp"
+            android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="40dp"

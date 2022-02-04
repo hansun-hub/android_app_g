@@ -40,6 +40,7 @@
     <string name="settings_logout_dialog">로그아웃 하시겠습니까?</string>
     <string name="settings_del_dialog">회원탈퇴 진행 시 지금까지의 모든 기록이 삭제됩니다.\n계속 진행할까요?</string>
     <string name="settings_del_progess">회원탈퇴 진행을 위해 비밀번호를 입력해주세요.</string>
+    <string name="setting_version_message">최신 버전입니다. 현재 버전 1.0</string>
     <string name="password_fail">비밀번호가 올바르지 않습니다.</string>
     <string name="del_comp">회원탈퇴가 완료되었습니다.\n이용해주셔서 감사합니다.</string>
     <string name="answer_yes">네</string>
@@ -50,7 +51,7 @@
     <string name="answer_cancel">취소</string>
     <string name="todo">할 일</string>
     <string name="shareWithFriend">친구에게 공유</string>
-    <string name="share_message">환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
+    <string name="share_message">[ReHabit]\n환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
     <string name="congrat">축하합니다!</string>
     <string name="menu2_warningText">!WARNING!</string>
     <string name="menu2_title">달성소감을 기록해보세요!👉</string>

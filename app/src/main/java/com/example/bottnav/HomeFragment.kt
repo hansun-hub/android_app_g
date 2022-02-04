@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
         NICK = pref.getString("nickname",null).toString()
         home_tvNick.setText(NICK)  //login페이지에서 넘어온 닉네임이 화면에 보임
 
-        missionDo = pref.getInt("aimLevel",10)  //목표 레벨 (sharedPrefereces사용)가져오기
+        missionDo = pref.getInt("aimLevel",0)  //목표 레벨 (sharedPrefereces사용)가져오기
         home_tvDo.setText(missionDo.toString())
 
         missionDone = dbManager.getLevel()  //현재 레벨 (db 사용)가져오기
@@ -115,7 +115,7 @@ class HomeFragment : Fragment() {
         //missionDo = home_tvDo.text.toString().toInt()
         //missionDone = home_tvDone.text.toString().toInt()  //나중에 db에서 level받아오는 코드로 바꾸기
 
-        //목표 레벨에 따라 이미지 바꿈(프래그먼트간 이동에 값 초기화 방지)
+        //현재 레벨에 따라 이미지 바꿈(프래그먼트간 이동에 값 초기화 방지)
         when(missionDo){
             10 -> {
                 ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.sprout))  //캐릭터 이미지 바꿈
@@ -143,9 +143,9 @@ class HomeFragment : Fragment() {
             editor.apply()
         }
 
-
-            //목표 성취 개수를 (레벨이)넘은 경우
+        //목표 성취 개수를 (레벨이)넘은 경우
         if(missionDone>=missionDo) {
+
             when (missionDone) {  //성취 개수
                 in 10..29 -> {   // 10~29개를 달성한 경우
                     missionDo = 30  //다음 달성 목표

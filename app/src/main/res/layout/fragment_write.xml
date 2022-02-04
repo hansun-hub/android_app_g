@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="105dp"
-        android:background="#F3F3F5"
+        android:background="@drawable/link_back"
         android:text="취소"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
