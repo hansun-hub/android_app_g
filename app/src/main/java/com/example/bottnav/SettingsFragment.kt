@@ -11,7 +11,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 
-    class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment() {
+    // 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +66,7 @@ import androidx.fragment.app.Fragment
                     // info 수정
                     settings_btn1.text = getString(R.string.call_nickname, nickname)
 
+                    // 알림
                     Toast.makeText(it.context, "닉네임이 변경되었습니다.", Toast.LENGTH_SHORT).show()
                 }
                 setPositiveButton(getString(R.string.answer_cancel)) { dialog, which ->
@@ -76,7 +78,7 @@ import androidx.fragment.app.Fragment
         }
 
         settings_btn2.setOnClickListener {
-            // 회원 탈퇴
+            // 회원 탈퇴 fragment 실행
             val del_acc_frag = SettingsDelAccFragment()
             (activity as MainActivity).replaceFragment(del_acc_frag)
         }
@@ -192,7 +194,9 @@ import androidx.fragment.app.Fragment
             }
     }
 
+
     private class MyAdapter(context: Context) : BaseAdapter() {
+        // ListView 어댑터
 
         val myContext: Context = context
 

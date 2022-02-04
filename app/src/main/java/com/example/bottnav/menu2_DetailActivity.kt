@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.media.MediaPlayer
+import android.media.Rating
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -39,7 +40,8 @@ class menu2_DetailActivity : AppCompatActivity() {
         tvDate.text = date
         tvContents.text = contents
         tvselected.text = selected
-        DetailRatingBar.setRating(rate)
+        DetailRatingBar.rating = rate
+        DetailRatingBar.setIsIndicator(true)
         menu2Detail_btnBack.setOnClickListener {
             onBackPressed()
         }

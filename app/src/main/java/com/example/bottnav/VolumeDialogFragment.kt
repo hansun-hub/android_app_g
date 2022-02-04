@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 
-
-// 수정수정수정필요
-
 class VolumeDialogFragment(context: Context): DialogFragment() {
+    // 설정 - 배경음악 음량 조절
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // 외부 터치로 닫을 수 있도록
         isCancelable = true
     }
 

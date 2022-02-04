@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -103,13 +104,19 @@ class WriteFragment : Fragment() {
             var score = write_ratingBar3.getRating().toInt()
             var selected_challenge = achvMission.text.toString()
 
-            if( title.length==0 || date.length==0 || contents.length==0){
-                Toast.makeText(context, "빈 칸을 채워주세요.",Toast.LENGTH_SHORT).show()
-            }
-            else {
-                dbManager.addDiary(date, title, contents, score,selected_challenge)
-                Toast.makeText(context, "소감이 저장되었습니다..",Toast.LENGTH_SHORT).show()
-                mainActivity.goMenu2()
+            if (dbManager.getTitle(date) != null) {
+                // 해당 날짜에 소감이 존재할 경우
+                Toast.makeText(context, "소감 등록이 불가합니다. ${date}의 소감을 이미 등록하셨습니다.", Toast.LENGTH_LONG).show()
+                write_editDate.requestFocus()
+            } else {
+                if( title.length==0 || date.length==0 || contents.length==0){
+                    Toast.makeText(context, "빈 칸을 채워주세요.",Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    dbManager.addDiary(date, title, contents, score,selected_challenge)
+                    Toast.makeText(context, "소감이 저장되었습니다..",Toast.LENGTH_SHORT).show()
+                    mainActivity.goMenu2()
+                }
             }
         }
         write_btnCancel.setOnClickListener {
