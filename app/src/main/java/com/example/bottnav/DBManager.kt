@@ -338,8 +338,7 @@ class DBManager(context: Context) {
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'DIARY_$email\' WHERE date='$findDate';", null)
 
-        if (cursor.count == 1) {
-            cursor.moveToFirst()
+        while (cursor.moveToNext()) {
             var title = cursor.getString(cursor.getColumnIndex("title"))
 
             cursor.close()
@@ -351,7 +350,7 @@ class DBManager(context: Context) {
         sqlDB.close()
         cursor.close()
 
-        return null
+       return null
     }
 
     @SuppressLint("Range")
