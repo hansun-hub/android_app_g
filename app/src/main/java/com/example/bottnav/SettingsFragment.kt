@@ -113,6 +113,9 @@ class SettingsFragment : Fragment() {
                         builder.create()
                     }
                     versionDialog?.show()
+
+                    var settings_tvDialogVersion = versionDialog?.findViewById<TextView>(android.R.id.message)
+                    settings_tvDialogVersion?.typeface = Typeface.createFromAsset(view.context.assets,"jua_regular.ttf")
                 }
                 3 -> {
                     // Contact 선택 시
@@ -234,7 +237,7 @@ class SettingsFragment : Fragment() {
 
             val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
             tips_list_tv.textSize = 20F
-            tips_list_tv.text = list.get(position)
+            tips_list_tv.text = list[position]
 
             return layout
         }
