@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#e7f5e6 "
     tools:context=".Menu2Fragment">
 
 
@@ -12,7 +12,7 @@
         android:id="@+id/menu2_tvUpBackground"
         android:layout_width="410dp"
         android:layout_height="150dp"
-        android:background="#E0F1C7"
+        android:background="#80FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,29 +42,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu2_tvTitle" />
 
-        <TextView
-            android:id="@+id/menu2WarningText"
-            android:layout_width="262dp"
-            android:layout_height="85dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="20dp"
-            android:text="경고가 들어갈 곳입니다."
-            app:layout_constraintBottom_toBottomOf="@+id/menu2_tvUpBackground"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/menu2_ivEarth" />
+    <TextView
+        android:id="@+id/menu2WarningText"
+        android:layout_width="262dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="경고가 들어갈 곳입니다."
+        app:layout_constraintBottom_toBottomOf="@+id/menu2_tvUpBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/menu2_ivEarth" />
 
     <ImageView
 
-            android:id="@+id/menu2_ivEarth"
-            android:layout_width="103dp"
-            android:layout_height="105dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/environment"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/menu2_ivEarth"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/environment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/menu2_tvWarningTitle"
