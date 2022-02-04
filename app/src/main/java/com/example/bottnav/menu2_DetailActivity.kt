@@ -68,7 +68,6 @@ class menu2_DetailActivity : AppCompatActivity() {
             builder.show()
         }
 
-
     }
 
 }

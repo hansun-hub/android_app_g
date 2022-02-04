@@ -3,6 +3,7 @@ package com.example.bottnav
 import android.content.Context
 
 class menu2_DiaryRecord(context: Context, title: String, date: String) {
+    // 파일 삭제!!!!!!!!!!!!!!!
     var title: String
     var date: String?
     var contents: String?
