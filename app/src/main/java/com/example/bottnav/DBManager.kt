@@ -56,7 +56,7 @@ class DBManager(context: Context) {
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM USERS WHERE email=\'$email\';", null)
 
-        if (cursor.count == 1) {
+        while (cursor.moveToNext()) {
             cursor.moveToFirst()
             password = cursor.getString(cursor.getColumnIndex("password"))
         }
@@ -288,7 +288,7 @@ class DBManager(context: Context) {
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'DIARY_$email\' WHERE date='$findDate' and title='$title';", null)
 
-        if (cursor.count == 1) {
+        while (cursor.moveToNext()) {
             cursor.moveToFirst()
             val selected = cursor.getString(cursor.getColumnIndex("selected"))
 

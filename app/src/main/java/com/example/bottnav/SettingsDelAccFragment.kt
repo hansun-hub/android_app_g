@@ -13,6 +13,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class SettingsDelAccFragment : Fragment() {
+    // 설정 - 회원탈퇴
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

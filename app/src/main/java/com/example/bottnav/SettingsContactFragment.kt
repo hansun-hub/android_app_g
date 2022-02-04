@@ -12,6 +12,8 @@ import android.widget.ImageButton
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class SettingsContactFragment : BottomSheetDialogFragment() {
+    // 설정 - contact
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

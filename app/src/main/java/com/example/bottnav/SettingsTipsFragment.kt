@@ -10,10 +10,12 @@ import android.widget.AdapterView
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 
-// 설정 - 팁 모아보기 프래그먼트
+
 class SettingsTipsFragment : Fragment() {
+    // 설정 - 팁 모아보기
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +53,8 @@ class SettingsTipsFragment : Fragment() {
             }
     }
 
-    // 어댑터
     private class MyAdapter(context: Context) : BaseAdapter() {
+        //ListView 어댑터
 
         val myContext: Context = context
         val dbManager = DBManager(context)
@@ -83,6 +85,7 @@ class SettingsTipsFragment : Fragment() {
             val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
             tips_list_tv.setPadding(20)
             tips_list_tv.text = "${position + 1}. ${list!!.get(position)}"
+            tips_list_tv.setBackgroundColor(ContextCompat.getColor(myContext, R.color.white))   // 배경 색상 변경
 
             return layout
         }
