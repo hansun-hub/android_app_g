@@ -88,7 +88,13 @@ class WriteFragment : Fragment() {
 
             var size = missionList2.size
             var missionArray: Array<String?> = arrayOfNulls(size)
-            for(i in 0..size-1) missionArray[i] = dbManager.getChallenge(missionList2.get(i))
+            for(i in 0 until size) {
+                if (missionList2[i] > 24) {
+                    missionArray[i] = dbManager.getCustomChallenge(date, missionList2[i])
+                } else {
+                    missionArray[i] = dbManager.getChallenge(missionList2[i])
+                }
+            }
 
             val builder = AlertDialog.Builder(context)
             builder.setTitle("미션을 선택해주세요").setItems(missionArray, DialogInterface.OnClickListener { dialogInterface, which ->
