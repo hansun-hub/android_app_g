@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 설정 - 팁 모아보기의 팁 리스트 속 아이템의 레이아웃 -->
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#e7f5e6 ">
 
     <TextView
         android:id="@+id/tips_list_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/link_back_noline"
         android:padding="5dp"
         android:text="list"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintStart_toStartOf="parent"
         tools:padding="5sp" />

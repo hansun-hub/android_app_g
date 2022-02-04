@@ -79,7 +79,7 @@
             android:layout_weight="1"
             android:padding="10dp"
             android:text="이 곳에 팁이 보입니다."
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -149,17 +149,5 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/home_tvSlash"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_baseline_person_24"
-        app:layout_constraintEnd_toStartOf="@+id/home_tvNick"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/home_btnMusic"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
