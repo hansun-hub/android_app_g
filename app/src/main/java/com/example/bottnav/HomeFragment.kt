@@ -142,7 +142,7 @@ class HomeFragment : Fragment() {
             editor.putInt("aimLevel",aim)
             editor.apply()
         }
-
+        Toast.makeText(getActivity(), "미션두 : $missionDo", Toast.LENGTH_SHORT).show()
 
             //목표 성취 개수를 (레벨이)넘은 경우
         if(missionDone>=missionDo) {

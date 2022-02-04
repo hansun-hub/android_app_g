@@ -50,7 +50,7 @@
     <string name="answer_cancel">취소</string>
     <string name="todo">할 일</string>
     <string name="shareWithFriend">친구에게 공유</string>
-    <string name="share_message">환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
+    <string name="share_message">[ReHabit]\n환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
     <string name="congrat">축하합니다!</string>
     <string name="menu2_warningText">!WARNING!</string>
     <string name="menu2_title">달성소감을 기록해보세요!👉</string>

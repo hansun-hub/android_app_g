@@ -20,6 +20,7 @@
             android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/gray_white"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawableRight="@drawable/ic_baseline_edit_24"
             android:drawableTint="@color/green"
             android:gravity="center|left"
