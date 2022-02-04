@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e7f5e6 "
     android:orientation="vertical"
     tools:context=".Menu1Fragment">
 
@@ -13,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="324dp"
 
+        android:background="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="right|center_vertical"
-            android:text="오늘의 할일을 추가해보세요!"
+            android:text="오늘의 할일을 추가해보세요! "
             android:textSize="20sp" />
 
         <Button
@@ -45,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="65dp"
         android:layout_weight="1"
+        android:background="#ffffff"
         android:orientation="horizontal">
 
         <LinearLayout
