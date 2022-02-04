@@ -1,5 +1,4 @@
 package com.example.bottnav
-
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
@@ -34,15 +33,12 @@ class menu2_DetailActivity : AppCompatActivity() {
         var DetailRatingBar = findViewById<RatingBar>(R.id.DetailRatingBar)
         var menu2Detail_btnBack = findViewById<Button>(R.id.menu2Detail_btnBack)
         var menu2Detail_btnErase: Button = findViewById(R.id.menu2Detail_btnErase)
-
         val title = intent.getStringExtra("title")
         val date = intent.getStringExtra("date")
         val contents = intent.getStringExtra("contents")
         val selected = intent.getStringExtra("selectedChallenge")
         val rate = intent.getIntExtra("rate",0).toFloat()
         val curPos = intent.getIntExtra("curPos",0)
-
-
         tvTitle.text = title
         tvDate.text = date
         tvContents.text = contents
@@ -55,6 +51,7 @@ class menu2_DetailActivity : AppCompatActivity() {
             //Toast.makeText(this, "메뉴 클릭", Toast.LENGTH_SHORT).show()
             val builder = AlertDialog.Builder(this)
             builder.setTitle("삭제하시겠습니까?")
+
                     .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
                         // 삭제 진행
                         dbManager.delDiary(date)
@@ -69,5 +66,4 @@ class menu2_DetailActivity : AppCompatActivity() {
         }
 
     }
-
 }

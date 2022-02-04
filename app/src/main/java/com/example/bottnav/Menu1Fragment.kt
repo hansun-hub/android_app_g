@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CalendarView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -17,7 +18,7 @@ class Menu1Fragment : Fragment() {
     // lateinit var binding: FragmentMenu1Binding
     lateinit var mainActivity : MainActivity
     lateinit var dbManager: DBManager
-    lateinit var btnAdd : FloatingActionButton
+    lateinit var btnAdd : Button
     lateinit var calendar: CalendarView
     lateinit var calendarDate: String
 
@@ -58,11 +59,14 @@ class Menu1Fragment : Fragment() {
         recyclerComp = view.findViewById<RecyclerView>(R.id.menu1_recyclerComp)
         recyclerComp.layoutManager = LinearLayoutManager(view.context)
 
+
         recyclerTodo_other = view.findViewById<RecyclerView>(R.id.menu1_recyclerTodo_other)
         recyclerTodo_other.layoutManager = LinearLayoutManager(view.context)
 
         recyclerComp_other = view.findViewById<RecyclerView>(R.id.menu1_recyclerComp_other)
         recyclerComp_other.layoutManager = LinearLayoutManager(view.context)
+
+
 
         calendar = view.findViewById(R.id.calendarView)
         btnAdd = view.findViewById(R.id.menu1_btnAdd)
