@@ -26,12 +26,12 @@ class SettingsTipsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings_tips, container, false)
-
         val dbManager = DBManager(view.context)
-
         val settings_listTips = view.findViewById<ListView>(R.id.settings_listTips)
+        val adapter = MyAdapter(view.context)
 
-        settings_listTips.adapter = MyAdapter(view.context)
+        // 어댑터 연결
+        settings_listTips.adapter = adapter
 
         // Inflate the layout for this fragment
         return view

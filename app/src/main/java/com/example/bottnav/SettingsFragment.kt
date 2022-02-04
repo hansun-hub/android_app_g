@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +44,7 @@ class SettingsFragment : Fragment() {
             val nicknameDialog = AlertDialog.Builder(it.context)
 
             nicknameDialog.apply {
-                setTitle(R.string.settings_nickname_title)
+                setTitle(R.string.settings_nickname)
                 setMessage(R.string.settings_nickname_message)
 
                 val input = EditText(it.context)
@@ -130,10 +132,12 @@ class SettingsFragment : Fragment() {
                         builder.create()
                     }
                     aboutUsDialog?.show()
+
+                    var settings_tvDialogAboutUs = aboutUsDialog?.findViewById<TextView>(android.R.id.message)
+                    settings_tvDialogAboutUs?.typeface = Typeface.createFromAsset(view.context.assets,"jua_regular.ttf")
                 }
                 5 -> {
                     // Log out 선택 시
-
                     // popup dialog
                     val logoutDialog: AlertDialog? = activity?.let {
                         val builder = AlertDialog.Builder(it)
@@ -152,8 +156,11 @@ class SettingsFragment : Fragment() {
                                                 "current",
                                                 Context.MODE_PRIVATE
                                         )
-                                        pref.edit().clear()
-                                        pref.edit().apply()
+                                        val editor = pref.edit()
+                                        editor.clear()
+                                        editor.apply()
+
+                                        Toast.makeText(view.context, "정상적으로 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
 
                                         // Login 화면으로 전환
                                         val intent = Intent(view.context, LoginActivity::class.java)
@@ -161,15 +168,14 @@ class SettingsFragment : Fragment() {
                                         startActivity(intent)
                                     })
                         }
-
                         builder.create()
                     }
-
                     logoutDialog?.show()
+
+                    var settings_tvDialogLogout = logoutDialog?.findViewById<TextView>(android.R.id.message)
+                    settings_tvDialogLogout?.typeface = Typeface.createFromAsset(view.context.assets,"jua_regular.ttf")
                 }
             }
-
-
         }
 
         // Inflate the layout for this fragment

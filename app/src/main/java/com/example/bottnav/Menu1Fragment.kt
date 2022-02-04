@@ -110,6 +110,8 @@ class Menu1Fragment : Fragment() {
 
                 adapter1.notifyDataSetChanged()
                 adapter2.notifyDataSetChanged()
+
+                Toast.makeText(view.context, "${todo.contents} 성공!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onItemDeleteClick(v: View, todo: Challenge, position: Int) {
