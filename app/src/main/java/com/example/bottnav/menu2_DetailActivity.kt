@@ -51,15 +51,16 @@ class menu2_DetailActivity : AppCompatActivity() {
             //Toast.makeText(this, "메뉴 클릭", Toast.LENGTH_SHORT).show()
             val builder = AlertDialog.Builder(this)
             builder.setTitle("삭제하시겠습니까?")
-                .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
-                    // 삭제 진행
-                    dbManager.delDiary(date)
-                    finish()
-                })
-                .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
-                    // 삭제 취소
-                    finish()
-                })
+
+                    .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
+                        // 삭제 진행
+                        dbManager.delDiary(date)
+                        finish()
+                    })
+                    .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
+                        // 삭제 취소
+                        finish()
+                    })
             // 다이얼로그를 띄워주기
             builder.show()
         }
