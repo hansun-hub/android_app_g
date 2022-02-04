@@ -104,7 +104,7 @@ class SettingsFragment : Fragment() {
                         val builder = AlertDialog.Builder(it)
                         builder.apply {
                             setTitle(R.string.settings_version)
-                            setMessage("버전")
+                            setMessage(R.string.setting_version_message)
                             setPositiveButton(R.string.answer_ok, null)
                         }
 
