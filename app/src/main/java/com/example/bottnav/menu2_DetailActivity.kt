@@ -15,8 +15,8 @@ import android.widget.TextView
 import android.widget.Toast
 
 class menu2_DetailActivity : AppCompatActivity() {
-    val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
-    val volume = (sharedPreference.getInt("volume", 0).toDouble()/10).toFloat()
+    var volume: Float = 0f
+
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +24,8 @@ class menu2_DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu2__detail)
 
         val dbManager = DBManager(this)
+        val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
+        volume = (sharedPreference.getInt("volume", 0).toDouble()/10).toFloat()
 
         var tvTitle = findViewById<TextView>(R.id.tvTitle)
         var tvDate = findViewById<TextView>(R.id.tvDate)
