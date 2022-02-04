@@ -53,23 +53,35 @@ class SettingsFragment : Fragment() {
                 setNegativeButton(getString(R.string.answer_enter)) { dialog, which ->
                     var newNickname = input.text.toString()
 
-                    // nickname 대입
-                    nickname = newNickname
+                    if (newNickname == "") {
+                        // 닉네임이 공란일 때
 
-                    // sharedPreference 수정
-                    val editor = sharedPreference.edit()
-                    editor.remove("nickname")
-                    editor.putString("nickname", nickname)
-                    editor.apply()
+                        Toast.makeText(it.context, "닉네임 저장에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    } else if (newNickname.length > 15) {
+                        // 닉네임이 너무 길 때
 
-                    // DB 수정
-                    dbManager.setNickname(nickname!!)
+                        Toast.makeText(it.context, "올바르지 않은 닉네임 입니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // 올바른 입력
 
-                    // info 수정
-                    settings_btn1.text = getString(R.string.call_nickname, nickname)
+                        // nickname 대입
+                        nickname = newNickname
 
-                    // 알림
-                    Toast.makeText(it.context, "닉네임이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                        // sharedPreference 수정
+                        val editor = sharedPreference.edit()
+                        editor.remove("nickname")
+                        editor.putString("nickname", nickname)
+                        editor.apply()
+
+                        // DB 수정
+                        dbManager.setNickname(nickname!!)
+
+                        // info 수정
+                        settings_btn1.text = getString(R.string.call_nickname, nickname)
+
+                        // 알림
+                        Toast.makeText(it.context, "닉네임이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 setPositiveButton(getString(R.string.answer_cancel)) { dialog, which ->
                     dialog.cancel()

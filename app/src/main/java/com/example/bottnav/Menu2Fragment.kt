@@ -102,8 +102,4 @@ class Menu2Fragment : Fragment() {
         val selectedChallenge = dbManager.getSelectedChallenge(findDate!!, title)
         val rate = dbManager.getRate(findDate!!)
     }
-
-
-
-
 }
