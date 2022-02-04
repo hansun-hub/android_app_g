@@ -143,45 +143,41 @@ class HomeFragment : Fragment() {
             editor.apply()
         }
 
-        //클릭 시 숫자 늘어나도록 설정  =>나중에 db에서 level을 받아오는 순간
-        home_tvDone.setOnClickListener {
-            missionDone = missionDone + 10
-            home_tvDone.text = missionDone.toString()
 
             //목표 성취 개수를 (레벨이)넘은 경우
-            if(missionDone>=missionDo) {
-                when (missionDone) {  //성취 개수
-                    in 10 .. 29 -> {   // 10~29개를 달성한 경우
-                        missionDo = 30  //다음 달성 목표
-                        aimLevelChange(missionDo)    //목표 개수 수정
-                        home_tvDo.text = missionDo.toString()  //달성 목표 화면에 반영
-                        ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))  //캐릭터 이미지 바꿈
-                        ivSprout.layoutParams.width = 140  //너비 크게 수정
-                        popupDialog(R.drawable.tree)
-                    }
-                    in 30 .. 59 -> {
-                        missionDo = 60  //다음 달성 목표
-                        aimLevelChange(missionDo)
-                        home_tvDo.text = missionDo.toString()
-                        ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.appletrees))
-                        popupDialog(R.drawable.appletrees)
-                    }
-                    in 60 .. 99 -> {
-                        missionDo = 100  //다음 달성 목표
-                        aimLevelChange(missionDo)
-                        home_tvDo.text = missionDo.toString()
-                        ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.forest))
-                        popupDialog(R.drawable.forest)
-                    }
-                    100 -> {
-                        home_tvDo.text = missionDo.toString()
-                        ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.healthy_earth))
-                        popupDialog(R.drawable.healthy_earth)
-                    }
-
+        if(missionDone>=missionDo) {
+            when (missionDone) {  //성취 개수
+                in 10..29 -> {   // 10~29개를 달성한 경우
+                    missionDo = 30  //다음 달성 목표
+                    aimLevelChange(missionDo)    //목표 개수 수정
+                    home_tvDo.text = missionDo.toString()  //달성 목표 화면에 반영
+                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))  //캐릭터 이미지 바꿈
+                    ivSprout.layoutParams.width = 140  //너비 크게 수정
+                    popupDialog(R.drawable.tree)
                 }
+                in 30..59 -> {
+                    missionDo = 60  //다음 달성 목표
+                    aimLevelChange(missionDo)
+                    home_tvDo.text = missionDo.toString()
+                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.appletrees))
+                    popupDialog(R.drawable.appletrees)
+                }
+                in 60..99 -> {
+                    missionDo = 100  //다음 달성 목표
+                    aimLevelChange(missionDo)
+                    home_tvDo.text = missionDo.toString()
+                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.forest))
+                    popupDialog(R.drawable.forest)
+                }
+                100 -> {
+                    home_tvDo.text = missionDo.toString()
+                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.healthy_earth))
+                    popupDialog(R.drawable.healthy_earth)
+                }
+
             }
         }
+
 
         //else{
             //Toast.makeText(getActivity(), "한 일의 수 : $missionDone", Toast.LENGTH_SHORT).show()

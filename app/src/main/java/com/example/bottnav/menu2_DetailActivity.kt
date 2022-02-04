@@ -2,8 +2,10 @@ package com.example.bottnav
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,7 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 class menu2_DetailActivity : AppCompatActivity() {
-
+    var volume: Float = 0f
 
 
     @SuppressLint("WrongViewCast")
@@ -21,13 +23,10 @@ class menu2_DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu2__detail)
 
-        var mainActivity: MainActivity = MainActivity()
         val dbManager = DBManager(this)
+        val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
+        volume = (sharedPreference.getInt("volume", 0).toDouble()/10).toFloat()
 
-        //lateinit var menu2Frag: Menu2Fragment
-        //menu2Frag = Menu2Fragment()
-        lateinit var homeFrag: HomeFragment
-        homeFrag = HomeFragment()
         var tvTitle = findViewById<TextView>(R.id.tvTitle)
         var tvDate = findViewById<TextView>(R.id.tvDate)
         var tvContents = findViewById<TextView>(R.id.tvContents)
@@ -55,29 +54,21 @@ class menu2_DetailActivity : AppCompatActivity() {
         menu2Detail_btnErase.setOnClickListener {
             //Toast.makeText(this, "메뉴 클릭", Toast.LENGTH_SHORT).show()
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("삭제하시겠습니까?").setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
-                dbManager.delDiary(date)
-                onBackPressed()
-                //val writeFragment = WriteFragment()
-                //mainActivity.replaceFragment(writeFragment)
-                //val writeFragment = WriteFragment()
-                //(activity as MainActivity).replaceFragment(writeFragment)
-                //supportFragmentManager.beginTransaction().replace(R.id.bottom_container, menu2Frag).commit()
-                //mainActivity.goMenu2()
-                var intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-                //supportFragmentManager.beginTransaction().replace(R.id.bottom_container, homeFrag).commit()
-                //Toast.makeText(this, curPos, Toast.LENGTH_SHORT).show()
-                //Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
-            //resultText.text = "확인 클릭"
-            })
+            builder.setTitle("삭제하시겠습니까?")
+                    .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
+                        // 삭제 진행
+                        dbManager.delDiary(date)
+                        finish()
+                    })
                     .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
-                                //resultText.text = "취소 클릭"
-                            })
+                        // 삭제 취소
+                        finish()
+                    })
             // 다이얼로그를 띄워주기
             builder.show()
         }
 
+
     }
+
 }
