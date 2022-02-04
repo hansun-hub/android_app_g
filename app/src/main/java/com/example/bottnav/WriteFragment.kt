@@ -21,7 +21,7 @@ import com.example.bottnav.databinding.FragmentWriteBinding
 
 class WriteFragment : Fragment() {
 
-    lateinit var binding: FragmentWriteBinding //수정함
+    //lateinit var binding: FragmentWriteBinding //수정함
     lateinit var mainActivity: MainActivity
     lateinit var dbHelper: DBHelper
     //private val dbHelper = context?.let { DBHelper(it) }
@@ -124,7 +124,7 @@ class WriteFragment : Fragment() {
             (activity as MainActivity).onBackPressed()
         }
 
-        binding = FragmentWriteBinding.inflate(inflater, container, false)
+        //binding = FragmentWriteBinding.inflate(inflater, container, false)
         //return binding.root
         return view
     }
@@ -132,9 +132,9 @@ class WriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.selectButton.setOnClickListener {
+        /*binding.selectButton.setOnClickListener {
             //mainActivity.goWrite()
-        }
+        }*/
 
     }
 

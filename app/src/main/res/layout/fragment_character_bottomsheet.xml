@@ -12,8 +12,8 @@
 
     <ImageButton
         android:id="@+id/home_share_message"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="24dp"
         android:background="#FFFFFF"
@@ -22,13 +22,12 @@
         app:layout_constraintEnd_toStartOf="@+id/home_share_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.517"
         app:srcCompat="@drawable/ic_baseline_message_24" />
 
     <ImageButton
         android:id="@+id/home_share_email"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="24dp"
         android:background="#FFFFFF"
@@ -45,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/link_back"
         android:text="@string/answer_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +56,7 @@
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/shareWithFriend"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
