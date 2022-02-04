@@ -8,106 +8,107 @@
     tools:context=".Menu2Fragment">
 
 
-    <TextView
-        android:id="@+id/menu2_tvUpBackground"
-        android:layout_width="410dp"
-        android:layout_height="150dp"
-        android:background="@color/green5"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/menu2_tvTitle"
-        android:layout_width="302dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/menu2_title"
-        android:textSize="27sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2_tvUpBackground" />
-
-    <TextView
-        android:id="@+id/menu2_tvLastRecord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="17dp"
-        android:text="지난 기록 확인🎉"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2_tvTitle" />
-
-    <TextView
-        android:id="@+id/menu2WarningText"
-        android:layout_width="262dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        android:text="경고가 들어갈 곳입니다."
-        app:layout_constraintBottom_toBottomOf="@+id/menu2_tvUpBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/menu2_ivEarth" />
-
-    <ImageView
-
-        android:id="@+id/menu2_ivEarth"
-        android:layout_width="103dp"
-        android:layout_height="105dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/environment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/menu2_tvWarningTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/menu2_warningText"
-        android:textColor="#E91E63"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/menu2_ivEarth"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/menu2_recycler"
-            android:layout_width="380dp"
-            android:layout_height="380dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="260dp"
-            android:layout_marginEnd="17dp"
-            android:layout_marginBottom="50dp"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="332dp"
-            android:layout_marginTop="161dp"
             android:background="@android:drawable/ic_input_add"
+            app:layout_constraintBaseline_toBaselineOf="@+id/menu2_tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/menu2_tvTitle" />
+
+        <TextView
+            android:id="@+id/menu2_tvTitle"
+            android:layout_width="302dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/menu2_title"
+            android:textSize="27sp"
+            app:layout_constraintBottom_toBottomOf="@+id/button4"
+            app:layout_constraintEnd_toStartOf="@+id/button4"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/menu2_recycler"
+            android:layout_width="380dp"
+            android:layout_height="350dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu2_tvLastRecord"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <TextView
+            android:id="@+id/menu2_tvLastRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="지난 기록 확인🎉"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.126"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu2_tvTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/green5"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+
+            android:id="@+id/menu2_ivEarth"
+            android:layout_width="103dp"
+            android:layout_height="105dp"
+            android:src="@drawable/environment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/menu2WarningText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/menu2_tvWarningTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu2_warningText"
+            android:textColor="#E91E63"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/menu2WarningText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintStart_toEndOf="@+id/menu2_ivEarth"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/menu2WarningText"
+            android:layout_width="262dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginEnd="8dp"
+            android:text="경고가 들어갈 곳입니다."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/menu2_ivEarth"
+            app:layout_constraintTop_toBottomOf="@+id/menu2_tvWarningTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
