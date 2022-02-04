@@ -168,9 +168,18 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /*
     override fun onStop() {  //액티비티가 더 이상 사용자에게 보여지지 않을 때
         super.onStop()
         mPlayer.stop()   //음악 멈춤
     }
+
+     */
+
+    override fun onDestroy() {  //액티비티가 소멸될 때
+        super.onDestroy()
+        mPlayer.stop()
+    }
+
 
 }
