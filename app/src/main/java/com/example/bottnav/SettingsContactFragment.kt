@@ -34,17 +34,22 @@ class SettingsContactFragment : BottomSheetDialogFragment() {
         contact_imgBtnCall.setOnClickListener {
             // 전화
             val call = Intent(Intent.ACTION_DIAL, Uri.parse("tel:01012345678"))
+
             startActivity(call)
         }
+
         contact_imgBtnMail.setOnClickListener {
             // 이메일
             val sending_email = Intent(Intent.ACTION_SEND)
-            sending_email.type = "plain/text"
             val address = arrayOf("email@address.com")
+
+            sending_email.type = "plain/text"
             sending_email.putExtra(Intent.EXTRA_EMAIL, address)
             sending_email.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_contact_title))
+
             startActivity(sending_email)
         }
+
         contact_btnOk.setOnClickListener {
             // 확인
             parentFragmentManager.beginTransaction().remove(this).commit()

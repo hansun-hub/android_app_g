@@ -29,7 +29,7 @@ class DBManager(context: Context) {
         sqlDB = dbHelper.writableDatabase
         sqlDB.execSQL("INSERT INTO USERS VALUES (\"${user_email}\", \"${user_nickname}\", \"$password\", 0);")
 
-        // 미션 달성 정보 table 생성
+        // 챌린지 달성 정보 table 생성
         sqlDB.execSQL("CREATE TABLE IF NOT EXISTS \"ACHIEVE_${user_email}\" (date TEXT, type CHAR, i INTEGER, is_achieved CHAR, contents TEXT);")
         // 소감 table 생성
         sqlDB.execSQL("CREATE TABLE IF NOT EXISTS \"DIARY_${user_email}\" (date TEXT, title TEXT, contents TEXT, score INTEGER, selected TEXT)")
@@ -45,6 +45,8 @@ class DBManager(context: Context) {
         sqlDB.execSQL("DELETE FROM USERS WHERE email=\"$email\";")
         sqlDB.execSQL("DROP TABLE IF EXISTS \"ACHIEVE_$email\"")
         sqlDB.execSQL("DROP TABLE IF EXISTS \"DIARY_$email\"")
+
+        sqlDB.close()
     }
 
     @SuppressLint("Range")
@@ -106,7 +108,7 @@ class DBManager(context: Context) {
     }
 
     public fun getTips(type: String): Array<out String>? {
-        // 팁/경고 반환
+        // 팁/경고 배열 가져오기
 
         when (type) {
             "tip" -> {
@@ -126,7 +128,7 @@ class DBManager(context: Context) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     public fun setAchieveList(user_email: String) {
-        // 첫 회원가입 시 달성할 미션 내역 생성(월 2개, 주 2개, 일 4개)
+        // 첫 회원가입 시 달성할 챌린지 내역 생성(월 2개, 주 2개, 일 4개)
 
         sqlDB = dbHelper.writableDatabase
 
@@ -138,13 +140,13 @@ class DBManager(context: Context) {
         var weekly = ArrayList<HashSet<Int>>(5)
         var daily = ArrayList<HashSet<Int>>(30)
 
-        // 달 별 미션 생성
+        // 달 별 챌린지 생성
         while (monthly.size < 2) {
             var i = random.nextInt(6)
             monthly.add(i)
         }
 
-        // 주 별 미션 생성
+        // 주 별 챌린지 생성
         for (n in 0..4) {
             weekly.add(HashSet<Int>())
             while (weekly[n].size < 2) {
@@ -153,7 +155,7 @@ class DBManager(context: Context) {
             }
         }
 
-        // 일 별 미션 생성
+        // 일 별 챌린지 생성
         for (n in 0..29) {
             daily.add(HashSet<Int>())
             while (daily[n].size < 4) {
@@ -162,7 +164,7 @@ class DBManager(context: Context) {
             }
         }
 
-        // 미션 저장
+        // 챌린지 저장
         for (i in 0..29) {
             for (index in daily[i]) {
                 sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'D', $index, 'N', null);")
@@ -182,7 +184,7 @@ class DBManager(context: Context) {
     }
 
     public fun getChallenges(period: String): Array<out String>? {
-        // 미션 배열 반환(함수 호출 시 인자에 따라)
+        // 챌린지 배열 가져오기(함수 호출 시 인자에 따라)
 
         when (period) {
             "monthly" -> {
@@ -211,38 +213,70 @@ class DBManager(context: Context) {
     }
 
     public fun getChallenge(index: Int): String? {
-        // index에 따른 미션 반환
-        return getChallenges("all")!!.get(index)
+        // index에 따른 챌린지 가져오기
+
+        return getChallenges("all")!![index]
     }
 
+    @SuppressLint("Range")
     public fun addCustomChallenge(findDate: String, contents: String) {
-        // DB에 사용자 설정 미션 추가
+        // DB에 사용자 설정 챌린지 추가
 
         sqlDB = dbHelper.writableDatabase
 
-        // 해당 날짜의 미션 개수 가져오기
-
+        // 해당 날짜의 챌린지 개수 가져오기
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate';", null)
+        var max = 0
         var i = 0
-        while (cursor.moveToNext())
-            i++
+
+        while (cursor.moveToNext()) {
+            i = cursor.getInt(cursor.getColumnIndex("i"))
+            if (i > max)
+                max = i
+        }
 
         // 달성정보 DB에 추가
-        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES('$findDate', 'D', ${i + 25}, 'N', '$contents');")
+        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES('$findDate', 'D', ${max + 1}, 'N', '$contents');")
 
         cursor.close()
         sqlDB.close()
     }
 
     public fun delCustomChallenge(findDate: String, index: Int) {
-        sqlDB = dbHelper.writableDatabase
+        // 사용자 생성 챌린지를 DB에서 삭제하기
 
+        sqlDB = dbHelper.writableDatabase
         sqlDB.execSQL("DELETE FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$index;")
+
+        sqlDB.close()
+    }
+
+    @SuppressLint("Range")
+    public fun getCustomChallenge(findDate: String?, i: Int): String? {
+        // DB로부터 해당 날짜에서 사용자가 생성한 챌린지 불러오기
+
+        sqlDB = dbHelper.readableDatabase
+        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$i;", null)
+
+        while (cursor.moveToNext()) {
+            cursor.moveToLast()
+            var challenge = cursor.getString(cursor.getColumnIndex("contents"))
+
+            cursor.close()
+            sqlDB.close()
+
+            return challenge
+        }
+
+        cursor.close()
+        sqlDB.close()
+
+        return null
     }
 
     @SuppressLint("Range")
     public fun getTodayChallenges(findDate: String?): ArrayList<Int> {
-        // 해당 날짜에 배정된 미션 배열 불러오기
+        // DB로부터 해당 날짜에 배정된 챌린지 배열 불러오기
 
         var challenges = ArrayList<Int>()
 
@@ -261,29 +295,27 @@ class DBManager(context: Context) {
 
     @SuppressLint("Range")
     public fun getSuccessChallenges(findDate: String?, char: Char): ArrayList<Int> { //ListString을 String으로 수정함
-        // 성공한 미션들의 배열 가져오기
+        // DB로부터 성공한 챌린지들의 배열 가져오기
+
+        var success = ArrayList<Int>()
 
         sqlDB = dbHelper.readableDatabase
-        //cursor는 테이블 안에서 한 행을 가리킴
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date= '$findDate' and is_achieved = '$char';",null)
-        //val successMission: String = cursor .getString(cursor.getColumnIndex("i"))
-        var successMission = ArrayList<Int>() //배열 미리 생성
 
         while(cursor.moveToNext()) {
-            //getColumnIndex는 이름으로 부터 컬럼번호를 구한다.
-            //val missionNum = cursor.getString()  //2번은 i, 미션넘버를 가리킴
-            successMission.add(cursor.getInt(cursor.getColumnIndex("i")))
+            success.add(cursor.getInt(cursor.getColumnIndex("i")))
         }
+
         cursor.close()
         sqlDB.close()
         dbHelper.close()
-        return successMission
 
+        return success
     }
 
     @SuppressLint("Range")
     public fun getSelectedChallenge(findDate: String, title: String?): String? {
-        // DB에서 '선택된 미션' 문자열로 반환
+        // DB로부터 해당 날짜의 '소감 작성에 선택된 챌린지'을 문자열로 가져오기
 
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'DIARY_$email\' WHERE date='$findDate' and title='$title';", null)
@@ -306,11 +338,13 @@ class DBManager(context: Context) {
 
     @SuppressLint("Range")
     public fun getIsAchieved(findDate: String, i: Int): Char? {
+        // DB로부터 해당 날짜의 챌린지 달성 정보 가져오기
+
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$i;", null)
 
-        if (cursor.count == 1) {
-            cursor.moveToFirst()
+        while (cursor.moveToNext()) {
+            cursor.moveToLast()
             var isAchieved = cursor.getString(cursor.getColumnIndex("is_achieved"))
 
             cursor.close()
@@ -326,14 +360,17 @@ class DBManager(context: Context) {
     }
 
     public fun setIsAchieved(i: Int) {
-        // 사용자가 미션 달성했을 때 달성정보 수정
+        // 사용자가 챌린지 달성했을 때 DB의 달성정보 수정
+
         sqlDB = dbHelper.writableDatabase
         sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET is_achieved='Y' WHERE date='$date' and i=$i;")
+
+        sqlDB.close()
     }
 
     @SuppressLint("Range")
     public fun getTitle(findDate: String): String? {
-        // 날짜에 해당하는 소감 제목
+        // 해당 날짜에 저장된 소감 제목 가져오기
 
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'DIARY_$email\' WHERE date='$findDate';", null)
@@ -355,7 +392,7 @@ class DBManager(context: Context) {
 
     @SuppressLint("Range")
     public fun getDatesFromDiary(): ArrayList<String>? {
-        // 소감을 저장한 날짜들의 배열
+        // DB로부터 소감을 저장한 날짜들의 배열 가져오기
 
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'DIARY_$email\';", null)
@@ -374,7 +411,7 @@ class DBManager(context: Context) {
 
     @SuppressLint("Range")
     public fun getContents(findDate: String): String? {
-        // 날짜에 해당하는 소감에서 내용 불러오기
+        // DB로부터 해당 날짜에 작성된 소감의 내용 불러오기
 
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'DIARY_$email\' WHERE date='$findDate';", null)
@@ -389,15 +426,15 @@ class DBManager(context: Context) {
             return contents
         }
 
-        sqlDB.close()
         cursor.close()
+        sqlDB.close()
 
         return null
     }
 
     @SuppressLint("Range")
     public fun getRate(findDate: String): Int {
-        // 해당하는 날짜의 소감에서 점수 불러오기
+        // DB로부터 해당 날짜의 소감에서 별점 불러오기
 
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'DIARY_$email\' WHERE date='$findDate';", null)
@@ -412,41 +449,18 @@ class DBManager(context: Context) {
             return score
         }
 
-        sqlDB.close()
         cursor.close()
+        sqlDB.close()
 
         return 0
     }
 
-    @SuppressLint("Range")
-    public fun getCustomChallenge(findDate: String?, i: Int): String? {
-        // 해당 날짜에서 사용자가 생성한 미션 불러오기
-
-        sqlDB = dbHelper.readableDatabase
-        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$i;", null)
-
-        if (cursor.count == 1) {
-            cursor.moveToFirst()
-            var challenge = cursor.getString(cursor.getColumnIndex("contents"))
-
-            cursor.close()
-            sqlDB.close()
-
-            return challenge
-        }
-
-        sqlDB.close()
-        cursor.close()
-
-        return null
-    }
-
     public fun addDiary(date: String, title: String, contents: String, score: Int, selected_challenge: String) {
-        // DB에 다이어리 추가
+        // DB에 소감 추가
 
         sqlDB = dbHelper.writableDatabase
-        // 달성정보 DB에 추가
         sqlDB.execSQL("INSERT INTO \'DIARY_$email\' VALUES ('$date', '$title', '$contents', $score, '$selected_challenge')")
+
         sqlDB.close()
     }
 
