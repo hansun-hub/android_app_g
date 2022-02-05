@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 
-class VolumeDialogFragment(context: Context): DialogFragment() {
+class SettingsVolumeFragment(context: Context): DialogFragment() {
     // 설정 - 배경음악 음량 조절
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ class VolumeDialogFragment(context: Context): DialogFragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_volume_dialog, container, false)
+        val view = inflater.inflate(R.layout.dialog_settings_volume, container, false)
         val sharedPreference = view.context.getSharedPreferences("current", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         val volume = sharedPreference.getInt("volume", 0)

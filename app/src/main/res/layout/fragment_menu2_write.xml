@@ -8,7 +8,7 @@
     android:backgroundTint="#FFFFFF"
     android:clickable="true"
     tools:clickable="true"
-    tools:context=".WriteFragment">
+    tools:context=".Menu2WriteFragment">
 
     <TextView
         android:id="@+id/write_tvAchvMission"

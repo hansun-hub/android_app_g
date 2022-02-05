@@ -11,13 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 
 //리사이클러뷰 구현위해 필요한 Adapter
-class menu2_DiaryAdapter(val context: Context,val recordList: ArrayList<Menu2Fragment.diaryRecord>): RecyclerView.Adapter<menu2_DiaryAdapter.CustomViewHolder>()
-{
+class Menu2DiaryAdapter(
+    val context: Context,
+    val recordList: ArrayList<Menu2Fragment.diaryRecord>
+) : RecyclerView.Adapter<Menu2DiaryAdapter.CustomViewHolder>() {
     val dbManager = DBManager(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            menu2_DiaryAdapter.CustomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.menu2_list_item,parent,false)
+            Menu2DiaryAdapter.CustomViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_menu2_list_item, parent, false)
         return CustomViewHolder(view).apply {
             //리사이클러뷰에서 아이템 클릭구현
             itemView.setOnClickListener {
@@ -26,20 +29,20 @@ class menu2_DiaryAdapter(val context: Context,val recordList: ArrayList<Menu2Fra
                 val DiaryRecord = recordList.get(curPos)
 
                 //intent로 화면전환할 때 putExtra로 정보를 넘겨줌
-                val intent = Intent(itemView.context, menu2_DetailActivity::class.java)
-              
-                intent.putExtra("title",DiaryRecord.title)
-                intent.putExtra("date",DiaryRecord.date)
-                intent.putExtra("contents",DiaryRecord.contents)
-                intent.putExtra("selectedChallenge",DiaryRecord.selectedChallenge)
-                intent.putExtra("rate",DiaryRecord.rate)
-                
+                val intent = Intent(itemView.context, Menu2DetailActivity::class.java)
+
+                intent.putExtra("title", DiaryRecord.title)
+                intent.putExtra("date", DiaryRecord.date)
+                intent.putExtra("contents", DiaryRecord.contents)
+                intent.putExtra("selectedChallenge", DiaryRecord.selectedChallenge)
+                intent.putExtra("rate", DiaryRecord.rate)
+
                 itemView.context.startActivity(intent)
             }
         }
     }
 
-    override fun onBindViewHolder(holder: menu2_DiaryAdapter.CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: Menu2DiaryAdapter.CustomViewHolder, position: Int) {
         holder.title.text = recordList.get(position).title
         holder.date.text = recordList.get(position).date
     }

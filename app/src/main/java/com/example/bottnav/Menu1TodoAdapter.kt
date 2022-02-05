@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
-class TodoListAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge>) :
-    RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
+class Menu1TodoAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge>) :
+    RecyclerView.Adapter<Menu1TodoAdapter.ViewHolder>() {
 
-    val dbManager : DBManager = DBManager(context)
+    val dbManager: DBManager = DBManager(context)
     private var todoList: ArrayList<Menu1Fragment.Challenge>? = list
     private var listener: OnItemClickListener? = null
 
@@ -19,6 +19,7 @@ class TodoListAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge>
         fun onItemClick(v: View, todo: Menu1Fragment.Challenge, position: Int)
         fun onItemDeleteClick(v: View, todo: Menu1Fragment.Challenge, position: Int)
     }
+
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
@@ -28,7 +29,7 @@ class TodoListAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context: Context = parent.context
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = inflater.inflate(R.layout.fragment_todo_item, parent, false)
+        val view: View = inflater.inflate(R.layout.layout_menu1_todo_item, parent, false)
 
         return ViewHolder(view)
     }

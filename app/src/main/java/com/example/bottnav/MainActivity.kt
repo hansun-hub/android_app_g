@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goEditTodo() {
-        val editTodoFragment = EditTodoFragment()
+        val editTodoFragment = Menu1AddChallengeFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.bottom_container, editTodoFragment)
         transaction.addToBackStack("editTodo")

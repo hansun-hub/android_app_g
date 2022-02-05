@@ -34,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
     var level: Int = 0
     var aimLevel: Int = 10
 
-
     @SuppressLint("Range")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {

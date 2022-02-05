@@ -17,7 +17,7 @@ class Menu2Fragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
     lateinit var dbManager: DBManager
-    lateinit var adapter: menu2_DiaryAdapter
+    lateinit var adapter: Menu2DiaryAdapter
     val recordList = ArrayList<diaryRecord>()
 
 
@@ -50,7 +50,7 @@ class Menu2Fragment : Fragment() {
         val menu2_recycler = view.findViewById<RecyclerView>(R.id.menu2_recycler)
         menu2_recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         menu2_recycler.setHasFixedSize(true)
-        adapter = menu2_DiaryAdapter(view.context, recordList)
+        adapter = Menu2DiaryAdapter(view.context, recordList)
         menu2_recycler.adapter = adapter
 
         //경고메시지 가져오기
@@ -63,7 +63,7 @@ class Menu2Fragment : Fragment() {
 
         //추가 버튼 클릭시 writeFragment로 화면 전환
         menu2_btnAdd.setOnClickListener{
-            val writeFragment = WriteFragment()
+            val writeFragment = Menu2WriteFragment()
             mainActivity.replaceFragmentExit(writeFragment)
         }
         return view

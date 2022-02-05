@@ -20,16 +20,14 @@ class SettingsContactFragment : BottomSheetDialogFragment() {
 
     @SuppressLint("StringFormatInvalid")
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.settings_contact, container, false)
+        val view = inflater.inflate(R.layout.bottomsheet_settings_contact, container, false)
 
         val contact_btnOk = view.findViewById<Button>(R.id.contact_btnOk)
         val contact_imgBtnCall = view.findViewById<ImageButton>(R.id.contact_imgBtnCall)
         val contact_imgBtnMail = view.findViewById<ImageButton>(R.id.contact_imgBtnMail)
-
-        val dbManager = DBManager(requireContext())
 
         contact_imgBtnCall.setOnClickListener {
             // 전화

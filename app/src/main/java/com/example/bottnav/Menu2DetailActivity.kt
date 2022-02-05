@@ -11,12 +11,12 @@ import android.widget.TextView
 import android.widget.Toast
 
 //지난 기록을 디테일하게 볼 수 있는 Activity
-class menu2_DetailActivity : AppCompatActivity() {
+class Menu2DetailActivity : AppCompatActivity() {
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu2__detail)
+        setContentView(R.layout.activity_menu2_detail)
 
         val dbManager = DBManager(this)
 

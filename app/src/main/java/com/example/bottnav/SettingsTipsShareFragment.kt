@@ -21,7 +21,7 @@ class SettingsTipsShareFragment(contents: String) : BottomSheetDialogFragment() 
             savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater.inflate(R.layout.fragment_settings_tips_share_bottomsheet, container, false)
+        val view = inflater.inflate(R.layout.bottomsheet_settings_tipshare, container, false)
         val tips_share_okBtn = view.findViewById<Button>(R.id.tips_share_okBtn)
         val tips_share_message = view.findViewById<ImageButton>(R.id.tips_share_message)
         val tips_share_email = view.findViewById<ImageButton>(R.id.tips_share_email)

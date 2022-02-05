@@ -84,16 +84,16 @@ class HomeFragment : Fragment() {
 
 
         //친구에게 공유(자랑)할 수 있는 dialog 생성
-        val dialog = CharacterDialog(view.context)
+        val dialog = HomeCharDialog(view.context)
 
         //커스텀 다이얼로그를 함수로 묶어둠
         fun popupDialog(resChar: Int) {
             dialog.showDialog(resChar)
-            dialog.setOnClickedListener(object : CharacterDialog.ButtonClickListener {
+            dialog.setOnClickedListener(object : HomeCharDialog.ButtonClickListener {
                 //공유버튼 클릭시
                 override fun onClicked() {  //CharacterDialogFragment에서 생성한 함수 오버라이드를 통해 사용
                     //바텀시트 나옴
-                    val bottomSheet = CharacterBottomSheetFragment()
+                    val bottomSheet = HomeCharBottomSheetFragment()
                     bottomSheet.isCancelable = false  //외부영역 터치로 사라지지 않음
                     bottomSheet.show(childFragmentManager, bottomSheet.tag)
                 }

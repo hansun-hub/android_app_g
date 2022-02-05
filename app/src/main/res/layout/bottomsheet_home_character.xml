@@ -8,7 +8,7 @@
     app:behavior_hideable="true"
     app:behavior_peekHeight="60dp"
     android:padding="10dp"
-    tools:context=".CharacterBottomSheetFragment">
+    tools:context=".HomeCharBottomSheetFragment">
 
     <ImageButton
         android:id="@+id/home_share_message"
