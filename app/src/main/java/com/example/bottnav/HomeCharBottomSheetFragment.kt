@@ -12,11 +12,12 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HomeCharBottomSheetFragment() : BottomSheetDialogFragment() {
+    // Home - 캐릭터 성장 시 공유 위한 bottom sheet
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(R.layout.bottomsheet_home_character, container, false)
@@ -45,7 +46,7 @@ class HomeCharBottomSheetFragment() : BottomSheetDialogFragment() {
             sending_email.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.shareWithFriend))
             sending_email.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message))
             startActivity(sending_email)
-            home_share_okBtn.setText(getString(R.string.answer_ok))  //버튼 텍스트 "확인"으로 바꿈
+            home_share_okBtn.text = getString(R.string.answer_ok)  //버튼 텍스트 "확인"으로 바꿈
             home_share_okBtn.setOnClickListener {
                 //확인 버튼
                 parentFragmentManager.beginTransaction().remove(this).commit()
@@ -56,7 +57,7 @@ class HomeCharBottomSheetFragment() : BottomSheetDialogFragment() {
             //취소 버튼
             parentFragmentManager.beginTransaction().remove(this).commit()
             parentFragmentManager.popBackStack()
-            Toast.makeText(getActivity(), "공유 취소됨", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "공유 취소됨", Toast.LENGTH_SHORT).show()
         }
         return view
     }

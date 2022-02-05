@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class Menu1CompAdapter(
+    // menu1 도전과제 - COMPLETED 리사이클러 뷰 어댑터
+
     val context: Context,
     val completedList: ArrayList<Menu1Fragment.Challenge>
 ) :
@@ -23,16 +25,16 @@ class Menu1CompAdapter(
 
     // view와 입력되는 데이터 연결
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder?.bind(completedList[position], context)
+        holder.bind(completedList[position])
     }
 
     // 아이템 뷰 저장
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         // textView 레이아웃에 미션 연결
-        val menu1_tvCompletedWork: TextView = itemView?.findViewById(R.id.menu1_tvCompletedWork)
-        fun bind(todo: Menu1Fragment.Challenge, context: Context) {
-            menu1_tvCompletedWork?.setText(todo.contents)
+        val menu1_tvCompletedWork: TextView = itemView.findViewById(R.id.menu1_tvCompletedWork)
+        fun bind(todo: Menu1Fragment.Challenge) {
+            menu1_tvCompletedWork.text = todo.contents
         }
     }
 

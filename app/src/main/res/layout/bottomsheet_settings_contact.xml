@@ -4,10 +4,10 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/bottom_sheet_behavior"
+    android:padding="10dp"
     app:behavior_hideable="true"
     app:behavior_peekHeight="60dp"
-    android:padding="10dp"
+    app:layout_behavior="@string/bottom_sheet_behavior"
     tools:context=".SettingsContactFragment">
 
     <ImageButton
@@ -17,6 +17,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="24dp"
         android:background="#FFFFFF"
+        android:contentDescription="@string/call"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/contact_imgBtnMail"
@@ -31,6 +32,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="24dp"
         android:background="#FFFFFF"
+        android:contentDescription="@string/email"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

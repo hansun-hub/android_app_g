@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 
 class Menu2WriteFragment : Fragment() {
+    // menu2 기록 - 새로운 소감 작성 fragment
 
     lateinit var mainActivity: MainActivity
 
@@ -48,10 +49,10 @@ class Menu2WriteFragment : Fragment() {
             //미션번호의 인덱스 배열을 가져옴
             val missionList2 = dbManager.getSuccessChallenges(selectDate, 'Y')
 
-            var size = missionList2.size
+            val size = missionList2.size
             if (size > 0) {
 
-                var missionArray: Array<String?> = arrayOfNulls(size)
+                val missionArray: Array<String?> = arrayOfNulls(size)
                 for (i in 0 until size) {
                     if (missionList2[i] > 24) {
                         missionArray[i] = dbManager.getCustomChallenge(date, missionList2[i])
@@ -62,18 +63,18 @@ class Menu2WriteFragment : Fragment() {
 
                 //다이얼로그로 성공한 미션들을 띄어줌
                 val builder = AlertDialog.Builder(context)
-                builder.setTitle("미션을 선택해주세요").setItems(
-                    missionArray,
-                    DialogInterface.OnClickListener { dialogInterface, which ->
-                        achvMission.text = missionArray?.get(which)
-                    })
+                builder.setTitle(getString(R.string.menu2_select_challenge)).setItems(
+                    missionArray
+                ) { dialogInterface, which ->
+                    achvMission.text = missionArray[which]
+                }
                 builder.show()
             } else {
                 val builder = AlertDialog.Builder(context)
-                builder.setTitle(" 성취한 미션이 없습니다. \n 일자를 다시 확인해주세요.\n")
-                    .setNegativeButton("확인", DialogInterface.OnClickListener { dialog, id ->
+                builder.setTitle(getString(R.string.menu2_no_completed))
+                    .setNegativeButton(getString(R.string.answer_ok)) { dialog, id ->
 
-                    })
+                    }
                 builder.show()
             }
         }
@@ -81,11 +82,11 @@ class Menu2WriteFragment : Fragment() {
         //소감을 다 기록하고 저장버튼을 클릭했을 때
         write_btnSave.setOnClickListener {
 
-            var title: String = write_editTitle.text.toString()
-            var date: String = write_editDate.text.toString()
-            var contents: String = write_editImpre.text.toString()
-            var score = write_ratingBar3.getRating().toInt()
-            var selected_challenge = achvMission.text.toString()
+            val title: String = write_editTitle.text.toString()
+            val date: String = write_editDate.text.toString()
+            val contents: String = write_editImpre.text.toString()
+            val score = write_ratingBar3.rating.toInt()
+            val selected_challenge = achvMission.text.toString()
 
             if (dbManager.getTitle(date) != null) {
                 // 해당 날짜에 소감이 존재할 경우
@@ -93,7 +94,7 @@ class Menu2WriteFragment : Fragment() {
                     .show()
                 write_editDate.requestFocus()
             } else {
-                if (title.length == 0 || date.length == 0 || contents.length == 0) {
+                if (title.isEmpty() || date.isEmpty() || contents.isEmpty()) {
                     Toast.makeText(context, "빈 칸을 채워주세요.", Toast.LENGTH_SHORT).show()
                 } else {
                     dbManager.addDiary(date, title, contents, score, selected_challenge)
@@ -107,7 +108,12 @@ class Menu2WriteFragment : Fragment() {
 
         //취소버튼을 클릭했을 때
         write_btnCancel.setOnClickListener {
-            (activity as MainActivity).onBackPressed()
+            //안내
+            Toast.makeText(view.context, getString(R.string.cancel_message), Toast.LENGTH_SHORT)
+                .show()
+
+            val menu2Fragment = Menu2Fragment()
+            (activity as MainActivity).replaceFragment(menu2Fragment)
         }
 
         return view

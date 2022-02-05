@@ -13,12 +13,14 @@ import com.example.bottnav.databinding.FragmentMenu1AddTodoBinding
 import java.time.LocalDate
 
 class Menu1AddChallengeFragment : Fragment() {
-    lateinit var binding: FragmentMenu1AddTodoBinding
-    lateinit var mainActivity: MainActivity
+    // menu1 도전과제 - 챌린지를 새로 생성하는 fragment
 
-    lateinit var editTextTodo: EditText
-    lateinit var button_make_todo: Button
-    lateinit var myDB: DBManager
+    private lateinit var binding: FragmentMenu1AddTodoBinding
+    private lateinit var mainActivity: MainActivity
+
+    private lateinit var editTextTodo: EditText
+    private lateinit var button_make_todo: Button
+    private lateinit var myDB: DBManager
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -29,7 +31,7 @@ class Menu1AddChallengeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentMenu1AddTodoBinding.inflate(inflater, container, false)
 
@@ -42,12 +44,18 @@ class Menu1AddChallengeFragment : Fragment() {
         binding.buttonMakeTodo.setOnClickListener {
             contentTodo = editTextTodo.text.toString()
 
-            if (contentTodo.length == 0) {
+            if (contentTodo.isEmpty()) {
                 // 공백일 때 처리할 내용
                 Toast.makeText(activity, "입력하세요", Toast.LENGTH_LONG).show();
             } else {
                 // 공백이 아닐 때 처리할 내용
                 myDB.addCustomChallenge(LocalDate.now().toString(), contentTodo)
+
+                Toast.makeText(
+                    context,
+                    getString(R.string.menu1_add_challenge, contentTodo),
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 val menu1fragment = Menu1Fragment()
                 mainActivity.replaceFragmentExit(menu1fragment)
@@ -55,11 +63,5 @@ class Menu1AddChallengeFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 }

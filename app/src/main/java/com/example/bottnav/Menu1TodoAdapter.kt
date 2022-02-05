@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Menu1TodoAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge>) :
     RecyclerView.Adapter<Menu1TodoAdapter.ViewHolder>() {
+    // menu1 도전과제 - Challenge 리사이클러 뷰 어댑터
 
     val dbManager: DBManager = DBManager(context)
     private var todoList: ArrayList<Menu1Fragment.Challenge>? = list
@@ -54,16 +55,15 @@ class Menu1TodoAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge
         }
 
         holder.checkBox.text = todoList!![position].contents
-        holder?.bind(todoList!![position])
+        holder.bind(todoList!![position])
         holder.setIsRecyclable(false)
     }
 
     // 아이템 뷰 저장
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val layoutTodo: LinearLayout = itemView.findViewById<LinearLayout?>(R.id.layoutTodo)
-        val checkBox: CheckBox = itemView.findViewById<android.widget.CheckBox?>(R.id.checkBox)
-        val deleteButton: Button = itemView.findViewById<android.widget.Button?>(R.id.deleteButton)
+        val checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
+        val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
 
         // 체크박스 레이아웃에 string이 text로 나올 수 있도록 표현
         fun bind(todo: Menu1Fragment.Challenge) {

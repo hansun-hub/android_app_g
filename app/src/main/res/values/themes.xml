@@ -20,15 +20,19 @@
         <item name="android:radioButtonStyle">@style/RadioButtonStyle</item>
         <item name="android:textViewStyle">@style/TextViewStyle</item>
     </style>
+
     <style name="TextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
         <item name="android:fontFamily">@font/jua_regular</item>
     </style>
+
     <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
         <item name="android:fontFamily">@font/jua_regular</item>
     </style>
+
     <style name="EditTextStyle" parent="@style/Widget.AppCompat.EditText">
         <item name="android:fontFamily">@font/jua_regular</item>
     </style>
+
     <style name="RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
         <item name="android:fontFamily">@font/jua_regular</item>
     </style>

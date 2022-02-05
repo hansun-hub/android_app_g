@@ -4,34 +4,24 @@ import android.content.Context
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
-import android.widget.Button
 import com.example.bottnav.databinding.ActivityMainBinding
-import android.widget.CalendarView
-import android.widget.DatePicker
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
-//메인 화면
+
 class MainActivity : AppCompatActivity() {
+    // 메인 액티비티
 
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    //김한선 추가 //주석삭제요망
-    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private lateinit var homeFrag: HomeFragment
+    private lateinit var menu1Frag: Menu1Fragment
+    private lateinit var menu2Frag: Menu2Fragment
+    private lateinit var settingsFrag: SettingsFragment
 
-
-    lateinit var homeFrag: HomeFragment
-    lateinit var menu1Frag: Menu1Fragment
-    lateinit var menu2Frag: Menu2Fragment
-    lateinit var settingsFrag: SettingsFragment
-
-    lateinit var bottomNav: BottomNavigationView
-    lateinit var mPlayer: MediaPlayer
-    var pausePos: Int = 0
+    private lateinit var bottomNav: BottomNavigationView
+    private lateinit var mPlayer: MediaPlayer
+    private var pausePos: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,22 +37,26 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {  //프래그먼트가 유지되어야함
-                //홈 탭을 선택한 경우
+            when (item.itemId) {
+                //홈 메뉴를 선택한 경우
                 R.id.nav_home -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.bottom_container, homeFrag).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.bottom_container, homeFrag).commit()
                 }
-                //도전과제 탭을 선택한 경우
+                //도전과제 메뉴를 선택한 경우
                 R.id.nav_menu1 -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.bottom_container, menu1Frag).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.bottom_container, menu1Frag).commit()
                 }
-                //보상 탭을 선택한 경우
+                //기록 메뉴를 선택한 경우
                 R.id.nav_menu2 -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.bottom_container, menu2Frag).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.bottom_container, menu2Frag).commit()
                 }
-                //설정 탭을 선택한 경우
+                //설정 메뉴를 선택한 경우
                 R.id.nav_settings -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.bottom_container, settingsFrag).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.bottom_container, settingsFrag).commit()
                 }
             }
             true
@@ -72,86 +66,64 @@ class MainActivity : AppCompatActivity() {
         // 저장된 음량 크기 불러와 설정
         val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
         val volume = (sharedPreference.getInt("volume", 0).toDouble() / 10).toFloat()
+
         mPlayer = MediaPlayer.create(this, R.raw.song1)
         mPlayer.isLooping = true
         mPlayer.setVolume(volume, volume)
-        Mstart()
+
+        mStart()
     }
 
-    //menu2인 소감메뉴로 가는 함수
-    fun goMenu2() {
-        val Menu2FragmentFragment = Menu2Fragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.bottom_container, Menu2FragmentFragment) //FrameLayout은 표시 될 곳
-        transaction.addToBackStack("write") //뒤로가는 것 구현
-        transaction.commit()
-    }
-
-    //뒤로가기
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
-    fun Mstop() {
+    fun mStop() {
         mPlayer.stop()
     }
 
-    fun Mstart() {
+    fun mStart() {
         if (!mPlayer.isPlaying) {  //실행중이지 않은 상태
             mPlayer.seekTo(pausePos)
             mPlayer.start()
         }
     }
 
-    fun Mpause() {
-        if (mPlayer != null) {
-            mPlayer.pause()
-            pausePos = mPlayer.currentPosition
-        }
+    fun mPause() {
+        mPlayer.pause()
+        pausePos = mPlayer.currentPosition
     }
 
     // 음악 볼륨 조절
     fun setMvolume(value: Float) {
         mPlayer.setVolume(value, value)
         // sharedPreference 수정
-        val sharedPreference = this!!.getSharedPreferences("current", Context.MODE_PRIVATE)
+        val sharedPreference = this.getSharedPreferences("current", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.remove("volume")
         editor.putFloat("volume", value)
         editor.apply()
     }
 
-    fun ispalying(): Boolean {
-        var play: Boolean = true
-        play = mPlayer.isPlaying
-        return play   //실행 중인 경우 true반환
+    //실행 중인 경우 true반환
+    fun isplaying(): Boolean {
 
-    }
-
-    fun goEditTodo() {
-        val editTodoFragment = Menu1AddChallengeFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.bottom_container, editTodoFragment)
-        transaction.addToBackStack("editTodo")
-        transaction.commit()
+        return mPlayer.isPlaying
     }
 
     // fragment 전환 메소드
-    public fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.bottom_container, fragment)
         fragmentTransaction.addToBackStack("$fragment");
         fragmentTransaction.commit()
     }
-    public fun replaceFragmentExit(fragment: Fragment) {
+
+    fun replaceFragmentExit(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.bottom_container, fragment)
         fragmentTransaction.commit()
     }
 
-    //액티비티가 소멸될 때
+    //액티비티가 소멸될 때 음악이 멈추도록
     override fun onDestroy() {
         super.onDestroy()
         mPlayer.stop()
