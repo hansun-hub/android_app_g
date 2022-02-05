@@ -7,9 +7,9 @@
     android:background="#ffffff"
     android:backgroundTint="#FFFFFF"
     android:clickable="true"
+    android:focusable="true"
     tools:clickable="true"
-    tools:context=".Menu2WriteFragment"
-    android:focusable="true">
+    tools:context=".Menu2WriteFragment">
 
     <TextView
         android:id="@+id/write_tvTitle"

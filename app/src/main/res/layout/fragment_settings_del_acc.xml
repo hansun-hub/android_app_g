@@ -11,7 +11,7 @@
     app:behavior_hideable="true"
     app:behavior_peekHeight="56dp"
     app:layout_behavior="@string/bottom_sheet_behavior"
-    tools:context=".SettingsMyInfoFragment">
+    tools:context=".SettingsDelAccFragment">
 
     <TextView
         android:id="@+id/delacc_tvTitle"

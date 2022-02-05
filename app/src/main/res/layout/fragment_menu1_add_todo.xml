@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:clickable="true"
-    tools:context=".Menu1AddChallengeFragment"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".Menu1AddChallengeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="347dp"

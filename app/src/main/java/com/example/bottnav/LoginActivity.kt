@@ -50,8 +50,15 @@ class LoginActivity : AppCompatActivity() {
         dbHelper = DBHelper(this)
         dbManager = DBManager(this)
 
-        //이미 로그인한 상태라면 바로 메인 화면 진입
+        //이미 로그인한 상태라면 접속 날짜 확인 후 바로 메인 화면 진입
         if (pref.getString("email", "") != "") {
+            if (pref.getString("date", "") != LocalDate.now().toString()) {
+                val editor = pref.edit()
+                editor.remove("date")
+                editor.putString("date", LocalDate.now().toString())
+                editor.apply()
+            }
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -90,11 +97,15 @@ class LoginActivity : AppCompatActivity() {
                     )
                     cursor.moveToNext()
                     if (password != cursor.getString(0)) {  //비밀번호가 맞지 않을 경우
-                        Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
-                    } else {  //로그인 성공
                         Toast.makeText(
                             this,
                             getString(R.string.login_fail_password),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {  //로그인 성공
+                        Toast.makeText(
+                            this,
+                            getString(R.string.login_success),
                             Toast.LENGTH_SHORT
                         ).show()
                         //닉네임,레벨 받아오는 쿼리문

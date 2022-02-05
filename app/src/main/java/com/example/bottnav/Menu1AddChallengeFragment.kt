@@ -51,6 +51,12 @@ class Menu1AddChallengeFragment : Fragment() {
                 // 공백이 아닐 때 처리할 내용
                 myDB.addCustomChallenge(LocalDate.now().toString(), contentTodo)
 
+                Toast.makeText(
+                    context,
+                    getString(R.string.menu1_add_challenge, contentTodo),
+                    Toast.LENGTH_SHORT
+                ).show()
+
                 val menu1fragment = Menu1Fragment()
                 mainActivity.replaceFragmentExit(menu1fragment)
             }

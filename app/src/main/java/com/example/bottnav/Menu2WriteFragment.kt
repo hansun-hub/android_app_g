@@ -108,7 +108,12 @@ class Menu2WriteFragment : Fragment() {
 
         //취소버튼을 클릭했을 때
         write_btnCancel.setOnClickListener {
-            (activity as MainActivity).onBackPressed()
+            //안내
+            Toast.makeText(view.context, getString(R.string.cancel_message), Toast.LENGTH_SHORT)
+                .show()
+
+            val menu2Fragment = Menu2Fragment()
+            (activity as MainActivity).replaceFragment(menu2Fragment)
         }
 
         return view

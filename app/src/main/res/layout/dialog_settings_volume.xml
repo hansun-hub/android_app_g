@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="20dp"
-    tools:context=".VolumeDialogFragment">
+    tools:context=".SettingsVolumeFragment">
 
     <TextView
         android:id="@+id/volume_title"
