@@ -80,7 +80,7 @@ class DBManager(context: Context) {
     public fun getLevel(): Int {
         // 레벨 가져오기
 
-        var levelCount : Int = 0
+        var levelCount: Int = 0
 
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM USERS WHERE email=\'$email\';", null)
@@ -96,11 +96,11 @@ class DBManager(context: Context) {
         return levelCount
     }
 
-    public fun setLevel(levelPrev : Int) {
+    public fun setLevel(levelPrev: Int) {
         // 레벨 설정하기
 
         sqlDB = dbHelper.writableDatabase
-        sqlDB.execSQL("UPDATE USERS SET level='${levelPrev+1}' WHERE email='$email';")
+        sqlDB.execSQL("UPDATE USERS SET level='${levelPrev + 1}' WHERE email='$email';")
 
         sqlDB.close()
     }
@@ -167,7 +167,7 @@ class DBManager(context: Context) {
             for (index in daily[i]) {
                 sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'D', $index, 'N', null);")
             }
-            for (index in weekly[i/7]) {
+            for (index in weekly[i / 7]) {
                 sqlDB.execSQL("INSERT INTO \'ACHIEVE_${user_email}\' VALUES ('$dateToday', 'W', $index, 'N', null);")
             }
             for (index in monthly) {
@@ -249,7 +249,7 @@ class DBManager(context: Context) {
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate';", null)
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             challenges.add(cursor.getInt(cursor.getColumnIndex("i")))
         }
 
@@ -265,11 +265,11 @@ class DBManager(context: Context) {
 
         sqlDB = dbHelper.readableDatabase
         //cursor는 테이블 안에서 한 행을 가리킴
-        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date= '$findDate' and is_achieved = '$char';",null)
+        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date= '$findDate' and is_achieved = '$char';", null)
         //val successMission: String = cursor .getString(cursor.getColumnIndex("i"))
         var successMission = ArrayList<Int>() //배열 미리 생성
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             //getColumnIndex는 이름으로 부터 컬럼번호를 구한다.
             //val missionNum = cursor.getString()  //2번은 i, 미션넘버를 가리킴
             successMission.add(cursor.getInt(cursor.getColumnIndex("i")))
@@ -350,7 +350,7 @@ class DBManager(context: Context) {
         sqlDB.close()
         cursor.close()
 
-       return null
+        return null
     }
 
     @SuppressLint("Range")
@@ -362,7 +362,7 @@ class DBManager(context: Context) {
 
         var dates = ArrayList<String>()
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             dates.add(cursor.getString(cursor.getColumnIndex("date")))
         }
 
