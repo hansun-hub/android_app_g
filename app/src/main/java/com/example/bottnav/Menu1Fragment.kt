@@ -1,7 +1,9 @@
 package com.example.bottnav
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -96,6 +98,35 @@ class Menu1Fragment : Fragment() {
 
         adapter1.setOnItemClickListener(object: TodoListAdapter.OnItemClickListener {
             override fun onItemClick(v: View, todo: Challenge, position: Int) {
+                //문구 표시
+                val builder = AlertDialog.Builder(context)
+                var selectChallenge = todo.contents
+                builder.setTitle(selectChallenge + ", 이 challenge를 정말 달성하셨습니까? ✔ ")
+                        .setPositiveButton("YES", DialogInterface.OnClickListener { dialog, id ->
+                            // 달성
+                            recyclerTodo.adapter = adapter1
+                            recyclerComp.adapter = adapter2
+
+                            // DB 수정
+                            dbManager.setIsAchieved(todo.index)
+                            dbManager.setLevel(dbManager.getLevel())
+
+                            // 배열 수정
+                            completedChallenges.add(0, notyetChallenges[position])
+                            notyetChallenges.remove(notyetChallenges[position])
+
+                            adapter1.notifyDataSetChanged()
+                            adapter2.notifyDataSetChanged()
+                            //finish()
+                        })
+                        .setNegativeButton("No", DialogInterface.OnClickListener { dialog, id ->
+                            // 취소버튼
+                            //finish()
+                        })
+                // 다이얼로그를 띄워주기
+                builder.show()
+
+                /*
                 // 달성
                 recyclerTodo.adapter = adapter1
                 recyclerComp.adapter = adapter2
@@ -109,10 +140,41 @@ class Menu1Fragment : Fragment() {
                 notyetChallenges.remove(notyetChallenges[position])
 
                 adapter1.notifyDataSetChanged()
-                adapter2.notifyDataSetChanged()
+                adapter2.notifyDataSetChanged()*/
             }
 
             override fun onItemDeleteClick(v: View, todo: Challenge, position: Int) {
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle(" challenge를 삭제하시겠습니까? 😮 ")
+                        .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
+                            // 삭제
+                            recyclerTodo.adapter = adapter1
+                            recyclerComp.adapter = adapter2
+
+                            if (todo.index > 24) {
+                                // DB 수젇
+                                dbManager.delCustomChallenge(date, todo.index)
+
+                                // 배열 수정
+                                notyetChallenges.remove(notyetChallenges[position])
+
+                                Toast.makeText(view.context, "삭제했습니다.", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(view.context, "삭제가 불가능한 미션입니다.", Toast.LENGTH_SHORT).show()
+                            }
+
+                            adapter1.notifyDataSetChanged()
+                            // DB에서 삭제 진행
+                           // dbManager.delDiary(date)
+                            //finish()
+                        })
+                        .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
+                            // 취소버튼
+                            //finish()
+                        })
+                // 다이얼로그를 띄워주기
+                builder.show()
+                /*
                 // 삭제
                 recyclerTodo.adapter = adapter1
                 recyclerComp.adapter = adapter2
@@ -129,7 +191,7 @@ class Menu1Fragment : Fragment() {
                     Toast.makeText(view.context, "삭제가 불가능한 미션입니다.", Toast.LENGTH_SHORT).show()
                 }
 
-                adapter1.notifyDataSetChanged()
+                adapter1.notifyDataSetChanged()*/
             }
         })
 

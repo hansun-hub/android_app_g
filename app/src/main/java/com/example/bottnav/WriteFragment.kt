@@ -14,7 +14,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.example.bottnav.databinding.FragmentWriteBinding
+//import com.example.bottnav.databinding.FragmentWriteBinding
 
 //import com.example.bottnav.databinding.FragmentWriteBinding
 
@@ -22,7 +22,7 @@ import com.example.bottnav.databinding.FragmentWriteBinding
 
 class WriteFragment : Fragment() {
 
-    lateinit var binding: FragmentWriteBinding //삭제요망
+    //lateinit var binding: FragmentWriteBinding //삭제요망
     lateinit var mainActivity: MainActivity
     lateinit var dbHelper: DBHelper //삭제요망
     //private val dbHelper = context?.let { DBHelper(it) } //삭제요망

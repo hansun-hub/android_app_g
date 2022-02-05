@@ -304,6 +304,7 @@ class DBManager(context: Context) {
         return null
     }
 
+    //달성한 미션들 가져오기
     @SuppressLint("Range")
     public fun getIsAchieved(findDate: String, i: Int): Char? {
         sqlDB = dbHelper.readableDatabase
@@ -330,6 +331,7 @@ class DBManager(context: Context) {
         sqlDB = dbHelper.writableDatabase
         sqlDB.execSQL("UPDATE \'ACHIEVE_$email\' SET is_achieved='Y' WHERE date='$date' and i=$i;")
     }
+
 
     @SuppressLint("Range")
     public fun getTitle(findDate: String): String? {
