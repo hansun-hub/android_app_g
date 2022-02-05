@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RatingBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 //import com.example.bottnav.databinding.FragmentWriteBinding
 
@@ -58,20 +55,17 @@ class WriteFragment : Fragment() {
         //수정함2
         val selectButton = view.findViewById<Button>(R.id.write_btnSelect)
         val achvMission = view.findViewById<TextView>(R.id.write_tvAchvMission)
-        val write_btnSave = view.findViewById<TextView>(R.id.write_btnSave)
+        val write_btnSave = view.findViewById<Button>(R.id.write_btnSave)
 
-        val write_editDate = view.findViewById<TextView>(R.id.write_editDate)
-        val write_editTitle = view.findViewById<TextView>(R.id.write_editTitle)
-        val write_editImpre = view.findViewById<TextView>(R.id.write_editImpre)
+        val write_editDate = view.findViewById<EditText>(R.id.write_editDate)
+        val write_editTitle = view.findViewById<EditText>(R.id.write_editTitle)
+        val write_editImpre = view.findViewById<EditText>(R.id.write_editImpre)
         val write_ratingBar3 = view.findViewById<RatingBar>(R.id.write_ratingBar3)
         val write_btnCancel = view.findViewById<Button>(R.id.write_btnCancel)
         //
         //원래 이게 맞는데 넣으면 오류나서 앱꺼짐
         //val missionList = dbManager.getChallenges("daily")
-
-        val missionList = dbManager.getTips("tip")
-
-
+        //val missionList = dbManager.getTips("tip")
         //var colorArray: Array<String> = arrayOf("치어(어린생선)나 생선알은 먹지 않기","프린트 할 때는 양면 인쇄 하기","환경 관련 뉴스에 관심 기울이며 가족과 친구들에게 환경 뉴스 공유하기")
         //var colorArray: Array<String> = arrayOf(missionList)
 
@@ -85,26 +79,40 @@ class WriteFragment : Fragment() {
             //dbManager.setIsAchieved(13)
             //dbManager.setIsAchieved(6)
 
+            val sellectDate  = write_editDate.text.toString()
+
+            //Toast.makeText(context,sellectDate,Toast.LENGTH_SHORT).show()
             //미션번호의 인덱스 배열을 가져옴
-            val missionList2 = dbManager.getSuccessChallenges(date,'Y')
+            val missionList2 = dbManager.getSuccessChallenges(sellectDate,'Y')
             //Toast.makeText(context, date, Toast.LENGTH_SHORT).show()
 
             var size = missionList2.size
-            var missionArray: Array<String?> = arrayOfNulls(size)
-            for(i in 0 until size) {
-                if (missionList2[i] > 24) {
-                    missionArray[i] = dbManager.getCustomChallenge(date, missionList2[i])
-                } else {
-                    missionArray[i] = dbManager.getChallenge(missionList2[i])
+            if(size>0){
+
+                var missionArray: Array<String?> = arrayOfNulls(size)
+                for(i in 0 until size) {
+                    if (missionList2[i] > 24) {
+                        missionArray[i] = dbManager.getCustomChallenge(date, missionList2[i])
+                    } else {
+                        missionArray[i] = dbManager.getChallenge(missionList2[i])
+                    }
                 }
+
+                //다이얼로그로 성공한 미션들을 띄어줌
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle("미션을 선택해주세요").setItems(missionArray, DialogInterface.OnClickListener { dialogInterface, which ->
+                    achvMission.text = missionArray?.get(which)
+                })
+                builder.show()
+            }
+            else{
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle(" 성취한 미션이 없습니다. \n 일자를 다시 확인해주세요.\n").setNegativeButton("확인", DialogInterface.OnClickListener { dialog, id ->
+
+                })
+                builder.show()
             }
 
-            //다이얼로그로 성공한 미션들을 띄어줌
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle("미션을 선택해주세요").setItems(missionArray, DialogInterface.OnClickListener { dialogInterface, which ->
-                achvMission.text = missionArray?.get(which)
-            })
-            builder.show()
         }
 
         //소감을 다 기록하고 저장버튼을 클릭했을 때
