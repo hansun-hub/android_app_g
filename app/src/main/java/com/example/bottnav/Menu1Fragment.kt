@@ -1,14 +1,19 @@
 package com.example.bottnav
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CalendarView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -97,41 +102,78 @@ class Menu1Fragment : Fragment() {
         adapter1.setOnItemClickListener(object: TodoListAdapter.OnItemClickListener {
             override fun onItemClick(v: View, todo: Challenge, position: Int) {
                 // 달성
-                recyclerTodo.adapter = adapter1
-                recyclerComp.adapter = adapter2
+                val completeDialog: AlertDialog? = activity?.let {
+                    val builder = AlertDialog.Builder(context)
+                    builder.setTitle(getString(R.string.menu1_complete_title))
+                            .setMessage(getString(R.string.menu1_complete_message, todo.contents))
+                            .setPositiveButton(R.string.answer_yes, DialogInterface.OnClickListener { dialog, id ->
+                                // 예
+                                // 달성
+                                recyclerTodo.adapter = adapter1
+                                recyclerComp.adapter = adapter2
 
-                // DB 수정
-                dbManager.setIsAchieved(todo.index)
-                dbManager.setLevel(dbManager.getLevel())
+                                // DB 수정
+                                dbManager.setIsAchieved(todo.index)
+                                dbManager.setLevel(dbManager.getLevel())
 
-                // 배열 수정
-                completedChallenges.add(0, notyetChallenges[position])
-                notyetChallenges.remove(notyetChallenges[position])
+                                // 배열 수정
+                                completedChallenges.add(0, notyetChallenges[position])
+                                notyetChallenges.remove(notyetChallenges[position])
 
-                adapter1.notifyDataSetChanged()
-                adapter2.notifyDataSetChanged()
+                                // adapter에서 데이터 변화 확인
+                                adapter1.notifyDataSetChanged()
+                                adapter2.notifyDataSetChanged()
 
-                Toast.makeText(view.context, "${todo.contents} 성공!", Toast.LENGTH_SHORT).show()
+                                // 성공 안내
+                                Toast.makeText(view.context, "${getString(R.string.menu1_challenge_comp, todo.contents)}", Toast.LENGTH_SHORT).show()
+                            })
+                            .setNegativeButton(R.string.answer_no, DialogInterface.OnClickListener { dialog, id ->
+                                // 아니오
+
+                                // 안내
+                                Toast.makeText(view.context, "${getString(R.string.menu1_challenge_uncomp)}", Toast.LENGTH_SHORT).show()
+                            })
+                    // 다이얼로그를 띄워주기
+                    builder.show()
+                }
+                completeDialog?.show()
+
+                var menu1_tvDialogcomp = completeDialog?.findViewById<TextView>(android.R.id.message)
+                menu1_tvDialogcomp?.typeface = Typeface.createFromAsset(view.context.assets,"jua_regular.ttf")
             }
 
             override fun onItemDeleteClick(v: View, todo: Challenge, position: Int) {
                 // 삭제
-                recyclerTodo.adapter = adapter1
-                recyclerComp.adapter = adapter2
-
                 if (todo.index > 24) {
-                    // DB 수젇
-                    dbManager.delCustomChallenge(date, todo.index)
+                    val delDialog: AlertDialog? = activity?.let {
+                        val builder = AlertDialog.Builder(context)
+                        builder.setTitle(getString(R.string.menu1_challenge_del_title))
+                                .setMessage(getString(R.string.menu1_challenge_del_message, todo.contents))
+                                .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
+                                    // 예
+                                    // DB 수젇
+                                    dbManager.delCustomChallenge(date, todo.index)
 
-                    // 배열 수정
-                    notyetChallenges.remove(notyetChallenges[position])
+                                    // 배열 수정
+                                    notyetChallenges.remove(notyetChallenges[position])
 
-                    Toast.makeText(view.context, "삭제했습니다.", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(view.context, "삭제했습니다.", Toast.LENGTH_SHORT).show()
+
+                                    adapter1.notifyDataSetChanged()
+                                })
+                                .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
+                                    // 취소
+                                })
+                        // 다이얼로그를 띄워주기
+                        builder.show()
+                    }
+                    delDialog?.show()
+
+                    var menu1_tvDialogdel = delDialog?.findViewById<TextView>(android.R.id.message)
+                    menu1_tvDialogdel?.typeface = Typeface.createFromAsset(view.context.assets,"jua_regular.ttf")
                 } else {
                     Toast.makeText(view.context, "삭제가 불가능한 미션입니다.", Toast.LENGTH_SHORT).show()
                 }
-
-                adapter1.notifyDataSetChanged()
             }
         })
 

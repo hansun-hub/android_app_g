@@ -27,7 +27,8 @@ class SettingsDelAccFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings_del_acc, container, false)
-        val sharedPreference = requireContext().getSharedPreferences("current", Context.MODE_PRIVATE)
+
+        val sharedPreference = requireContext().getSharedPreferences("current", Context.MODE_PRIVATE)   // sharedPreferences에서 nickname 가져오기
         val nickname = sharedPreference.getString("nickname", "")
 
         val delacc_tvTitle = view.findViewById<TextView>(R.id.delacc_tvTitle)           // 닉네임
@@ -41,7 +42,7 @@ class SettingsDelAccFragment : Fragment() {
         val delacc_btn3 = view.findViewById<Button>(R.id.delacc_btn3)                   // 입력
         val delacc_btn4 = view.findViewById<Button>(R.id.delacc_btn4)                   // 확인
 
-        val dbManager = DBManager(requireContext())
+        val dbManager = DBManager(requireContext())                                     // DB Manager
 
         // 닉네임 불러오기 (**님!)
         delacc_tvTitle.setText(getString(R.string.call_nickname, nickname) + "!")
@@ -87,8 +88,9 @@ class SettingsDelAccFragment : Fragment() {
                 // USERS에서 삭제, ACHIEVE&DIARY 테이블 삭제 -> Preference 삭제
                 dbManager.delUser()
                 val pref = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
-                pref.edit().clear()
-                pref.edit().apply()
+                val editor = pref.edit()
+                editor.clear()
+                editor.apply()
             } else {
                 // 실패
                 delacc_edtPassword.setText("")
