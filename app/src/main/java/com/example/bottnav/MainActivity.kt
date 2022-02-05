@@ -105,13 +105,8 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-
     override fun onBackPressed() {
         super.onBackPressed()
-    }
-
-    fun goBack() {
-        onBackPressed()
     }
 
     fun Mstop() {
@@ -164,6 +159,12 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.bottom_container, fragment)
         fragmentTransaction.addToBackStack("$fragment");
+        fragmentTransaction.commit()
+    }
+    public fun replaceFragmentExit(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.bottom_container, fragment)
         fragmentTransaction.commit()
     }
 

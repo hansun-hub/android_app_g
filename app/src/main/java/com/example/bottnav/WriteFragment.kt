@@ -121,7 +121,8 @@ class WriteFragment : Fragment() {
                 else {
                     dbManager.addDiary(date, title, contents, score,selected_challenge)
                     Toast.makeText(context, "소감이 저장되었습니다..",Toast.LENGTH_SHORT).show()
-                    mainActivity.goMenu2()
+                    val menu2Fragment = Menu2Fragment()
+                    mainActivity.replaceFragmentExit(menu2Fragment)
                 }
             }
         }

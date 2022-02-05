@@ -1,5 +1,5 @@
 package com.example.bottnav
-
+//**********삭제 필요**********
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater

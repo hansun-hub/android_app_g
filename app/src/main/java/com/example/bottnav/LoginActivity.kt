@@ -147,4 +147,11 @@ class LoginActivity : AppCompatActivity() {
         //val dbManager = DBManager(this)
         //dbManager.newUser(email, nickname, "1234")
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity();
+        System.runFinalization();
+        System.exit(0);
+    }
 }

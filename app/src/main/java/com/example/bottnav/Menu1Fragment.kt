@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,9 +49,9 @@ class Menu1Fragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // db에서 미션 배열 가져오기
         val view = inflater.inflate(R.layout.fragment_menu1, container, false)
@@ -110,6 +111,8 @@ class Menu1Fragment : Fragment() {
 
                 adapter1.notifyDataSetChanged()
                 adapter2.notifyDataSetChanged()
+
+                Toast.makeText(view.context, "${todo.contents} 성공!", Toast.LENGTH_SHORT).show()
             }
 
             override fun onItemDeleteClick(v: View, todo: Challenge, position: Int) {
@@ -177,8 +180,9 @@ class Menu1Fragment : Fragment() {
         }
 
         btnAdd.setOnClickListener {
-            // 사용자 생성 미션
-            mainActivity.goEditTodo()
+            //화면 전환 (editTodoFragment로)
+            val editToDoFragment = EditTodoFragment()
+            mainActivity.replaceFragmentExit(editToDoFragment)
         }
 
         btnComp.setOnClickListener {
@@ -220,9 +224,9 @@ class Menu1Fragment : Fragment() {
     }
 
     data class Challenge(
-            var contents: String,
-            var index: Int,
-            var isToday: Boolean
+        var contents: String,
+        var index: Int,
+        var isToday: Boolean
     )
 
     inner class missionsPerDay(findDate: String?) {
@@ -357,6 +361,5 @@ class Menu1Fragment : Fragment() {
                 }
             }
         }
-
     }
 }
