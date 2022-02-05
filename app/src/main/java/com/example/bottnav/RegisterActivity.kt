@@ -35,18 +35,18 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        register_editNickname = findViewById(R.id.register_editNickname)
-        register_editId = findViewById(R.id.register_editId)
-        register_btnDouCheck = findViewById(R.id.register_btnDouCheck)
-        register_editPwd = findViewById(R.id.register_editPwd)
-        register_editPwdcheck = findViewById(R.id.register_editPwdcheck)
-        register_btnRegister = findViewById(R.id.register_btnRegister)
+        register_editNickname = findViewById<EditText>(R.id.register_editNickname)
+        register_editId = findViewById<EditText>(R.id.register_editId)
+        register_btnDouCheck = findViewById<Button>(R.id.register_btnDouCheck)
+        register_editPwd = findViewById<EditText>(R.id.register_editPwd)
+        register_editPwdcheck = findViewById<EditText>(R.id.register_editPwdcheck)
+        register_btnRegister = findViewById<Button>(R.id.register_btnRegister)
 
         dbHelper = DBHelper(this)
         dbManager= DBManager(this)
 
 
-        //회원가입 확인 코드
+        //중복 확인 코드
         register_btnDouCheck.setOnClickListener {
             email = register_editId.text.toString()
             sqlDB = dbHelper.writableDatabase
@@ -76,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
                             if (password.equals(passwordCheck)) {
                                 //회원가입 코드
                                 dbManager.newUser(email, nickname, password)
-                                Toast.makeText(this, "회원 가입 성공.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "회원 가입 성공", Toast.LENGTH_SHORT).show()
                                 //db저장 완료된 상태. 로그인액티비티로 이동
                                 var intent = Intent(this, LoginActivity::class.java)
                                 intent.putExtra("email", email)
@@ -86,13 +86,12 @@ class RegisterActivity : AppCompatActivity() {
                             } else {
                                 Toast.makeText(this, "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show()
                             }
-                            //Toast.makeText(this, "문제.",Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             }
         }
-
+        //중복확인 버튼 누르기 전 회원가입하기 버튼 클릭 시
         register_btnRegister.setOnClickListener {
             Toast.makeText(this, "중복 확인을 먼저 해주세요",Toast.LENGTH_SHORT).show()
         }

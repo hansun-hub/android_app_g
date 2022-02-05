@@ -99,7 +99,7 @@ class SettingsDelAccFragment : Fragment() {
         }
 
         delacc_btn4.setOnClickListener {
-            // Login 화면으로 전환
+            // 확인 버튼 클릭 시 Login 화면으로 전환
             val intent = Intent(view.context, LoginActivity::class.java)
 
             startActivity(intent)

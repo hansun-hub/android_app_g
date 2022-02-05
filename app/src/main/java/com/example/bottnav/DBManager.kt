@@ -336,7 +336,6 @@ class DBManager(context: Context) {
         return null
     }
 
-    //달성한 미션들 가져오기
     @SuppressLint("Range")
     public fun getIsAchieved(findDate: String, i: Int): Char? {
         // DB로부터 해당 날짜의 챌린지 달성 정보 가져오기
@@ -369,7 +368,6 @@ class DBManager(context: Context) {
         sqlDB.close()
     }
 
-
     @SuppressLint("Range")
     public fun getTitle(findDate: String): String? {
         // 해당 날짜에 저장된 소감 제목 가져오기
@@ -389,7 +387,7 @@ class DBManager(context: Context) {
         sqlDB.close()
         cursor.close()
 
-        return null
+       return null
     }
 
     @SuppressLint("Range")

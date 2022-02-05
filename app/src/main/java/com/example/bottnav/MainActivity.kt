@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-        //김한선 수정함 //주석삭제요망
         setContentView(binding.root)
 
         homeFrag = HomeFragment()
@@ -78,8 +76,6 @@ class MainActivity : AppCompatActivity() {
         mPlayer.isLooping = true
         mPlayer.setVolume(volume, volume)
         Mstart()
-
-
     }
 
     //menu2인 소감메뉴로 가는 함수
