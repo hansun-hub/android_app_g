@@ -46,11 +46,11 @@
         app:layout_constraintBottom_toTopOf="@+id/home_btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvTop"
         tools:srcCompat="@drawable/tree" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/menu2Detail_tvTop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"

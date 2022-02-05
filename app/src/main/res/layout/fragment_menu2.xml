@@ -14,25 +14,25 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/menu2_btnAdd"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="4dp"
             android:background="@android:drawable/ic_input_add"
-            app:layout_constraintBaseline_toBaselineOf="@+id/menu2_tvTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/menu2_tvTitle" />
+            app:layout_constraintStart_toEndOf="@+id/menu2_tvTitle"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/menu2_tvTitle"
-            android:layout_width="302dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="301dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
             android:text="@string/menu2_title"
             android:textSize="27sp"
-            app:layout_constraintBottom_toBottomOf="@+id/button4"
-            app:layout_constraintEnd_toStartOf="@+id/button4"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/menu2_btnAdd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,11 +51,10 @@
             android:id="@+id/menu2_tvLastRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
             android:text="지난 기록 확인🎉"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menu2_tvTitle" />
 

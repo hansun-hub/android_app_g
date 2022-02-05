@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/home_share_email" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/menu2Detail_tvTitle1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
