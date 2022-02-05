@@ -83,7 +83,7 @@ class SettingsTipsFragment : Fragment() {
 
         override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(myContext)
-            val layout = layoutInflater.inflate(R.layout.settings_tips_list, viewGroup, false)
+            val layout = layoutInflater.inflate(R.layout.layout_settings_list_item, viewGroup, false)
             val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
 
             tips_list_tv.setPadding(20)

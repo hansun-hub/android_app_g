@@ -6,11 +6,11 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 
-class CharacterDialog(context: Context) {
+class HomeCharDialog(context: Context) {
     private val dialog = Dialog(context)
 
     fun showDialog(res: Int) {
-        dialog.setContentView(R.layout.dialog_character)
+        dialog.setContentView(R.layout.dialog_home_character)
         dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT)
         dialog.setCanceledOnTouchOutside(false)   //외부 클릭으로 사라지지 않음

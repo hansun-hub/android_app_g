@@ -105,7 +105,7 @@ class SettingsFragment : Fragment() {
             when (position) {
                 0 -> {
                     // 음량 조절 선택 시
-                    val volume_fragment = VolumeDialogFragment(view.context)
+                    val volume_fragment = SettingsVolumeFragment(view.context)
                     volume_fragment.show(childFragmentManager, null)
                 }
                 1 -> {
@@ -241,7 +241,7 @@ class SettingsFragment : Fragment() {
 
         override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(myContext)
-            val layout = layoutInflater.inflate(R.layout.settings_tips_list, viewGroup, false)
+            val layout = layoutInflater.inflate(R.layout.layout_settings_list_item, viewGroup, false)
 
             val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
             tips_list_tv.textSize = 20F

@@ -11,7 +11,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CharacterBottomSheetFragment() : BottomSheetDialogFragment() {
+class HomeCharBottomSheetFragment() : BottomSheetDialogFragment() {
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -19,7 +19,7 @@ class CharacterBottomSheetFragment() : BottomSheetDialogFragment() {
             savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view = inflater.inflate(R.layout.fragment_character_bottomsheet, container, false)
+        val view = inflater.inflate(R.layout.bottomsheet_home_character, container, false)
         val home_share_okBtn = view.findViewById<Button>(R.id.home_share_okBtn)
         val home_share_message = view.findViewById<ImageButton>(R.id.home_share_message)
         val home_share_email = view.findViewById<ImageButton>(R.id.home_share_email)
