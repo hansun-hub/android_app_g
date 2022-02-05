@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 
 //지난 기록을 디테일하게 볼 수 있는 Activity
 class menu2_DetailActivity : AppCompatActivity() {
@@ -53,6 +54,7 @@ class menu2_DetailActivity : AppCompatActivity() {
                     .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, id ->
                         // DB에서 삭제 진행
                         dbManager.delDiary(date)
+                        Toast.makeText(this, "소감이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
                         finish()
                     })
                     .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
