@@ -4,7 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,12 +25,9 @@ class SettingsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
-
         val dbManager = DBManager(view.context)
-        val sharedPreference = view.context.getSharedPreferences("current", Context.MODE_PRIVATE)
-        val email = sharedPreference.getString("email", "")
+        val sharedPreference = view.context.getSharedPreferences("current", Context.MODE_PRIVATE)   // Shared Preferences에서 닉네임 가져오기
         var nickname = sharedPreference.getString("nickname", "")
-        var date = sharedPreference.getString("date", "")
 
         val settings_btn1 = view.findViewById<Button>(R.id.settings_btn1)   // 닉네임 변경
         val settings_btn2 = view.findViewById<Button>(R.id.settings_btn2)   // 회원 탈퇴
@@ -37,45 +36,62 @@ class SettingsFragment : Fragment() {
         settings_btn1.text = getString(R.string.call_nickname, nickname)
 
         settings_btn1.setOnClickListener {
-
             // 닉네임 변경
-            val nicknameDialog = AlertDialog.Builder(it.context)
+            val nicknameDialog: AlertDialog? = activity?.let {
+                val builder = AlertDialog.Builder(it)
+                builder.apply {
+                    val input = EditText(it)
+                    setTitle(R.string.settings_nickname)
+                    setMessage(R.string.settings_nickname_message)
+                    setView(input)
 
-            nicknameDialog.apply {
-                setTitle(R.string.settings_nickname_title)
-                setMessage(R.string.settings_nickname_message)
+                    setNegativeButton(getString(R.string.answer_enter)) { dialog, which ->
+                        // 입력
 
-                val input = EditText(it.context)
-                setView(input)
+                        var newNickname = input.text.toString()
 
-                setNegativeButton(getString(R.string.answer_enter)) { dialog, which ->
-                    var newNickname = input.text.toString()
+                        if (newNickname == "") {
+                            // 닉네임이 공란일 때
+                            Toast.makeText(it, "닉네임 저장에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        } else if (newNickname.length > 15) {
+                            // 닉네임이 너무 길 때
+                            Toast.makeText(it, "올바르지 않은 닉네임 입니다.", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // 올바른 입력
 
-                    // nickname 대입
-                    nickname = newNickname
+                            // nickname 대입
+                            nickname = newNickname
 
-                    // sharedPreference 수정
-                    val editor = sharedPreference.edit()
-                    editor.remove("nickname")
-                    editor.putString("nickname", nickname)
-                    editor.apply()
+                            // sharedPreference 수정
+                            val editor = sharedPreference.edit()
+                            editor.remove("nickname")
+                            editor.putString("nickname", nickname)
+                            editor.apply()
 
-                    // DB 수정
-                    dbManager.setNickname(nickname!!)
+                            // DB 수정
+                            dbManager.setNickname(nickname!!)
 
-                    // info 수정
-                    settings_btn1.text = getString(R.string.call_nickname, nickname)
+                            // info 수정
+                            settings_btn1.text = getString(R.string.call_nickname, nickname)
 
-                    // 알림
-                    Toast.makeText(it.context, "닉네임이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                            // 알림
+                            Toast.makeText(it, "닉네임이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    setPositiveButton(getString(R.string.answer_cancel)) { dialog, which ->
+                        // 취소
+                        dialog.cancel()
+                    }
                 }
-                setPositiveButton(getString(R.string.answer_cancel)) { dialog, which ->
-                    dialog.cancel()
-                }
-
-                nicknameDialog.show()
+                builder.create()
             }
+            nicknameDialog?.show()
+
+            // 폰트 설정
+            var settings_tvDialogNickname = nicknameDialog?.findViewById<TextView>(android.R.id.message)
+            settings_tvDialogNickname?.typeface = Typeface.createFromAsset(view.context.assets, "jua_regular.ttf")
         }
+
 
         settings_btn2.setOnClickListener {
             // 회원 탈퇴 fragment 실행
@@ -84,7 +100,7 @@ class SettingsFragment : Fragment() {
         }
 
         listview.adapter = MyAdapter(view.context)
-        listview.onItemClickListener =  AdapterView.OnItemClickListener { parent, view, position, id ->
+        listview.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             // 메뉴 리스트
             when (position) {
                 0 -> {
@@ -111,6 +127,10 @@ class SettingsFragment : Fragment() {
                         builder.create()
                     }
                     versionDialog?.show()
+
+                    // 폰트 설정
+                    var settings_tvDialogVersion = versionDialog?.findViewById<TextView>(android.R.id.message)
+                    settings_tvDialogVersion?.typeface = Typeface.createFromAsset(view.context.assets, "jua_regular.ttf")
                 }
                 3 -> {
                     // Contact 선택 시
@@ -130,10 +150,13 @@ class SettingsFragment : Fragment() {
                         builder.create()
                     }
                     aboutUsDialog?.show()
+
+                    // 폰트 설정
+                    var settings_tvDialogAboutUs = aboutUsDialog?.findViewById<TextView>(android.R.id.message)
+                    settings_tvDialogAboutUs?.typeface = Typeface.createFromAsset(view.context.assets, "jua_regular.ttf")
                 }
                 5 -> {
                     // Log out 선택 시
-
                     // popup dialog
                     val logoutDialog: AlertDialog? = activity?.let {
                         val builder = AlertDialog.Builder(it)
@@ -156,21 +179,23 @@ class SettingsFragment : Fragment() {
                                         editor.clear()
                                         editor.apply()
 
+                                        Toast.makeText(view.context, "정상적으로 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+
                                         // Login 화면으로 전환
                                         val intent = Intent(view.context, LoginActivity::class.java)
                                         (activity as MainActivity).Mstop()
                                         startActivity(intent)
                                     })
                         }
-
                         builder.create()
                     }
-
                     logoutDialog?.show()
+
+                    // 폰트 설정
+                    var settings_tvDialogLogout = logoutDialog?.findViewById<TextView>(android.R.id.message)
+                    settings_tvDialogLogout?.typeface = Typeface.createFromAsset(view.context.assets, "jua_regular.ttf")
                 }
             }
-
-
         }
 
         // Inflate the layout for this fragment
@@ -178,15 +203,6 @@ class SettingsFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
                 SettingsFragment().apply {
@@ -229,7 +245,7 @@ class SettingsFragment : Fragment() {
 
             val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
             tips_list_tv.textSize = 20F
-            tips_list_tv.text = list.get(position)
+            tips_list_tv.text = list[position]
 
             return layout
         }

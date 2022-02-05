@@ -1,5 +1,6 @@
 package com.example.bottnav;
 
+//**********파일 삭제 필요**********
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

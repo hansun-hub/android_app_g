@@ -7,17 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.TextView
-
+//아마 파일 삭제 해도 될것
 class menu2_diaryDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
-
+/*
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -43,7 +40,7 @@ class menu2_diaryDetailFragment : Fragment() {
 
         return view
 
-    }
+    }*/
 
     companion object {
         /**
