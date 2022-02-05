@@ -11,31 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
-//import com.example.bottnav.databinding.FragmentWriteBinding
-
-//import com.example.bottnav.databinding.FragmentWriteBinding
-
-//위에 import중에 삭제 요먕
 
 class WriteFragment : Fragment() {
 
-    //lateinit var binding: FragmentWriteBinding //삭제요망
     lateinit var mainActivity: MainActivity
     lateinit var dbHelper: DBHelper //삭제요망
-    //private val dbHelper = context?.let { DBHelper(it) } //삭제요망
-
-    //lateinit var sqlDB: SQLiteDatabase //삭제요망
-
-    //필요없는 줄 삭제
-
+  
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(context is MainActivity) mainActivity = context
     }
-
-    //수정2
-    //lateinit var achvMission: TextView //삭제요망
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -71,14 +56,7 @@ class WriteFragment : Fragment() {
 
         //성취미션선택 버튼 클릭시
         selectButton.setOnClickListener {
-
-            //test를 위해 임의로 성공으로 설정 해놓음
-            //dbManager.setIsAchieved(8)
-            //dbManager.setIsAchieved(0)
-            //dbManager.setIsAchieved(3)
-            //dbManager.setIsAchieved(13)
-            //dbManager.setIsAchieved(6)
-
+          
             val sellectDate  = write_editDate.text.toString()
 
             //Toast.makeText(context,sellectDate,Toast.LENGTH_SHORT).show()
@@ -134,31 +112,24 @@ class WriteFragment : Fragment() {
                 }
                 else {
                     dbManager.addDiary(date, title, contents, score,selected_challenge)
-                    Toast.makeText(context, "소감이 저장되었습니다.",Toast.LENGTH_SHORT).show()
-                    mainActivity.goMenu2()
+                    Toast.makeText(context, "소감이 저장되었습니다..",Toast.LENGTH_SHORT).show()
+                    val menu2Fragment = Menu2Fragment()
+                    mainActivity.replaceFragmentExit(menu2Fragment)
+
                 }
             }
         }
 
         //취소버튼을 클릭했을 때
         write_btnCancel.setOnClickListener {
-            //(activity as MainActivity).goBack()
             (activity as MainActivity).onBackPressed()
         }
 
-        //binding = FragmentWriteBinding.inflate(inflater, container, false)
-        //return binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //삭제요망
-        /*binding.selectButton.setOnClickListener {
-            //mainActivity.goWrite()
-        }*/
-
     }
 
 }

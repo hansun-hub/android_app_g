@@ -64,7 +64,7 @@ class Menu2Fragment : Fragment() {
         //추가 버튼 클릭시 writeFragment로 화면 전환
         menu2_btnAdd.setOnClickListener{
             val writeFragment = WriteFragment()
-            (activity as MainActivity).replaceFragment(writeFragment)
+            mainActivity.replaceFragmentExit(writeFragment)
         }
         return view
     }

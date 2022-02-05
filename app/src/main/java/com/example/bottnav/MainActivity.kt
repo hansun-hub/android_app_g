@@ -96,11 +96,6 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    /*
-    fun goBack() {
-        onBackPressed()
-    }*/
-
     fun Mstop() {
         mPlayer.stop()
     }
@@ -151,6 +146,12 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.bottom_container, fragment)
         fragmentTransaction.addToBackStack("$fragment");
+        fragmentTransaction.commit()
+    }
+    public fun replaceFragmentExit(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.bottom_container, fragment)
         fragmentTransaction.commit()
     }
 

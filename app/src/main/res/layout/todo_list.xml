@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- *********삭제필요************ -->
+
     <TextView
         android:id="@+id/todo_content"
         android:layout_width="75dp"

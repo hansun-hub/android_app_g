@@ -389,7 +389,7 @@ class DBManager(context: Context) {
         sqlDB.close()
         cursor.close()
 
-       return null
+        return null
     }
 
     @SuppressLint("Range")

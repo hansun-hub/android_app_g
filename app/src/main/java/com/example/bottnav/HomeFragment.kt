@@ -180,14 +180,13 @@ class HomeFragment : Fragment() {
 
 
         //else{
-            //Toast.makeText(getActivity(), "한 일의 수 : $missionDone", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(getActivity(), "한 일의 수 : $missionDone", Toast.LENGTH_SHORT).show()
         //}
         /*if(tvDo==tvDone){
             var builder = AlertDialog.Builder()
             var dia = layoutInflater.inflate(R.layout.dialog_character,null)
             builder.setView(dia)
         }
-
         val characterFragment = CharacterDialogFragment()
         characterFragment.show(childFragmentManager,null)*/
 
