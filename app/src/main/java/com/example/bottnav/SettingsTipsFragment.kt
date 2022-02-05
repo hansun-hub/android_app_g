@@ -22,11 +22,10 @@ class SettingsTipsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings_tips, container, false)
-        val dbManager = DBManager(view.context)
         val settings_listTips = view.findViewById<ListView>(R.id.settings_listTips)
         val adapter = MyAdapter(view.context)
 
@@ -38,7 +37,6 @@ class SettingsTipsFragment : Fragment() {
             shareFrag.show(childFragmentManager, shareFrag.tag)
         }
 
-        // Inflate the layout for this fragment
         return view
     }
 
@@ -54,8 +52,8 @@ class SettingsTipsFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SettingsTipsFragment().apply {
-            }
+                SettingsTipsFragment().apply {
+                }
     }
 
     private class MyAdapter(context: Context) : BaseAdapter() {
@@ -86,8 +84,8 @@ class SettingsTipsFragment : Fragment() {
         override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(myContext)
             val layout = layoutInflater.inflate(R.layout.settings_tips_list, viewGroup, false)
-
             val tips_list_tv = layout.findViewById<TextView>(R.id.tips_list_tv)
+
             tips_list_tv.setPadding(20)
             tips_list_tv.text = "${position + 1}. ${list!!.get(position)}"
 

@@ -23,8 +23,8 @@ class SettingsDelAccFragment : Fragment() {
 
     @SuppressLint("StringFormatInvalid")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings_del_acc, container, false)
 
@@ -50,7 +50,6 @@ class SettingsDelAccFragment : Fragment() {
         // 버튼 클릭에 따른 이벤트
         delacc_btn1.setOnClickListener {
             // 진행 선택 시, 불필요한 컴포넌트 없애고 필요한 컴포넌트 불러오기
-
             delacc_tvTitle.visibility = View.GONE
             delacc_tv1.visibility = View.GONE
             delacc_btn1.visibility = View.GONE
@@ -102,6 +101,7 @@ class SettingsDelAccFragment : Fragment() {
         delacc_btn4.setOnClickListener {
             // Login 화면으로 전환
             val intent = Intent(view.context, LoginActivity::class.java)
+
             startActivity(intent)
         }
 
