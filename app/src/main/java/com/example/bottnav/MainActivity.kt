@@ -78,23 +78,6 @@ class MainActivity : AppCompatActivity() {
         mPlayer.isLooping = true
         mPlayer.setVolume(volume, volume)
         Mstart()
-
-
-        //다이얼로그 생성
-        /*
-        var builder = AlertDialog.Builder(this)
-        var view = layoutInflater.inflate(R.layout.dialog_character,null)
-
-        var btnCancel = view.findViewById<Button>(R.id.btnCancel)
-        var btnShare = view.findViewById<Button>(R.id.btnShare)
-
-        builder.create()
-        builder.setView(view)
-        builder.show()
-        btnCancel.setOnClickListener {
-
-        }*/
-
     }
 
     fun goMenu2() {

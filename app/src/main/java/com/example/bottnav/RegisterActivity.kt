@@ -76,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
                             if (password.equals(passwordCheck)) {
                                 //회원가입 코드
                                 dbManager.newUser(email, nickname, password)
-                                Toast.makeText(this, "회원 가입 성공.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "회원 가입 성공", Toast.LENGTH_SHORT).show()
                                 //db저장 완료된 상태. 로그인액티비티로 이동
                                 var intent = Intent(this, LoginActivity::class.java)
                                 intent.putExtra("email", email)
