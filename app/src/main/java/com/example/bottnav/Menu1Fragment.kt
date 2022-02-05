@@ -102,79 +102,69 @@ class Menu1Fragment : Fragment() {
 
         adapter1.setOnItemClickListener(object : TodoListAdapter.OnItemClickListener {
             override fun onItemClick(v: View, todo: Challenge, position: Int) {
-                // 달성
-                val completeDialog: AlertDialog? = activity?.let {
-                    val builder = AlertDialog.Builder(context)
-                    builder.setTitle(getString(R.string.menu1_complete_title))
-                            .setMessage(getString(R.string.menu1_complete_message, todo.contents))
-                            .setPositiveButton(R.string.answer_yes, DialogInterface.OnClickListener { dialog, id ->
-                                // 예
-                                // 달성
-                                recyclerTodo.adapter = adapter1
-                                recyclerComp.adapter = adapter2
+                //문구 표시
+                val builder = AlertDialog.Builder(context)
+                var selectChallenge = todo.contents
+                builder.setTitle(selectChallenge + ", 이 challenge를 정말 달성하셨습니까? ✔ ")
+                        .setPositiveButton("YES", DialogInterface.OnClickListener { dialog, id ->
+                            // 달성
+                            recyclerTodo.adapter = adapter1
+                            recyclerComp.adapter = adapter2
 
-                                // DB 수정
-                                dbManager.setIsAchieved(todo.index)
-                                dbManager.setLevel(dbManager.getLevel())
+                            // DB 수정
+                            dbManager.setIsAchieved(todo.index)
+                            dbManager.setLevel(dbManager.getLevel())
 
-                                // 배열 수정
-                                completedChallenges.add(0, notyetChallenges[position])
-                                notyetChallenges.remove(notyetChallenges[position])
+                            // 배열 수정
+                            completedChallenges.add(0, notyetChallenges[position])
+                            notyetChallenges.remove(notyetChallenges[position])
 
-                                // adapter에서 데이터 변화 확인
-                                adapter1.notifyDataSetChanged()
-                                adapter2.notifyDataSetChanged()
-
-                                // 성공 안내
-                                Toast.makeText(view.context, "${getString(R.string.menu1_challenge_comp, todo.contents)}", Toast.LENGTH_SHORT).show()
-                            })
-                            .setNegativeButton(R.string.answer_no, DialogInterface.OnClickListener { dialog, id ->
-                                // 아니오
-
-                                // 안내
-                                Toast.makeText(view.context, "${getString(R.string.menu1_challenge_uncomp)}", Toast.LENGTH_SHORT).show()
-                            })
-                    // 다이얼로그를 띄워주기
-                    builder.show()
-                }
-                completeDialog?.show()
-
+                            adapter1.notifyDataSetChanged()
+                            adapter2.notifyDataSetChanged()
+                            //finish()
+                        })
+                        .setNegativeButton("No", DialogInterface.OnClickListener { dialog, id ->
+                            // 취소버튼
+                            //finish()
+                        })
+                // 다이얼로그를 띄워주기
+                builder.show()
+                
                 var menu1_tvDialogcomp = completeDialog?.findViewById<TextView>(android.R.id.message)
                 menu1_tvDialogcomp?.typeface = Typeface.createFromAsset(view.context.assets, "jua_regular.ttf")
             }
 
             override fun onItemDeleteClick(v: View, todo: Challenge, position: Int) {
-                // 삭제
-                if (todo.index > 24) {
-                    val delDialog: AlertDialog? = activity?.let {
-                        val builder = AlertDialog.Builder(context)
-                        builder.setTitle(getString(R.string.menu1_challenge_del_title))
-                                .setMessage(getString(R.string.menu1_challenge_del_message, todo.contents))
-                                .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, id ->
-                                    // 예
-                                    // DB 수젇
-                                    dbManager.delCustomChallenge(date, todo.index)
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle(" challenge를 삭제하시겠습니까? 😮 ")
+                        .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, id ->
+                            // 삭제
+                            recyclerTodo.adapter = adapter1
+                            recyclerComp.adapter = adapter2
 
-                                    // 배열 수정
-                                    notyetChallenges.remove(notyetChallenges[position])
+                            if (todo.index > 24) {
+                                // DB 수젇
+                                dbManager.delCustomChallenge(date, todo.index)
 
-                                    Toast.makeText(view.context, "삭제했습니다.", Toast.LENGTH_SHORT).show()
+                                // 배열 수정
+                                notyetChallenges.remove(notyetChallenges[position])
 
-                                    adapter1.notifyDataSetChanged()
-                                })
-                                .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
-                                    // 취소
-                                })
-                        // 다이얼로그를 띄워주기
-                        builder.show()
-                    }
-                    delDialog?.show()
+                                Toast.makeText(view.context, "삭제했습니다.", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(view.context, "삭제가 불가능한 미션입니다.", Toast.LENGTH_SHORT).show()
+                            }
 
-                    var menu1_tvDialogdel = delDialog?.findViewById<TextView>(android.R.id.message)
-                    menu1_tvDialogdel?.typeface = Typeface.createFromAsset(view.context.assets, "jua_regular.ttf")
-                } else {
-                    Toast.makeText(view.context, "삭제가 불가능한 미션입니다.", Toast.LENGTH_SHORT).show()
-                }
+                            adapter1.notifyDataSetChanged()
+                            // DB에서 삭제 진행
+                           // dbManager.delDiary(date)
+                            //finish()
+                        })
+                        .setNegativeButton("취소", DialogInterface.OnClickListener { dialog, id ->
+                            // 취소버튼
+                            //finish()
+                        })
+                // 다이얼로그를 띄워주기
+                builder.show()
             }
         })
 
