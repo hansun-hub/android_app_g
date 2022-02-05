@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 class Menu2Fragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
-    //lateinit var menu2DetailLayout: LinearLayout //삭제요망
     lateinit var dbManager: DBManager
     lateinit var adapter: menu2_DiaryAdapter
     val recordList = ArrayList<diaryRecord>()
@@ -36,9 +35,6 @@ class Menu2Fragment : Fragment() {
         dbManager = DBManager(view.context)
         val menu2_btnAdd = view.findViewById<Button>(R.id.menu2_btnAdd)
         val menu2WarningText = view.findViewById<TextView>(R.id.menu2WarningText)
-        //삭제요망
-        //val menu2DetailLayout: LinearLayout = view.findViewById(R.id.menu2_DetailLayout)
-        //val newButton = TextView(context)
 
         //소감이 작성된 날짜들 배열가져오기
         val feelingDate = dbManager.getDatesFromDiary()
@@ -100,5 +96,4 @@ class Menu2Fragment : Fragment() {
         val selectedChallenge = dbManager.getSelectedChallenge(findDate!!, title)
         val rate = dbManager.getRate(findDate!!)
     }
-
 }
