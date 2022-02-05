@@ -1,5 +1,6 @@
 package com.example.bottnav
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -24,13 +25,16 @@ class LoginActivity : AppCompatActivity() {
     lateinit var login_editPassword: EditText
     lateinit var dbHelper: DBHelper
     lateinit var sqlDB: SQLiteDatabase
+    lateinit var dbManager: DBManager
 
     lateinit var email: String
     lateinit var password: String
     lateinit var nickname: String
-    var aimLevel: Int = 0
+    var level: Int = 0
+    var aimLevel: Int = 10
 
 
+    @SuppressLint("Range")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
         val pref: SharedPreferences = getSharedPreferences("current", Context.MODE_PRIVATE)
 
         dbHelper = DBHelper(this)
+        dbManager = DBManager(this)
 
         //회원가입창에서 값 받아옴
         var getIntent: Intent = getIntent()
@@ -81,13 +86,30 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "비밀번호가 맞지 않습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
                     } else {  //로그인 성공
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                        //닉네임 받아오는 쿼리문
-                        cursor = sqlDB.rawQuery("SELECT nickname FROM USERS WHERE email = '" + email + "'", null)
+                        //닉네임,레벨 받아오는 쿼리문
+                        cursor = sqlDB.rawQuery("SELECT * FROM USERS WHERE email = '" + email + "'", null)
                         cursor.moveToNext()
-                        nickname = cursor.getString(0)
+                        nickname = cursor.getString(cursor.getColumnIndex("nickname"))
+                        level = cursor.getInt(cursor.getColumnIndex("level"))
 
                         //sharedPreferences에 저장된 목표레벨 가져오기
-                        aimLevel = pref.getInt("aimLevel", 10)
+
+                        //레벨에 따라 목표 레벨 설정
+                        when (level) {
+                            in 0..9 -> {
+                                aimLevel = 10
+                            }
+                            in 10..29 -> {
+                                aimLevel = 30
+                            }
+                            in 30..59 -> {
+                                aimLevel = 60
+                            }
+                            in 60..100 -> {
+                                aimLevel = 100
+                            }
+                        }
+
                         dataSaving(email, nickname, aimLevel) //이 버튼 눌리는 순간을 기억
 
                         var intent = Intent(this, MainActivity::class.java)
@@ -114,7 +136,6 @@ class LoginActivity : AppCompatActivity() {
 
         //var email = "" // 이메일 정보 받아오기
         //var nickname = "" // 닉네임 정보 받아오기
-        var aimLevel: Int = 10
 
         // 로그인 날짜와 로그인 정보 sharedPreference에 저장
         // 오늘 날짜 저장

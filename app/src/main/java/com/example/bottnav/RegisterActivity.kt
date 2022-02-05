@@ -46,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
         dbManager= DBManager(this)
 
 
-        //회원가입 확인 코드
+        //중복 확인 코드
         register_btnDouCheck.setOnClickListener {
             email = register_editId.text.toString()
             sqlDB = dbHelper.writableDatabase
@@ -91,7 +91,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         }
-
+        //중복확인 버튼 누르기 전 회원가입하기 버튼 클릭 시
         register_btnRegister.setOnClickListener {
             Toast.makeText(this, "중복 확인을 먼저 해주세요",Toast.LENGTH_SHORT).show()
         }

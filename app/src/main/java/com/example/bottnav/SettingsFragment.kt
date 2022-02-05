@@ -152,8 +152,9 @@ class SettingsFragment : Fragment() {
                                                 "current",
                                                 Context.MODE_PRIVATE
                                         )
-                                        pref.edit().clear()
-                                        pref.edit().apply()
+                                        val editor = pref.edit()
+                                        editor.clear()
+                                        editor.apply()
 
                                         // Login 화면으로 전환
                                         val intent = Intent(view.context, LoginActivity::class.java)

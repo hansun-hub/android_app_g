@@ -84,8 +84,9 @@ class SettingsDelAccFragment : Fragment() {
                 // USERS에서 삭제, ACHIEVE&DIARY 테이블 삭제 -> Preference 삭제
                 dbManager.delUser()
                 val pref = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
-                pref.edit().clear()
-                pref.edit().apply()
+                val editor = pref.edit()
+                editor.clear()
+                editor.apply()
 
                 // Login 화면으로 전환
                 val intent = Intent(view.context, LoginActivity::class.java)
