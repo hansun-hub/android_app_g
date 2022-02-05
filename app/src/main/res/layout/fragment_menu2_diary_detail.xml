@@ -120,4 +120,13 @@
         android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/menu2Detail_tvImpre2"
         app:layout_constraintTop_toBottomOf="@+id/menu2Detail_achvMission2" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="322dp"
+        android:layout_height="100dp"
+        android:text="삭제해야하는 xml"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="411dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

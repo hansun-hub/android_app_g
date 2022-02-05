@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import java.time.LocalDate
 
@@ -46,6 +47,12 @@ class LoginActivity : AppCompatActivity() {
         dbHelper = DBHelper(this)
 
         var fragmentHome : Fragment
+
+        //이미 로그인한 상태라면 바로 메인 화면 진입
+        if (pref.getString("email", "") != "") {
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         //회원가입창에서 값 받아옴
         var getIntent : Intent = getIntent()
@@ -100,6 +107,7 @@ class LoginActivity : AppCompatActivity() {
 
                         var intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+
                         finish()
                     }
                 }

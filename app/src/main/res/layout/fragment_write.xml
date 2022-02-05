@@ -11,7 +11,7 @@
     tools:context=".WriteFragment">
 
     <TextView
-        android:id="@+id/achvMission"
+        android:id="@+id/write_tvAchvMission"
         android:layout_width="372dp"
         android:layout_height="43dp"
         android:gravity="center"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/write_editImpre" />
 
     <Button
-        android:id="@+id/selectButton"
+        android:id="@+id/write_btnSelect"
         android:layout_width="258dp"
         android:layout_height="51dp"
         android:layout_marginTop="16dp"

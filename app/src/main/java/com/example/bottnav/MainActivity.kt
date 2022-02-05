@@ -20,7 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class MainActivity : AppCompatActivity() {
 
 
-    //김한선 추가
+    //김한선 추가 //주석삭제요망
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
 
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        //김한선 수정함
+        //김한선 수정함 //주석삭제요망
         setContentView(binding.root)
 
         homeFrag = HomeFragment()
@@ -80,23 +80,9 @@ class MainActivity : AppCompatActivity() {
         Mstart()
 
 
-        //다이얼로그 생성
-        /*
-        var builder = AlertDialog.Builder(this)
-        var view = layoutInflater.inflate(R.layout.dialog_character,null)
-
-        var btnCancel = view.findViewById<Button>(R.id.btnCancel)
-        var btnShare = view.findViewById<Button>(R.id.btnShare)
-
-        builder.create()
-        builder.setView(view)
-        builder.show()
-        btnCancel.setOnClickListener {
-
-        }*/
-
     }
 
+    //menu2인 소감메뉴로 가는 함수
     fun goMenu2() {
         val Menu2FragmentFragment = Menu2Fragment()
         val transaction = supportFragmentManager.beginTransaction()
@@ -105,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+    //뒤로가기
     override fun onBackPressed() {
         super.onBackPressed()
     }
@@ -168,8 +155,8 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-
-    override fun onDestroy() {  //액티비티가 소멸될 때
+    //액티비티가 소멸될 때
+    override fun onDestroy() {
         super.onDestroy()
         mPlayer.stop()
     }

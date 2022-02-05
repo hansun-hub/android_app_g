@@ -31,5 +31,5 @@
     </style>
     <style name="RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
         <item name="android:fontFamily">@font/jua_regular</item>
-    </style>\
+    </style>
 </resources>
