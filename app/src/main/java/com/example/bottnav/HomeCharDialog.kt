@@ -7,16 +7,20 @@ import android.widget.Button
 import android.widget.ImageView
 
 class HomeCharDialog(context: Context) {
+    // Home - 캐릭터 성장 시 알림 위한 dialog
+
     private val dialog = Dialog(context)
 
     fun showDialog(res: Int) {
         dialog.setContentView(R.layout.dialog_home_character)
-        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
         dialog.setCanceledOnTouchOutside(false)   //외부 클릭으로 사라지지 않음
         val home_btnCancel: Button = dialog.findViewById<Button>(R.id.home_btnCancel)
         val home_btnShare: Button = dialog.findViewById<Button>(R.id.home_btnShare)
-        var home_ivCharacter: ImageView = dialog.findViewById<ImageView>(R.id.home_ivCharacter)
+        val home_ivCharacter: ImageView = dialog.findViewById<ImageView>(R.id.home_ivCharacter)
 
         home_ivCharacter.setImageResource(res)  //받아온 이미지로 변경
         dialog.show()

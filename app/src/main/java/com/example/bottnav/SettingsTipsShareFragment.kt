@@ -10,15 +10,13 @@ import android.widget.Button
 import android.widget.ImageButton
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class SettingsTipsShareFragment(contents: String) : BottomSheetDialogFragment() {
+class SettingsTipsShareFragment(val contents: String) : BottomSheetDialogFragment() {
     // 설정 - 팁 모아보기 - 팁 공유
 
-    val contents = contents
-
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(R.layout.bottomsheet_settings_tipshare, container, false)

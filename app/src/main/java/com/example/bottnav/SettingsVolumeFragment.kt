@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 
-class SettingsVolumeFragment(context: Context): DialogFragment() {
+class SettingsVolumeFragment : DialogFragment() {
     // 설정 - 배경음악 음량 조절
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +26,8 @@ class SettingsVolumeFragment(context: Context): DialogFragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         val view = inflater.inflate(R.layout.dialog_settings_volume, container, false)
@@ -43,7 +43,7 @@ class SettingsVolumeFragment(context: Context): DialogFragment() {
 
         volume_seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                var value = (progress.toDouble() / 10).toFloat()
+                val value = (progress.toDouble() / 10).toFloat()
                 // seekBar 조작 중 볼륨 변경
                 (activity as MainActivity).setMvolume(value)
                 if (value < 0.1) {

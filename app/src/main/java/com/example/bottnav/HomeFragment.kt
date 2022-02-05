@@ -11,7 +11,8 @@ import android.view.ViewGroup
 import android.widget.*
 
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+    // 홈
+
     lateinit var home_tvNick: TextView
     lateinit var home_btnMusic: ImageButton
     lateinit var home_tvDo: TextView
@@ -31,11 +32,11 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         // Inflate the layout for this fragment
-        var view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
         home_tvNick = view.findViewById<TextView>(R.id.home_tvNick)
         home_btnMusic = view.findViewById<ImageButton>(R.id.home_btnMusic)
@@ -47,28 +48,29 @@ class HomeFragment : Fragment() {
         dbManager = DBManager(view.context)
 
         //SharedPreferences로 닉네임 가져오기
-        val pref: SharedPreferences = requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
+        val pref: SharedPreferences =
+            requireActivity().getSharedPreferences("current", Context.MODE_PRIVATE)
         NICK = pref.getString("nickname", null).toString()
-        home_tvNick.setText(NICK)  //login페이지에서 넘어온 닉네임이 화면에 보임
+        home_tvNick.text = NICK  //login페이지에서 넘어온 닉네임이 화면에 보임
 
         missionDo = pref.getInt("aimLevel", 0)  //목표 레벨 (sharedPrefereces사용)가져오기
-        home_tvDo.setText(missionDo.toString())
+        home_tvDo.text = missionDo.toString()
 
         missionDone = dbManager.getLevel()  //현재 레벨 (db 사용)가져오기
-        home_tvDone.setText(missionDone.toString())
+        home_tvDone.text = missionDone.toString()
 
         //음악 버튼
         home_btnMusic.setOnClickListener {
             //실행 중인지 확인하는 코드 추가하기
-            if ((activity as MainActivity).ispalying()) { //실행 중이라면 중단
-                (activity as MainActivity).Mpause()
+            if ((activity as MainActivity).isplaying()) { //실행 중이라면 중단
+                (activity as MainActivity).mPause()
                 home_btnMusic.setImageResource(R.drawable.ic_baseline_music_off_24)
             } else {
-                (activity as MainActivity).Mstart()
+                (activity as MainActivity).mStart()
                 home_btnMusic.setImageResource(R.drawable.ic_baseline_music_note_24)
             }
         }
-        if (!(activity as MainActivity).ispalying()) {  //실행 중이지 않은 상태면 음악이 꺼진 버튼이 보임. (프래그먼트끼리 이동시 오류 해결)
+        if (!(activity as MainActivity).isplaying()) {  //실행 중이지 않은 상태면 음악이 꺼진 버튼이 보임. (프래그먼트끼리 이동시 오류 해결)
             home_btnMusic.setImageResource(R.drawable.ic_baseline_music_off_24)
         }
 
@@ -77,10 +79,10 @@ class HomeFragment : Fragment() {
 
         //랜덤 수 만들기
         var tipSize = (tip!!.size).toInt()
-        val random = (0..tipSize - 1).random()
+        val random = (0 until tipSize).random()
 
         //팁 배열에서 랜덤으로 값 가져와서 text가 바뀜
-        tvTip.text = tip?.get(random)
+        tvTip.text = tip[random]
 
 
         //친구에게 공유(자랑)할 수 있는 dialog 생성
@@ -103,19 +105,44 @@ class HomeFragment : Fragment() {
         //목표 레벨에 따라 이미지 바꿈(프래그먼트간 이동에 값 초기화 방지)
         when (missionDo) {
             10 -> {
-                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.sprout))  //캐릭터 이미지 바꿈
+                ivSprout.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.sprout,
+                        view.context.theme
+                    )
+                )
             }
             30 -> {
-                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))  //캐릭터 이미지 바꿈
+                ivSprout.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.tree,
+                        view.context.theme
+                    )
+                )
             }
             60 -> {
-                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.appletrees))  //캐릭터 이미지 바꿈
+                ivSprout.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.appletrees,
+                        view.context.theme
+                    )
+                )
             }
             100 -> {
-                ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.forest))  //캐릭터 이미지 바꿈
+                ivSprout.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.forest,
+                        view.context.theme
+                    )
+                )
                 //모든 미션을 달성한 경우 (100/100인 경우)
                 if (missionDone == 100) {
-                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.healthy_earth))  //캐릭터 이미지 바꿈
+                    ivSprout.setImageDrawable(
+                        resources.getDrawable(
+                            R.drawable.healthy_earth,
+                            view.context.theme
+                        )
+                    )
                 }
             }
         }
@@ -136,7 +163,12 @@ class HomeFragment : Fragment() {
                     missionDo = 30  //다음 달성 목표
                     aimLevelChange(missionDo)    //목표 개수 수정
                     home_tvDo.text = missionDo.toString()  //달성 목표 화면에 반영
-                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.tree))  //캐릭터 이미지 바꿈
+                    ivSprout.setImageDrawable(
+                        resources.getDrawable(
+                            R.drawable.tree,
+                            view.context.theme
+                        )
+                    )  //캐릭터 이미지 바꿈
                     ivSprout.layoutParams.width = 140  //너비 크게 수정
                     popupDialog(R.drawable.tree)
                 }
@@ -144,19 +176,34 @@ class HomeFragment : Fragment() {
                     missionDo = 60  //다음 달성 목표
                     aimLevelChange(missionDo)
                     home_tvDo.text = missionDo.toString()
-                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.appletrees))
+                    ivSprout.setImageDrawable(
+                        resources.getDrawable(
+                            R.drawable.appletrees,
+                            view.context.theme
+                        )
+                    )
                     popupDialog(R.drawable.appletrees)
                 }
                 in 60..99 -> {
                     missionDo = 100  //다음 달성 목표
                     aimLevelChange(missionDo)
                     home_tvDo.text = missionDo.toString()
-                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.forest))
+                    ivSprout.setImageDrawable(
+                        resources.getDrawable(
+                            R.drawable.forest,
+                            view.context.theme
+                        )
+                    )
                     popupDialog(R.drawable.forest)
                 }
                 100 -> {
                     home_tvDo.text = missionDo.toString()
-                    ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.healthy_earth))
+                    ivSprout.setImageDrawable(
+                        resources.getDrawable(
+                            R.drawable.healthy_earth,
+                            view.context.theme
+                        )
+                    )
                     popupDialog(R.drawable.healthy_earth)
                 }
             }
