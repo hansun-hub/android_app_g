@@ -11,77 +11,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="Detail Page 🧐"
+        android:text="@string/menu2_detail_title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/menu2Detail_tvSetContent"
-        android:layout_width="283dp"
-        android:layout_height="87dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="83dp"
-        android:text="TextView"
-        android:textSize="20sp"
+        android:id="@+id/menu2Detail_GrayBar"
+        android:layout_width="293dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="18dp"
+        android:background="#E2e2e2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvTop" />
 
     <TextView
-        android:id="@+id/menu2Detail_tvSetTitle"
-        android:layout_width="283dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="13dp"
-        android:text="title"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetDate" />
-
-    <TextView
-        android:id="@+id/menu2Detail_tvSetDate"
-        android:layout_width="176dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="8dp"
-        android:text="date"
-        android:textColor="@color/gray"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/menu2Detail_tvSetTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetMission" />
-
-    <Button
-        android:id="@+id/menu2Detail_btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:background="#F3F3F5"
-        android:text="이전"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Menu2Detail_SetRatingBar" />
-
-    <RatingBar
-        android:id="@+id/Menu2Detail_SetRatingBar"
-        android:layout_width="237dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetTitle" />
-
-    <TextView
-        android:id="@+id/menu2Detail_tvMission"
+        android:id="@+id/menu2Detail_tvChallenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="140dp"
-        android:text="미션"
+        android:text="@string/challenge"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -93,10 +45,10 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="58dp"
         android:gravity="center"
-        android:text="제목"
+        android:text="@string/title"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvMission" />
+        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvChallenge" />
 
     <TextView
         android:id="@+id/menu2Detail_tvContent"
@@ -105,7 +57,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="105dp"
         android:gravity="center"
-        android:text="소감"
+        android:text="@string/diary"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvTitle1" />
@@ -124,6 +76,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvTop" />
 
+    <TextView
+        android:id="@+id/menu2Detail_tvSetDate"
+        android:layout_width="176dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp"
+        android:text="date"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/menu2Detail_tvSetTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetMission" />
+
+    <TextView
+        android:id="@+id/menu2Detail_tvSetTitle"
+        android:layout_width="283dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="13dp"
+        android:text="title"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetDate" />
+
+    <TextView
+        android:id="@+id/menu2Detail_tvSetContent"
+        android:layout_width="283dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="83dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetTitle" />
+
+    <RatingBar
+        android:id="@+id/Menu2Detail_SetRatingBar"
+        android:layout_width="237dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvSetTitle" />
+
+    <Button
+        android:id="@+id/menu2Detail_btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:background="#F3F3F5"
+        android:text="@string/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Menu2Detail_SetRatingBar" />
+
     <Button
         android:id="@+id/menu2Detail_btnErase"
         android:layout_width="30dp"
@@ -134,15 +144,5 @@
         android:backgroundTint="@color/pretty_green3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/menu2Detail_GrayBar"
-        android:layout_width="293dp"
-        android:layout_height="3dp"
-        android:layout_marginTop="18dp"
-        android:background="#E2e2e2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu2Detail_tvTop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

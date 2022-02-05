@@ -8,7 +8,7 @@
     <string name="nav_menu2">기록</string>
     <string name="call_nickname"><b>%1$s</b> 님</string>
     <string name="nav_settings">설정</string>
-    <string name="chooseMission"><u>성취 미션 선택하기</u></string>
+    <string name="chooseMission"><u>달성한 챌린지 선택하기</u></string>
     <string name="email">이메일</string>
     <string name="password">비밀번호</string>
     <string name="NotMemberYet">아직 회원이 아니신가요?</string>
@@ -54,6 +54,7 @@
     <string name="answer_enter">입력</string>
     <string name="answer_cancel">취소</string>
     <string name="todo">할 일</string>
+    <string name="menu1_todo_message">할 일을 작성해 주세요.</string>
     <string name="shareWithFriend">친구에게 공유</string>
     <string name="share_message">[ReHabit]\n환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
     <string name="congrat">축하합니다!</string>
@@ -70,4 +71,18 @@
     <string name="delete_complete">삭제했습니다.</string>
     <string name="menu2_select_challenge">챌린지를 선택해주세요</string>
     <string name="menu2_no_completed">달성한 챌린지가 없습니다.\n일자를 다시 확인해주세요.\n</string>
+    <string name="challenge">챌린지</string>
+    <string name="menu2_detail_title">Detail Page 🧐</string>
+    <string name="back">이전</string>
+    <string name="title">제목</string>
+    <string name="diary">소감</string>
+    <string name="message">메시지</string>
+    <string name="call">전화</string>
+    <string name="share">share</string>
+    <string name="character">캐릭터</string>
+    <string name="menu2_prev_diary">지난 기록 확인 🎉</string>
+    <string name="menu2_write_selected">달성 챌린지</string>
+    <string name="menu2_write_rate">성취도</string>
+    <string name="menu2_write_save">저장</string>
+    <string name="menu2_write_date">일자</string>
 </resources>
