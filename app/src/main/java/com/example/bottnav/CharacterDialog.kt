@@ -13,10 +13,10 @@ class CharacterDialog(context: Context) {
         dialog.setContentView(R.layout.dialog_character)
         dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT)
-        dialog.setCanceledOnTouchOutside(false)   //외부 클릭으로 사라지지 않음.
-        val home_btnCancel: Button = dialog.findViewById(R.id.home_btnCancel)
-        val home_btnShare: Button = dialog.findViewById(R.id.home_btnShare)
-        var home_ivCharacter: ImageView = dialog.findViewById(R.id.home_ivCharacter)
+        dialog.setCanceledOnTouchOutside(false)   //외부 클릭으로 사라지지 않음
+        val home_btnCancel: Button = dialog.findViewById<Button>(R.id.home_btnCancel)
+        val home_btnShare: Button = dialog.findViewById<Button>(R.id.home_btnShare)
+        var home_ivCharacter: ImageView = dialog.findViewById<ImageView>(R.id.home_ivCharacter)
 
         home_ivCharacter.setImageResource(res)  //받아온 이미지로 변경
         dialog.show()

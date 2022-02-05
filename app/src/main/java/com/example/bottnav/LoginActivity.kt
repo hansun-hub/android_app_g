@@ -37,15 +37,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         login_btnLogin = findViewById<Button>(R.id.login_btnLogin)
-        login_regText = findViewById(R.id.login_regText)
-        login_editEmail = findViewById(R.id.login_editEmail)
-        login_editPassword = findViewById(R.id.login_editPassword)
+        login_regText = findViewById<TextView>(R.id.login_regText)
+        login_editEmail = findViewById<EditText>(R.id.login_editEmail)
+        login_editPassword = findViewById<EditText>(R.id.login_editPassword)
 
         val pref: SharedPreferences = getSharedPreferences("current", Context.MODE_PRIVATE)
 
         dbHelper = DBHelper(this)
-
-        var fragmentHome: Fragment
 
         //회원가입창에서 값 받아옴
         var getIntent: Intent = getIntent()
@@ -140,5 +138,12 @@ class LoginActivity : AppCompatActivity() {
 
         //val dbManager = DBManager(this)
         //dbManager.newUser(email, nickname, "1234")
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity();
+        System.runFinalization();
+        System.exit(0);
     }
 }

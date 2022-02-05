@@ -12,7 +12,6 @@ import android.widget.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_Nick = "nick"  //안쓰면 지우기
 
 /**
  * A simple [Fragment] subclass.
@@ -36,7 +35,6 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            //nick = it.getString(ARG_Nick)
         }
     }
 
@@ -47,12 +45,12 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         var view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
-        home_tvNick = view.findViewById(R.id.home_tvNick)
-        home_btnMusic = view.findViewById(R.id.home_btnMusic)
-        home_tvDo = view.findViewById(R.id.home_tvDo)
-        home_tvDone = view.findViewById(R.id.home_tvDone)
-        tvTip = view.findViewById(R.id.home_tvTip)
-        ivSprout = view.findViewById(R.id.home_ivSprout)  //tvDone수에 따라 이미지 바뀌도록 연결
+        home_tvNick = view.findViewById<TextView>(R.id.home_tvNick)
+        home_btnMusic = view.findViewById<ImageButton>(R.id.home_btnMusic)
+        home_tvDo = view.findViewById<TextView>(R.id.home_tvDo)
+        home_tvDone = view.findViewById<TextView>(R.id.home_tvDone)
+        tvTip = view.findViewById<TextView>(R.id.home_tvTip)
+        ivSprout = view.findViewById<ImageView>(R.id.home_ivSprout)  //tvDone수에 따라 이미지 바뀌도록 연결
 
         dbManager = DBManager(view.context)
 
@@ -98,7 +96,7 @@ class HomeFragment : Fragment() {
 
         //함수로 묶어둠
         fun popupDialog(resChar: Int) {
-            dialog.showDialog(resChar) //리소스 명 넣기 R.drawable.~~~
+            dialog.showDialog(resChar)
             dialog.setOnClickedListener(object : CharacterDialog.ButtonClickListener {
                 //공유버튼 클릭시
                 override fun onClicked() {  //CharacterDialogFragment에서 생성한 함수 오버라이드를 통해 사용
@@ -110,7 +108,7 @@ class HomeFragment : Fragment() {
             })
         }
 
-        //현재 레벨에 따라 이미지 바꿈(프래그먼트간 이동에 값 초기화 방지)
+        //목표 레벨에 따라 이미지 바꿈(프래그먼트간 이동에 값 초기화 방지)
         when (missionDo) {
             10 -> {
                 ivSprout.setImageDrawable(getResources().getDrawable(R.drawable.sprout))  //캐릭터 이미지 바꿈
@@ -190,7 +188,7 @@ class HomeFragment : Fragment() {
         fun newInstance(param1: String) =
                 HomeFragment().apply {
                     arguments = Bundle().apply {
-                        putString(ARG_Nick, param1)
+
                     }
                 }
     }

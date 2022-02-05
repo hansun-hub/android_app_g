@@ -35,12 +35,12 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        register_editNickname = findViewById(R.id.register_editNickname)
-        register_editId = findViewById(R.id.register_editId)
-        register_btnDouCheck = findViewById(R.id.register_btnDouCheck)
-        register_editPwd = findViewById(R.id.register_editPwd)
-        register_editPwdcheck = findViewById(R.id.register_editPwdcheck)
-        register_btnRegister = findViewById(R.id.register_btnRegister)
+        register_editNickname = findViewById<EditText>(R.id.register_editNickname)
+        register_editId = findViewById<EditText>(R.id.register_editId)
+        register_btnDouCheck = findViewById<Button>(R.id.register_btnDouCheck)
+        register_editPwd = findViewById<EditText>(R.id.register_editPwd)
+        register_editPwdcheck = findViewById<EditText>(R.id.register_editPwdcheck)
+        register_btnRegister = findViewById<Button>(R.id.register_btnRegister)
 
         dbHelper = DBHelper(this)
         dbManager= DBManager(this)
@@ -86,7 +86,6 @@ class RegisterActivity : AppCompatActivity() {
                             } else {
                                 Toast.makeText(this, "비밀번호가 같지 않습니다.", Toast.LENGTH_SHORT).show()
                             }
-                            //Toast.makeText(this, "문제.",Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

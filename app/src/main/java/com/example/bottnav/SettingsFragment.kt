@@ -1,4 +1,4 @@
-    package com.example.bottnav
+package com.example.bottnav
 
 import android.app.AlertDialog
 import android.content.Context
@@ -188,10 +188,10 @@ class SettingsFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SettingsFragment().apply {
-                arguments = Bundle().apply {
+                SettingsFragment().apply {
+                    arguments = Bundle().apply {
+                    }
                 }
-            }
     }
 
 
