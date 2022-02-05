@@ -218,6 +218,7 @@ class DBManager(context: Context) {
         return getChallenges("all")!![index]
     }
 
+    @SuppressLint("Range")
     public fun addCustomChallenge(findDate: String, contents: String) {
         // DB에 사용자 설정 미션 추가
 
@@ -225,12 +226,17 @@ class DBManager(context: Context) {
 
         // 해당 날짜의 미션 개수 가져오기
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate';", null)
+        var max = 0
         var i = 0
-        while (cursor.moveToNext())
-            i++
+
+        while (cursor.moveToNext()) {
+            i = cursor.getInt(cursor.getColumnIndex("i"))
+            if (i > max)
+                max = i
+        }
 
         // 달성정보 DB에 추가
-        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES('$findDate', 'D', ${i + 25}, 'N', '$contents');")
+        sqlDB.execSQL("INSERT INTO \'ACHIEVE_$email\' VALUES('$findDate', 'D', ${max + 1}, 'N', '$contents');")
 
         cursor.close()
         sqlDB.close()
@@ -243,6 +249,29 @@ class DBManager(context: Context) {
         sqlDB.execSQL("DELETE FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$index;")
 
         sqlDB.close()
+    }
+
+    @SuppressLint("Range")
+    public fun getCustomChallenge(findDate: String?, i: Int): String? {
+        // DB로부터 해당 날짜에서 사용자가 생성한 미션 불러오기
+
+        sqlDB = dbHelper.readableDatabase
+        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$i;", null)
+
+        while (cursor.moveToNext()) {
+            cursor.moveToLast()
+            var challenge = cursor.getString(cursor.getColumnIndex("contents"))
+
+            cursor.close()
+            sqlDB.close()
+
+            return challenge
+        }
+
+        cursor.close()
+        sqlDB.close()
+
+        return null
     }
 
     @SuppressLint("Range")
@@ -314,8 +343,8 @@ class DBManager(context: Context) {
         sqlDB = dbHelper.readableDatabase
         cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$i;", null)
 
-        if (cursor.count == 1) {
-            cursor.moveToFirst()
+        while (cursor.moveToNext()) {
+            cursor.moveToLast()
             var isAchieved = cursor.getString(cursor.getColumnIndex("is_achieved"))
 
             cursor.close()
@@ -424,29 +453,6 @@ class DBManager(context: Context) {
         sqlDB.close()
 
         return 0
-    }
-
-    @SuppressLint("Range")
-    public fun getCustomChallenge(findDate: String?, i: Int): String? {
-        // DB로부터 해당 날짜에서 사용자가 생성한 미션 불러오기
-
-        sqlDB = dbHelper.readableDatabase
-        cursor = sqlDB.rawQuery("SELECT * FROM \'ACHIEVE_$email\' WHERE date='$findDate' and i=$i;", null)
-
-        if (cursor.count == 1) {
-            cursor.moveToFirst()
-            var challenge = cursor.getString(cursor.getColumnIndex("contents"))
-
-            cursor.close()
-            sqlDB.close()
-
-            return challenge
-        }
-
-        cursor.close()
-        sqlDB.close()
-
-        return null
     }
 
     public fun addDiary(date: String, title: String, contents: String, score: Int, selected_challenge: String) {
