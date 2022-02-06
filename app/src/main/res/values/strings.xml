@@ -43,14 +43,14 @@
     <string name="share_message">[ReHabit]\n환경 보호에 한 발 다가갔습니다. 축하해주세요. </string>
     <string name="congrat">축하합니다!</string>
     <string name="today_edit_todo">환경을 위해 우리가 실천할 수 있는\n다양한 일이 있다는 사실 아셨나요?\n\n환경을 위한 사소한 습관 바꾸기, 어렵지 않아요.\nReHabit과 함께 자신의 행동을 기록하여\n성장해 나아가봅시다.\n\n오늘도 깨끗한 환경에 한 발짝 다가가는 당신,\n아름답습니다.\n\n&lt;오늘 할 일을 추가해주세요.&gt;\n ex. 방을 나갈 때 항상 불을 끄기</string>
-    <string name="menu1_add_challenge">%1$s\n새 챌린지를 추가했습니다!</string>
+    <string name="menu1_add_challenge">%1$s\n새 챌린지를 추가했습니다! 📌</string>
     <string name="menu1_complete_title">Challenge 달성</string>
     <string name="menu1_complete_message">%1$s\n이 challenge를 정말 달성하셨습니까? ✔</string>
-    <string name="menu1_challenge_uncomp">달성이 취소되었습니다.\n조금만 더 힘내서 challenge를 달성해보세요!</string>
-    <string name="menu1_challenge_comp">%1$s 성공!\n축하합니다, 기록 메뉴에서 오늘의 소감을 기록해보세요!</string>
+    <string name="menu1_challenge_uncomp">달성이 취소되었습니다.\n조금만 더 힘내서 challenge를 달성해보세요! 🙌</string>
+    <string name="menu1_challenge_comp">%1$s 성공!🎉\n축하합니다, 기록 메뉴에서 오늘의 소감을 기록해보세요!</string>
     <string name="menu1_challenge_del_title">Challenge 삭제</string>
     <string name="menu1_challenge_del_message">%1$s\nchallenge를 삭제하시겠습니까? 😮</string>
-    <string name="menu1_unaccessible">접근 불가한 챌린지입니다.</string>
+    <string name="menu1_unaccessible">오늘의 챌린지가 아닙니다. 😨</string>
     <string name="menu2_warningText">!WARNING!</string>
     <string name="menu2_title">달성 소감을 기록해보세요! 👉</string>
     <string name="menu2_select_challenge">챌린지를 선택해주세요</string>
@@ -79,7 +79,7 @@
     <string name="settings_contact_title">[오류보고/문의]</string>
     <string name="settings_contact_message">어플에 대한 의견을 알려주세요.</string>
     <string name="settings_about_us">About Us</string>
-    <string name="about_us_message">ReHabit\nSWU GURU2 Android\nTeam 5\n김한선 이정은 최유선 허선정\n\n자료 출처\n그린피스 https://www.greenpeace.org/korea/\n환경부 http://me.go.kr/home/web/main.do</string>
+    <string name="about_us_message">ReHabit\n\nSWU GURU2 Android\nTeam 5\n김한선 이정은 최유선 허선정\n\n자료 출처\n🌏 그린피스\nhttps://www.greenpeace.org/korea/\n🛤 환경부\nhttp://me.go.kr/home/web/main.do</string>
     <string name="settings_logout_dialog">로그아웃 하시겠습니까?</string>
     <string name="settings_del_dialog">회원탈퇴 진행 시 지금까지의 모든 기록이 삭제됩니다.\n계속 진행할까요?</string>
     <string name="settings_del_progess">회원탈퇴 진행을 위해 비밀번호를 입력해주세요.</string>

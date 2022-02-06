@@ -49,9 +49,20 @@ class Menu1TodoAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge
 
         holder.checkBox.setOnClickListener {
             listener?.onItemClick(it, item, position)
+            holder.checkBox.isChecked = false
         }
         holder.deleteButton.setOnClickListener {
             listener?.onItemDeleteClick(it, item, position)
+            holder.checkBox.isChecked = false
+        }
+
+        // 오늘의 챌린지가 아닐 경우 선택하지 못하도록
+        if (!item.isToday) {
+            holder.checkBox.isClickable = false
+
+            holder.frame.setOnClickListener {
+                listener?.onItemClick(it, item, position)
+            }
         }
 
         holder.checkBox.text = todoList!![position].contents
@@ -62,6 +73,7 @@ class Menu1TodoAdapter(context: Context, list: ArrayList<Menu1Fragment.Challenge
     // 아이템 뷰 저장
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val frame: FrameLayout = itemView.findViewById(R.id.menu1_frame_item)
         val checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
         val deleteButton: Button = itemView.findViewById(R.id.deleteButton)
 

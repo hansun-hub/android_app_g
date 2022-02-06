@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import java.time.*
 import java.util.*
@@ -258,8 +259,8 @@ class DBManager(context: Context) {
         )
 
         while (cursor.moveToNext()) {
-            cursor.moveToLast()
-            var challenge = cursor.getString(cursor.getColumnIndex("contents"))
+            cursor.moveToFirst()
+            val challenge = cursor.getString(cursor.getColumnIndex("contents"))
 
             cursor.close()
             sqlDB.close()

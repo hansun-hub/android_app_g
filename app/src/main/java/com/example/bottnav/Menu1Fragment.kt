@@ -48,6 +48,7 @@ class Menu1Fragment : Fragment() {
         if (context is MainActivity) mainActivity = context
     }
 
+    @SuppressLint("StringFormatMatches")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -229,7 +230,12 @@ class Menu1Fragment : Fragment() {
                     }
 
                     override fun onItemDeleteClick(v: View, todo: Challenge, position: Int) {
-                        // 공란
+                        // 사용자가 접근 시도
+                        Toast.makeText(
+                            view.context,
+                            getString(R.string.menu1_unaccessible),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 })
 
@@ -343,7 +349,7 @@ class Menu1Fragment : Fragment() {
                             completed.add(
                                 Challenge(
                                     "[Day] " + dbManager.getCustomChallenge(
-                                        date,
+                                        findDate,
                                         todayChallenges[i]
                                     )!!, todayChallenges[i], isToday
                                 )
@@ -385,7 +391,7 @@ class Menu1Fragment : Fragment() {
                             uncompleted.add(
                                 Challenge(
                                     "[Day] " + dbManager.getCustomChallenge(
-                                        date,
+                                        findDate,
                                         todayChallenges[i]
                                     )!!, todayChallenges[i], isToday
                                 )
