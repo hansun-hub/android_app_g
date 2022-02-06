@@ -113,7 +113,7 @@
 
     <TextView
         android:id="@+id/home_tvDone"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="280dp"
         android:layout_marginTop="3dp"
@@ -147,6 +147,7 @@
         android:layout_marginTop="3dp"
         android:text="10"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/home_tvSlash"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 

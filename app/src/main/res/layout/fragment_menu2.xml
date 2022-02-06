@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/menu2_tvTitle"
-            android:layout_width="301dp"
+            android:layout_width="0dp"
             android:layout_height="34dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="21dp"

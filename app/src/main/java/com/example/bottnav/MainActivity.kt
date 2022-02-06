@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mPlayer: MediaPlayer
     private var pausePos: Int = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

@@ -113,7 +113,7 @@ class Menu2WriteFragment : Fragment() {
                 .show()
 
             val menu2Fragment = Menu2Fragment()
-            (activity as MainActivity).replaceFragment(menu2Fragment)
+            (activity as MainActivity).replaceFragmentExit(menu2Fragment)
         }
 
         return view
